@@ -94,7 +94,7 @@ sudo -u postgres psql postgres
 \password postgres
 
 # Will prompt for password
-# Type Control+D or q to exit the posgreSQL prompt.
+# Type Control+D or \q to exit the posgreSQL prompt.
 
 # Create a User
 #--------------------------------------------------------
