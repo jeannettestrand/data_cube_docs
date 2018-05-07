@@ -33,7 +33,6 @@ sudo yum install gcc bzip2 -y
 # Because of $PATH interactions with sudo, may need to navigate to directory in which pip3 lives to execute the pip3 commands
 # \usr\local\bin, run as ./pip3 
 # -------------------------------------------------------
-sudo pip3.6 install --upgrade pip
 sudo pip3.6 install pycosat pyyaml requests
 
 # Conda used for package, dependency and environment management for any language, cross-platform
@@ -52,9 +51,11 @@ conda create --name cubeenv python=3.6 datacube # requires confirmation
 # conda deactivate
 #
 
+# *** This is optional and only really needed for a dev environment ***
 # Matplotlib provides both a very quick way to visualize data from Python
 # Scipi is a Python-based ecosystem of open-source software for mathematics, science, and engineering
-# Jupyter Notebook is an open-source web application that allows you to create and share documents that contain live code, equations, visualizations and narrative text
+# Jupyter Notebook is an open-source web application that allows you to create and share documents
+# that contain live code, equations, visualizations and narrative text
 # -------------------------------------------------------
 conda install jupyter matplotlib scipy
 
