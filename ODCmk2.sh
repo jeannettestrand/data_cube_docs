@@ -24,19 +24,23 @@ sudo yum install python36u -y
 sudo yum install python36u-pip -y
 sudo yum install python36u-devel -y
 
+# Install extra packages if using minimal installation of CentOS
+sudo yum install gcc bzip2 -y
+
 # - requires zlib-devel
 # - requires openssl-devel
 # Install Python packages using pip
 # Because of $PATH interactions with sudo, may need to navigate to directory in which pip3 lives to execute the pip3 commands
 # \usr\local\bin, run as ./pip3 
 # -------------------------------------------------------
-sudo pip3.6 install pycosat pyyaml requests -y
+sudo pip3.6 install --upgrade pip
+sudo pip3.6 install pycosat pyyaml requests
 
 # Conda used for package, dependency and environment management for any language, cross-platform
 # -------------------------------------------------------
 curl -O https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh
 sh Miniconda3-latest-Linux-x86_64.sh		# interactive install
-# After miniconda installation, a shell re-login or reboot is required
+source ~/.bashrc
 conda update conda
 conda config --add channels conda-forge
 conda create --name cubeenv python=3.6 datacube # requires confirmation
