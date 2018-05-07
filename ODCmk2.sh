@@ -17,16 +17,12 @@
 sudo yum update -y
 sudo reboot
 
-# Download, compile, and install Python-3.6.4 from source
+# Add IUS (Inline With Upstream)  3rd party repository for Python 3.6
 # -------------------------------------------------------
-sudo yum install yum-utils
-sudo yum-builddep python
-curl -O https://www.python.org/ftp/python/3.6.4/Python-3.6.4.tgz 
-tar xf Python-3.6.4.tgz
-cd Python-3.6.4
-./configure
-make
-sudo make install 
+sudo yum install https://centos7.iuscommunity.org/ius-release.rpm -y
+sudo yum install python36u -y
+sudo yum install python36u-pip -y
+sudo yum install python36u-devel -y
 
 # - requires zlib-devel
 # - requires openssl-devel
@@ -34,11 +30,7 @@ sudo make install
 # Because of $PATH interactions with sudo, may need to navigate to directory in which pip3 lives to execute the pip3 commands
 # \usr\local\bin, run as ./pip3 
 # -------------------------------------------------------
-sudo pip3 install --upgrade pip
-sudo pip3 install pycosat
-sudo pip3 install pyyaml
-sudo pip3 install requests
-cd
+sudo pip3.6 install pycosat pyyaml requests -y
 
 # Conda used for package, dependency and environment management for any language, cross-platform
 # -------------------------------------------------------
