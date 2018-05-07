@@ -42,7 +42,7 @@ cd
 
 # Conda used for package, dependency and environment management for any language, cross-platform
 # -------------------------------------------------------
-wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh
+curl -O https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh
 sh Miniconda3-latest-Linux-x86_64.sh		# interactive install
 conda update conda
 conda config --add channels conda-forge
