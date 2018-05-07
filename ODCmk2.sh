@@ -44,6 +44,7 @@ cd
 # -------------------------------------------------------
 curl -O https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh
 sh Miniconda3-latest-Linux-x86_64.sh		# interactive install
+# After miniconda installation, a shell re-login or reboot is required
 conda update conda
 conda config --add channels conda-forge
 conda create --name cubeenv python=3.6 datacube # requires confirmation
@@ -63,12 +64,12 @@ conda install jupyter matplotlib scipy
 
 # Install PostgreSQL 9.6
 #--------------------------------------------------------
-yum install https://download.postgresql.org/pub/repos/yum/9.6/redhat/rhel-7-x86_64/pgdg-centos96-9.6-3.noarch.rpm
-yum install postgresql96 postgresql96-server postgresql96-devel postgresql96-contrib
+sudo yum install https://download.postgresql.org/pub/repos/yum/9.6/redhat/rhel-7-x86_64/pgdg-centos96-9.6-3.noarch.rpm
+sudo yum install postgresql96 postgresql96-server postgresql96-devel postgresql96-contrib
 sudo /usr/pgsql-9.6/bin/postgresql96-setup initdb
 
 # EDIT BEGIN : 
-# /var/lib/pgsql/96/data/pg_hba.conf - TODO: script this
+# /var/lib/pgsql/9.6/data/pg_hba.conf - TODO: script this
 #
 # TYPE  DATABASE        USER            ADDRESS                 METHOD
 # "local" is for Unix domain socket connections only
@@ -112,7 +113,7 @@ create database datacube owner <username> ;
 createdb -h <hostname> -U <username> datacube
 
 #install pgadmin for db stuff, this can be done anytime, not required at this point. 
-yum install pgadmin4-v2 -y
+#yum install pgadmin4-v2 -y
 
 #Create Configuration File
 #--------------------------------------------------------
