@@ -1,0 +1,40 @@
+#####################
+# Metadata Document #
+#####################
+
+
+# Dataset metadata documents are added to the cube for each individual dataset. 
+# The metadata document describes what the data represents and where it has come from, as well has what format it is stored in. 
+# At a minimum, you need the dimensions or fields you want to search by, such as lat, lon and time, but you can include any information you deem useful. Typically YAML, JSON also accepted.
+
+#Dataset metadata documents define critical metadata about a dataset including:
+
+#       available data measurements
+#       platform and sensor names
+#       geospatial extents and projection
+#       acquisition time
+#       provenance information
+
+
+# Some data may already have a compatible dataset document, in which case it is ready to be indexed/loaded immediately.
+
+# Most other data will not, and will need to have one generated. Tools are provided which understand the dataset's current format. 
+# Data preparation scripts are located in the utils/ directory. 
+
+# To run the preparation script utils/ls_usgs_prepare.py, This prepare script only supports MTL.txt metadata file: 
+ 
+python utils/ls_usgs_prepare.py --output <file_to_save_output> <pathway_to_dataset_directory>
+
+# Result is a correctly formated document saved to <file_to_save_output> 
+
+# Add to datacube: 
+
+datacube dataset add --auto-match <path-to-dataset>
+
+# Verify by entering the psql environment
+
+psql datacube
+
+select * from <schema>.<tablename>;
+
+
