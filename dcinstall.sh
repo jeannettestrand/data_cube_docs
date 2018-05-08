@@ -14,7 +14,7 @@ case $i in
     ENV="development"
     ;;
     -h|--help)
-    echo Usage: $0 [-d|--dev] [-h|--help] [-v|--verbose] [--no-progress-bar]
+    echo "Usage: $0 [-d|--dev] [-h|--help] [-v|--verbose] [--no-progress-bar]"
     echo "  -d|--dev            install development packages"
     echo "  -h|--help           display this help message"
     echo "  -v|--verbose        display all installation messages"
