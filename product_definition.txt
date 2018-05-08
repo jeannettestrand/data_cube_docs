@@ -1,0 +1,22 @@
+###############################
+# Product Definition Document #
+###############################
+
+
+# Product definition document defines some of the metadata common to all the datasets belonging to the products. 
+# It also describes the measurements that product has and some of the properties of the measurements. 
+# A Product definition added to your Data Cube for each type of dataset.
+
+# Product definition is a .yaml or .json file
+
+# Sample Product Definitions are kept in datacube-core/docs/config_samples/dataset_types/
+
+datacube product add <path-to-dataset-type-yml>
+
+
+# Development in customization phase includes:
+#	- Gathering Product Definition requirements for PFC
+# 	- Writing custom Product Definitions for data sets not covered by samples collection
+#	- Preparing automatic loading of the product definitions in the cube setup. 	
+
+
