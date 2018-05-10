@@ -1,5 +1,6 @@
 #!/bin/bash
 
+NOFIREWALLD=false
 VERBOSE=false
 OUTPUT="$HOME/dc_database_install.log"
 
@@ -7,14 +8,18 @@ for i in "$@"
 do
 case $i in
     -h|--help)
-    echo "Usage: $0 [-h|--help] [-v|--verbose]"
+    echo "Usage: $0 [-h|--help] [-v|--verbose] [--no-firewalld]"
     echo "  -h|--help           display this help message"
     echo "  -v|--verbose        display all installation messages"
+    echo "  --no-firewalld      do not configure firewalld"
     exit 0
     ;;
     -v|--verbose)
     VERBOSE=true
     OUTPUT="/dev/stdout"
+    ;;
+    --no-firewalld)
+    NOFIREWALLD=true
     ;;
     *)
     echo unknown option $i
@@ -73,6 +78,13 @@ done
 sudo -u postgres createuser --superuser $USERNAME
 sudo -u postgres psql -c "\password $USERNAME"
 sudo -u postgres psql -c "create database datacube owner $USERNAME;" >> $OUTPUT
+
+if [[ $NOFIREWALLD = false ]]
+then
+    echo "Setting up firewall..."
+    sudo firewall-cmd --zone=public --add-port=5432/tcp --permanent >> $OUTPUT
+    sudo firewall-cmd --reload >> $OUTPUT
+fi
 
 echo
 echo "Database for Datacube has been installed! You can now proceed and install Datacube."
