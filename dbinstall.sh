@@ -29,6 +29,7 @@ echo "@ Requesting super user permission"
 sudo echo
 
 echo Updating local system...
+sudo yum install -y deltarpm >> $OUTPUT
 sudo yum update -y >> $OUTPUT
 
 # Suppress directory permission denied messages
