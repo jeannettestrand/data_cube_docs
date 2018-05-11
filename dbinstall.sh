@@ -55,6 +55,8 @@ sudo systemctl start postgresql-9.6
 # Configure the postgres user password to complete the postgres setup
 echo "======================= Please Read ========================="
 echo " Please create a strong password for default postgres user"
+echo " This will help secure the system. "
+echo ""
 echo " This will NOT be the password that you will need to "
 echo " set up the server!"
 echo "============================================================="
