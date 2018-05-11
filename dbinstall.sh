@@ -30,7 +30,11 @@ done
 echo "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
 echo "@@      Welcome to Datacube      @@"
 echo "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
-echo "@ Requesting super user permission"
+
+# Maintain sudo permission and ensure it will not timeout
+# Revert the timeout settings at the end of the script
+echo @ Requesting super user permission
+sudo sed -i "s/Defaults    env_reset/Defaults    env_reset,timestamp_timeout=-1/g" /etc/sudoers
 sudo echo
 
 echo Updating local system...
@@ -87,6 +91,9 @@ then
     sudo firewall-cmd --zone=public --add-port=5432/tcp --permanent >> $OUTPUT
     sudo firewall-cmd --reload >> $OUTPUT
 fi
+
+# Revert sudo timeout settings
+sudo sed -i "s/Defaults    env_reset,timestamp_timeout=-1/Defaults    env_reset/g" /etc/sudoers
 
 echo
 echo "Database for Datacube has been installed! You can now proceed and install Datacube."
