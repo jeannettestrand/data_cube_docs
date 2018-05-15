@@ -4,6 +4,7 @@ ENV="production"
 VERBOSE=false
 OUTPUT="$HOME/datacube_install.log"
 CONDAQUIET=""
+GITQUIET=""
 
 echo "Datacube Installation Log" > ~/datacube_install.log
 
@@ -23,6 +24,7 @@ case $i in
     ;;
     --no-progress-bar)
     CONDAQUIET="-q"
+    GITQUIET="-q"
     ;;
     -v|--verbose)
     VERBOSE=true
@@ -99,7 +101,10 @@ echo
 echo "Thank you! Now setting up datacube, this may take some time..."
 echo
 
+# Maintain sudo permission and ensure it will not timeout
+# Revert the timeout settings at the end of the script
 echo @ Requesting super user permission
+sudo sed -i "s/Defaults    env_reset/Defaults    env_reset,timestamp_timeout=-1/g" /etc/sudoers
 sudo echo
 
 # Switch to user's home directory
@@ -126,11 +131,29 @@ sudo pip3.6 install pycosat pyyaml requests >> $OUTPUT
 echo Installing datacube environment. This may take some time...
 curl -s -O https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh >> $OUTPUT
 sh Miniconda3-latest-Linux-x86_64.sh -b >> $OUTPUT
-echo export PATH=\"$PWD/miniconda3/bin:\$PATH\" >> ~/.bashrc
-source ~/.bashrc
+sudo ln -s $HOME/miniconda3/etc/profile.d/conda.sh /etc/profile.d/conda.sh
+source $HOME/.bashrc
 conda update -n base conda -y $CONDAQUIET >> $OUTPUT
 conda config --add channels conda-forge >> $OUTPUT
 conda create --name cubeenv python=3.6 datacube -y $CONDAQUIET >> $OUTPUT
+
+echo "Generating configuration File..."
+DATACUBECONFIGFILE="$HOME/.datacube.conf"
+echo "[datacube]" >> $DATACUBECONFIGFILE
+echo "db_database: datacube" >> $DATACUBECONFIGFILE
+echo "db_hostname: $DBADD" >> $DATACUBECONFIGFILE
+echo "db_username: $USERNAME" >> $DATACUBECONFIGFILE
+echo "db_password: $PASSWORD" >> $DATACUBECONFIGFILE
+
+echo "Installing datacube-core..."
+conda activate cubeenv
+conda install cython -y $CONDAQUIET >> $OUTPUT
+datacube -v -v -v system init >> $OUTPUT
+
+sudo yum install git -y >> $OUTPUT
+git clone $GITQUIET https://github.com/opendatacube/datacube-core >> $OUTPUT
+cd datacube-core
+git checkout $GITQUIET develop >> $OUTPUT
 
 # Matplotlib provides both a very quick way to visualize data from Python
 # Scipi is a Python-based ecosystem of open-source software for mathematics, science, and engineering
@@ -142,17 +165,15 @@ then
     conda install jupyter matplotlib scipy -y $CONDAQUIET >> $OUTPUT
 fi
 
-echo "Generating configuration File..."
-DATACUBECONFIGFILE="$HOME/.datacube.conf"
-echo "[datacube]" >> $DATACUBECONFIGFILE
-echo "db_database: datacube" >> $DATACUBECONFIGFILE
-echo "db_hostname: $DBADD" >> $DATACUBECONFIGFILE
-echo "db_username: $USERNAME" >> $DATACUBECONFIGFILE
-echo "db_password: $PASSWORD" >> $DATACUBECONFIGFILE
-
 echo
 echo "Datacube has been installed."
 if [[ $VERBOSE = false ]]
 then
     echo "Log file of this installation has been saved to $OUTPUT."
 fi
+
+# Revert sudo timeout settings
+sudo sed -i "s/Defaults    env_reset,timestamp_timeout=-1/Defaults    env_reset/g" /etc/sudoers
+
+# Refresh the user's bash
+exec bash
