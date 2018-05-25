@@ -120,7 +120,11 @@ measurements:
 	  # One of nearest, cubic, bilinear, cubic_spline, lanczos, average
 	  resampling_method:
 
+          # Map of source_type measurement name to output_type measurement names
+          src_varname:
+
 	  # optional
 	  nodata: 
+
 
 	

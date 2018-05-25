@@ -1,9 +1,9 @@
-source_type: ls8_level1_usgs
+source_type: ls8_level1_usgs_L1TP
 output_type: LS8_L1TP_NETCDF
 
 description: Landsat 8 L1TP netcdf
 
-location: '~/LANDSAT/petawawa/ingested'
+location: '/home/jstrand/LANDSAT/petawawa/ingested'
 file_path_template: 'LS8_OLI/LS8_OLI_{tile_index[0]}_{tile_index[1]}_{start_time}.nc'
 global_attributes: 
   title: Landsat 8 L1TP netcdf
@@ -50,43 +50,59 @@ measurements:
       dtype: int16
       nodata: -999
       resampling_method: nearest
+      src_varname: 'coastal_aerosol'
     - name: blue
       dtype: int16
       nodata: -999
       resampling_method: nearest
+      src_varname: 'blue'
     - name: green
       dtype: int16
       nodata: -999
       resampling_method: nearest
+      src_varname: 'green'
     - name: red
       dtype: int16
       nodata: -999
       resampling_method: nearest
+      src_varname: 'red'
     - name: nir
       dtype: int16
       nodata: -999
       resampling_method: nearest
+      src_varname: 'nir'
     - name: swir1
       dtype: int16
       nodata: -999
       resampling_method: nearest
+      src_varname: 'swir1'
     - name: swir2
       dtype: int16
       nodata: -999
       resampling_method: nearest
+      src_varname: 'swir2'
     - name: 'panchromatic'
       dtype: int16
       nodata: -999
       resampling_method: nearest
+      src_varname: 'panchromatic'
     - name: 'cirrus'
       dtype: int16
-      nodata: -9999
+      nodata: -999
+      resampling_method: nearest
+      src_varname: 'cirrus'
     - name: 'lwir1'
       dtype: int16
-      nodata: -9999
+      nodata: -999
+      resampling_method: nearest
+      src_varname: 'lwir1'
     - name: 'lwir2'
       dtype: int16
       nodata: -9999
+      resampling_method: nearest
+      src_varname: 'lwir2' 
     - name: 'quality'
       dtype: int16
       nodata: 0
+      resampling_method: nearest
+      src_varname: 'quality'  
