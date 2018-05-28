@@ -318,7 +318,7 @@ measurements:
       units: '1'
 
     - name: 'quality'
-      aliases: [bqa, QUALITY, quality]
+      aliases: [QUALITY, quality]
       dtype: int16
       nodata: 0
       units: '1'
