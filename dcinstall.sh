@@ -4,28 +4,29 @@ VERBOSE=false
 OUTPUT="$HOME/datacube_install.log"
 CONDAQUIET=""
 GITQUIET=""
+HASDB=false
 
 for i in "$@"
 do
 case $i in
-    -h|--help)
-    echo "Usage: $0 [-h|--help] [-v|--verbose] [--no-progress-bar]"
-    echo "  -h|--help           display this help message"
-    echo "  -v|--verbose        display all installation messages"
-    echo "  --no-progress-bar   no progress bar for datacube environment installation"
-    exit 0
-    ;;
-    --no-progress-bar)
-    CONDAQUIET="-q"
-    GITQUIET="-q"
-    ;;
-    -v|--verbose)
-    VERBOSE=true
-    OUTPUT="/dev/stdout"
-    ;;
-    *)
-    echo unknown option $i
-    ;;
+  -h|--help)
+  echo "Usage: $0 [-h|--help] [-v|--verbose] [--no-progress-bar]"
+  echo "  -h|--help           display this help message"
+  echo "  -v|--verbose        display all installation messages"
+  echo "  --no-progress-bar   no progress bar for datacube environment installation"
+  exit 0
+  ;;
+  --no-progress-bar)
+  CONDAQUIET="-q"
+  GITQUIET="-q"
+  ;;
+  -v|--verbose)
+  VERBOSE=true
+  OUTPUT="/dev/stdout"
+  ;;
+  *)
+  echo unknown option $i
+  ;;
 esac
 done
 
@@ -44,59 +45,60 @@ do
 echo -n "--> Have you installed database server? (y)es/(n)o "
 read ANSWER
 case $ANSWER in
-    no|No|NO|n|N)
-    echo "Please install database server first!"
-    echo "You may use dbinstall.sh to install database system."
-    exit 0
-    ;;
-    yes|Yes|YES|y|Y)
-    echo "Please provide your database server information to proceed"
-    break
-    ;;
-    *)
-    echo "Invalid answer."
-    ;;
+  no|No|NO|n|N)
+  echo "Please generate datacube configuration file yourself"
+  HASDB=false
+  break
+  ;;
+  yes|Yes|YES|y|Y)
+  echo "Please provide your database server information to proceed"
+  HASDB=true
+  break
+  ;;
+  *)
+  echo "Invalid answer."
+  ;;
 esac
 done
 
-while true
+while $HASDB
 do
 echo "Please enter the IP address of database server"
 echo -n "--> Enter database address: "
 read DBADD
 if [[ $DBADD != "" ]]
 then
-    break
+  break
 fi
 echo "Cannot accept empty database address!"
 done
 
-while true
+while $HASDB
 do
 echo "Please enter the username for database"
 echo -n "--> Enter username: "
 read USERNAME
 if [[ $USERNAME != "" ]]
 then
-    break
+  break
 fi
 echo "Cannot accept empty username!"
 done
 
-while true
+while $HASDB
 do
 echo "Please enter the password for database"
 echo -n "--> Enter password: "
 read -s PASSWORD
 if [[ $PASSWORD != "" ]]
 then
-    break
+  break
 fi
 echo "Cannot accept empty password!"
 done
 
 echo
-echo "Thank you! Now setting up datacube, this may take some time..."
+echo "Now setting up datacube, this may take some time..."
 echo
 
 echo @ Requesting super user permission
@@ -120,13 +122,16 @@ conda update -n base conda -y $CONDAQUIET >> $OUTPUT
 conda config --add channels conda-forge >> $OUTPUT
 conda create --name cubeenv python=3.6 datacube -y $CONDAQUIET >> $OUTPUT
 
-echo "Generating configuration File..."
-DATACUBECONFIGFILE="$HOME/.datacube.conf"
-echo "[datacube]" > $DATACUBECONFIGFILE
-echo "db_database: datacube" >> $DATACUBECONFIGFILE
-echo "db_hostname: $DBADD" >> $DATACUBECONFIGFILE
-echo "db_username: $USERNAME" >> $DATACUBECONFIGFILE
-echo "db_password: $PASSWORD" >> $DATACUBECONFIGFILE
+if [[ $HASDB = true ]]
+then
+  echo "Generating configuration File..."
+  DATACUBECONFIGFILE="$HOME/.datacube.conf"
+  echo "[datacube]" > $DATACUBECONFIGFILE
+  echo "db_database: datacube" >> $DATACUBECONFIGFILE
+  echo "db_hostname: $DBADD" >> $DATACUBECONFIGFILE
+  echo "db_username: $USERNAME" >> $DATACUBECONFIGFILE
+  echo "db_password: $PASSWORD" >> $DATACUBECONFIGFILE
+fi
 
 echo "Installing datacube-core..."
 conda activate cubeenv
@@ -137,7 +142,7 @@ echo
 echo "Datacube has been installed."
 if [[ $VERBOSE = false ]]
 then
-    echo "Log file of this installation has been saved to $OUTPUT."
+  echo "Log file of this installation has been saved to $OUTPUT."
 fi
 
 # Refresh the user's bash
