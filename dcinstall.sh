@@ -3,7 +3,6 @@
 VERBOSE=false
 OUTPUT="$HOME/datacube_install.log"
 CONDAQUIET=""
-GITQUIET=""
 HASDB=false
 
 for i in "$@"
@@ -18,7 +17,6 @@ case $i in
   ;;
   --no-progress-bar)
   CONDAQUIET="-q"
-  GITQUIET="-q"
   ;;
   -v|--verbose)
   VERBOSE=true
@@ -32,7 +30,7 @@ done
 
 if [[ $VERBOSE = false ]]
 then
-    echo "Datacube Installation Log" > $OUTPUT
+  echo "Datacube Installation Log" > $OUTPUT
 fi
 
 echo "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
@@ -64,7 +62,7 @@ done
 while $HASDB
 do
 echo "Please enter the IP address of database server"
-echo -n "--> Enter database address: "
+echo -n "--> Enter database IP address: "
 read DBADD
 if [[ $DBADD != "" ]]
 then
@@ -101,7 +99,7 @@ echo
 echo "Now setting up datacube, this may take some time..."
 echo
 
-echo @ Requesting super user permission
+echo "@ Requesting super user permission"
 sudo echo
 
 # Install extra packages if using minimal installation of CentOS
