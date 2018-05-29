@@ -32,18 +32,18 @@ storage:
   driver: NetCDF CF
 
   # VERIFY CRS WITH DATASET METADATA
-  crs: EPSG:3577 
+  crs: EPSG:4236 
   tile_size:
-          x: 100000.0
-          y: 100000.0
+          longitude: 1.0
+          latitude: 1.0
   resolution:
-          x: 25
-          y: -25
+          longitude: 0.0162
+          latitude: -0.0162
   chunking:
-      x: 200
-      y: 200
+      longitude: 200
+      latitude: 200
       time: 1
-  dimension_order: ['time', 'y', 'x']
+  dimension_order: ['time', 'latitude', 'longitude']
 
 measurements:
     - name: coastal_aerosol
