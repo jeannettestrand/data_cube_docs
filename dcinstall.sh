@@ -3,6 +3,7 @@
 VERBOSE=false
 OUTPUT="$HOME/datacube_install.log"
 CONDAQUIET=""
+CURLQUIET="-s"
 HASDB=false
 
 for i in "$@"
@@ -21,6 +22,7 @@ case $i in
   -v|--verbose)
   VERBOSE=true
   OUTPUT="/dev/stdout"
+  CURLQUIET=""
   ;;
   *)
   echo unknown option $i
@@ -64,7 +66,7 @@ do
 echo "Please enter the IP address of database server"
 echo -n "--> Enter database IP address: "
 read DBADD
-if [[ $DBADD != "" ]]
+if [[ -n $DBADD ]]
 then
   break
 fi
@@ -76,7 +78,7 @@ do
 echo "Please enter the username for database"
 echo -n "--> Enter username: "
 read USERNAME
-if [[ $USERNAME != "" ]]
+if [[ -n $USERNAME ]]
 then
   break
 fi
@@ -88,7 +90,7 @@ do
 echo "Please enter the password for database"
 echo -n "--> Enter password: "
 read -s PASSWORD
-if [[ $PASSWORD != "" ]]
+if [[ -n $PASSWORD ]]
 then
   break
 fi
@@ -106,23 +108,26 @@ sudo echo
 sudo yum install gcc bzip2 -y >> $OUTPUT
 
 # Conda used for package, dependency and environment management for any language, cross-platform
-echo Installing datacube environment. This may take some time...
+echo "Installing datacube environment. This may take some time..."
 # Make /local/datacube sub-directory
 sudo mkdir /local
 sudo mkdir /local/datacube
 cd /local/datacube
 sudo chown $USER:$USER .
-curl -s -O https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh >> $OUTPUT
+curl $CURLQUIET -O https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh >> $OUTPUT
 sh Miniconda3-latest-Linux-x86_64.sh -b -p /local/datacube/miniconda3 >> $OUTPUT
 sudo ln -s /local/datacube/miniconda3/etc/profile.d/conda.sh /etc/profile.d/conda.sh
 source $HOME/.bashrc
 conda update -n base conda -y $CONDAQUIET >> $OUTPUT
 conda config --add channels conda-forge >> $OUTPUT
 conda create --name cubeenv python=3.6 datacube -y $CONDAQUIET >> $OUTPUT
+conda activate cubeenv
+conda install cython jupyter jupyterhub -y $CONDAQUIET >> $OUTPUT
+pip install sudospawner
 
 if [[ $HASDB = true ]]
 then
-  echo "Generating configuration File..."
+  echo "Generating configuration file..."
   DATACUBECONFIGFILE="$HOME/.datacube.conf"
   echo "[datacube]" > $DATACUBECONFIGFILE
   echo "db_database: datacube" >> $DATACUBECONFIGFILE
@@ -130,11 +135,6 @@ then
   echo "db_username: $USERNAME" >> $DATACUBECONFIGFILE
   echo "db_password: $PASSWORD" >> $DATACUBECONFIGFILE
 fi
-
-echo "Installing datacube-core..."
-conda activate cubeenv
-conda install cython -y $CONDAQUIET >> $OUTPUT
-conda install jupyter jupyterhub -y $CONDAQUIET >> $OUTPUT
 
 echo
 echo "Datacube has been installed."
