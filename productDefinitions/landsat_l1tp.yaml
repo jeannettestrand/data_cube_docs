@@ -1,4 +1,4 @@
-name: lc08_l1tp
+name: lc08
 description: Landsat 8 USGS Level 1 Collection-1 OLI-TIRS
 metadata_type: eo
 
@@ -11,73 +11,65 @@ metadata:
     format:
         name: GeoTiff
 
+storage:
+    crs: EPSG:4326
+
 measurements:
     - name: 'coastal_aerosol'
       aliases: [band_1, coastal_aerosol]
       dtype: int16
       nodata: -9999
       units: '1'
-
     - name: 'blue'
       aliases: [band_2, blue]
       dtype: int16
       nodata: -9999
       units: '1'
-
     - name: 'green'
       aliases: [band_3, green]
       dtype: int16
       nodata: -9999
       units: '1'
-
     - name: 'red'
       aliases: [band_4, red]
       dtype: int16
       nodata: -9999
       units: '1'
-
     - name: 'nir'
       aliases: [band_5, nir]
       dtype: int16
       nodata: -9999
       units: '1'
-
     - name: 'swir1'
       aliases: [band_6, swir1]
       dtype: int16
       nodata: -9999
       units: '1'
-
     - name: 'swir2'
       aliases: [band_7, swir2]
       dtype: int16
       nodata: -9999
       units: '1'
-
     - name: 'panchromatic'
       aliases: [band_8, panchromatic]
       dtype: int16
       nodata: -9999
       units: '1'
-
     - name: 'cirrus'
       aliases: [band_9, cirrus]
       dtype: int16
       nodata: -9999
       units: '1'
-
     - name: 'lwir1'
       aliases: [band_10, lwir1]
       dtype: int16
       nodata: -9999
       units: '1'
-
     - name: 'lwir2'
       aliases: [band_11, lwir2]
       dtype: int16
       nodata: -9999
       units: '1'
-
     - name: 'quality'
       aliases: [QUALITY, quality]
       dtype: int16
@@ -87,50 +79,47 @@ measurements:
         designated_fill:
           bits: [0]
           description: Used to identify fill values
-          values: {0: false, 1: true}
-        terrain_occlusion:
+          values: 
+            0: false
+            1: true
+        dropped_frame:
           bits: [1]
+          description: Dropped frame
+          values: 
+            0: false
+            1: true
+        terrain_occlusion:
+          bits: [2]
           description: Terrain Occlusion
-          values: {0: false, 1: true}
-        radiometric_saturation:
-          bits: [2,3]
-          description: Radiometric saturation bits, represents how many bands contains saturation
           values:
-            0: none
-            1: 1-2
-            2: 3-4
-            3: <=5
-        cloud:
-          bits: [4]
-          description: Cloud
-          values: {0: false, 1: true}
-        cloud_confidence:
-          bits: [5,6]
-          description: Cloud Confidence with low =(0-33)%, medium =(34-66)% and high =(67-100)%
-          values:
-            0: Not Determined
-            1: Low
-            2: Medium
-            3: High
-        cloud_shadow_conf:
-          bits: [7,8]
-          description: Cloud Shadow Confidence with low =(0-33)%, medium =(34-66)% and high =(67-100)%
-          values:
-            0: Not Determined
-            1: Low
-            2: Medium
-            3: High
-        snow_ice_conf:
-          bits: [9,10]
-          description: Snow/Ice Confidence with low =(0-33)%, medium =(34-66)% and high =(67-100)%
+          values: 
+            0: false
+            1: true 
+        water_confidence:
+          bits: [4, 5]
+          description: Water Confidence
+          values: 
+            0: false
+            2: true
+        snow_ice_confidence:
+          bits: [10, 11]
+          description: Snow and Ice Confidence with low =(0-33)%, medium =(34-66)% and high =(67-100)%
           values:
             0: Not Determined
             1: Low
             2: Medium
             3: High
         cirrus_confidence:
-          bits: [11,12]
+          bits: [12, 13]
           description: Cirrus Confidence with low =(0-33)%, medium =(34-66)% and high =(67-100)%
+          values:
+            0: Not Determined
+            1: Low
+            2: Medium
+            3: High
+        cloud_confidence:
+          bits: [14, 15]
+          description: Cloud Confidence with low =(0-33)%, medium =(34-66)% and high =(67-100)%
           values:
             0: Not Determined
             1: Low
@@ -139,8 +128,7 @@ measurements:
 
 ---
 
-
-name: le07_l1tp
+name: le07
 description: Landsat 7 L1TP ETM 
 metadata_type: eo
 metadata:
@@ -151,9 +139,8 @@ metadata:
   product_type: L1TP
   format:
     name: GeoTiff
-#storage:
-#  crs: 
-#  resolution:
+storage:
+    crs: EPSG:4326
 measurements:
     - name: 'blue'
       aliases: [band_1, blue]
@@ -200,42 +187,47 @@ measurements:
         designated_fill:
           bits: [0]
           description: Used to identify fill values
-          values: {0: false, 1: true}
-        dropped_pixel:
+          values:
+            0: false
+            1: true
+        dropped_frame:
           bits: [1]
-          description: Dropped Pixel
-          values: {0: false, 1: true}
-        radiometric_saturation:
-          bits: [2,3]
-          description: Radiometric saturation bits, represents how many bands contains saturation
+          description: Dropped frame
           values:
-            0: none
-            1: 1-2
-            2: 3-4
-            3: <=5
-        cloud:
-          bits: [4]
-          description: Cloud
-          values: {0: false, 1: true}
+            0: false
+            1: true
+        terrain_occlusion:
+          bits: [2]
+          description: Terrain Occlusion
+          values:
+          values:
+            0: false
+            1: true
+        water_confidence:
+          bits: [4, 5]
+          description: Water Confidence
+          values:
+            0: false
+            2: true
+        snow_ice_confidence:
+          bits: [10, 11]
+          description: Snow and Ice Confidence with low =(0-33)%, medium =(34-66)% and high =(67-100)%
+          values:
+            0: Not Determined
+            1: Low
+            2: Medium
+            3: High
+        cirrus_confidence:
+          bits: [12, 13]
+          description: Cirrus Confidence with low =(0-33)%, medium =(34-66)% and high =(67-100)%
+          values:
+            0: Not Determined
+            1: Low
+            2: Medium
+            3: High
         cloud_confidence:
-          bits: [5,6]
+          bits: [14, 15]
           description: Cloud Confidence with low =(0-33)%, medium =(34-66)% and high =(67-100)%
-          values:
-            0: Not Determined
-            1: Low
-            2: Medium
-            3: High
-        cloud_shadow_conf:
-          bits: [7,8]
-          description: Cloud Shadow Confidence with low =(0-33)%, medium =(34-66)% and high =(67-100)%
-          values:
-            0: Not Determined
-            1: Low
-            2: Medium
-            3: High
-        snow_ice_conf:
-          bits: [9,10]
-          description: Snow/Ice Confidence with low =(0-33)%, medium =(34-66)% and high =(67-100)%
           values:
             0: Not Determined
             1: Low
@@ -245,7 +237,7 @@ measurements:
 
 ---
 
-name: lm05_l1tp
+name: lm05
 description: Landsat 5 L1TP MSS
 metadata_type: eo
 
@@ -257,8 +249,10 @@ metadata:
     product_type: L1TP
     format:
         name: GeoTiff
+storage:
+    crs: EPSG:4326
+measurements:
 
-#TO DO: Determine if the two nir bands can have the same name? If this is a list, and the bands are items, should be ok?
 
 measurements:
     - name: 'green'
@@ -282,10 +276,67 @@ measurements:
       nodata: -9999
       units: '1'
 
+    - name: 'quality'
+      aliases: [QUALITY, quality]
+      dtype: int16
+      nodata: 0
+      units: '1'
+      flags_definition:
+        designated_fill:
+          bits: [0]
+          description: Used to identify fill values
+          values:
+            0: false
+            1: true
+        dropped_frame:
+          bits: [1]
+          description: Dropped frame
+          values:
+            0: false
+            1: true
+        terrain_occlusion:
+          bits: [2]
+          description: Terrain Occlusion
+          values:
+          values:
+            0: false
+            1: true
+        water_confidence:
+          bits: [4, 5]
+          description: Water Confidence
+          values:
+            0: false
+            2: true
+        snow_ice_confidence:
+          bits: [10, 11]
+          description: Snow and Ice Confidence with low =(0-33)%, medium =(34-66)% and high =(67-100)%
+          values:
+            0: Not Determined
+            1: Low
+            2: Medium
+            3: High
+        cirrus_confidence:
+          bits: [12, 13]
+          description: Cirrus Confidence with low =(0-33)%, medium =(34-66)% and high =(67-100)%
+          values:
+            0: Not Determined
+            1: Low
+            2: Medium
+            3: High
+        cloud_confidence:
+          bits: [14, 15]
+          description: Cloud Confidence with low =(0-33)%, medium =(34-66)% and high =(67-100)%
+          values:
+            0: Not Determined
+            1: Low
+            2: Medium
+            3: High
+
+
 
 ---
 
-name: lt05_l1tp
+name: lt05
 description: Landsat 5 USGS L1TP TM
 metadata_type: eo
 
@@ -297,6 +348,9 @@ metadata:
     product_type: L1TP
     format:
         name: GeoTiff
+
+storage:
+    crs: EPSG:4326
 
 measurements:
     - name: 'blue'
@@ -326,60 +380,64 @@ measurements:
         designated_fill:
           bits: [0]
           description: Used to identify fill values
-          values: {0: false, 1: true}
-        dropped_pixel:
-          bits: [1]
-          description: Dropped Pixel
-          values: {0: false, 1: true}
-        radiometric_saturation:
-          bits: [2,3]
-          description: Radiometric saturation bits, represents how many bands contains saturation
           values:
-            0: none
-            1: 1-2
-            2: 3-4
-            3: <=5
-        cloud:
-          bits: [4]
-          description: Cloud
-          values: {0: false, 1: true}
+            0: false
+            1: true
+        dropped_frame:
+          bits: [1]
+          description: Dropped frame
+          values:
+            0: false
+            1: true
+        terrain_occlusion:
+          bits: [2]
+          description: Terrain Occlusion
+          values:
+          values:
+            0: false
+            1: true
+        water_confidence:
+          bits: [4, 5]
+          description: Water Confidence
+          values:
+            0: false
+            2: true
+        snow_ice_confidence:
+          bits: [10, 11]
+          description: Snow and Ice Confidence with low =(0-33)%, medium =(34-66)% and high =(67-100)%
+          values:
+            0: Not Determined
+            1: Low
+            2: Medium
+            3: High
+        cirrus_confidence:
+          bits: [12, 13]
+          description: Cirrus Confidence with low =(0-33)%, medium =(34-66)% and high =(67-100)%
+          values:
+            0: Not Determined
+            1: Low
+            2: Medium
+            3: High
         cloud_confidence:
-          bits: [5,6]
+          bits: [14, 15]
           description: Cloud Confidence with low =(0-33)%, medium =(34-66)% and high =(67-100)%
           values:
             0: Not Determined
             1: Low
             2: Medium
             3: High
-        cloud_shadow_conf:
-          bits: [7,8]
-          description: Cloud Shadow Confidence with low =(0-33)%, medium =(34-66)% and high =(67-100)%
-          values:
-            0: Not Determined
-            1: Low
-            2: Medium
-            3: High
-        snow_ice_conf:
-          bits: [9,10]
-          description: Snow/Ice Confidence with low =(0-33)%, medium =(34-66)% and high =(67-100)%
-          values:
-            0: Not Determined
-            1: Low
-            2: Medium
-            3: High
+
 
     - name: 'red'
       aliases: [band_3, nir]
       dtype: int16
       nodata: -9999
       units: '1'
-
     - name: 'swir1'
       aliases: [band_5, swir1]
       dtype: int16
       nodata: -9999
       units: '1'
-
     - name: 'swir2'
       aliases: [band_7, swir2]
       dtype: int16
@@ -388,8 +446,8 @@ measurements:
 
 ---
 
-name: lm03_l1tp
-description: Landsat 3 USGS L1TP MSS
+name: lm03
+description: Landsat 3 USGS L2TP MSS
 metadata_type: eo
 
 metadata:
@@ -397,9 +455,12 @@ metadata:
         code: LANDSAT_3
     instrument:
         name: MSS
-    product_type: L1TP
+    product_type: L2TP
     format:
         name: GeoTiff
+
+storage:
+    crs: EPSG:4326
 
 measurements:
     - name: 'green'
@@ -407,22 +468,75 @@ measurements:
       dtype: int16
       nodata: -9999
       units: '1'
-
     - name: 'red'
       aliases: [band_5, red]
       dtype: int16
       nodata: -9999
       units: '1'
-
     - name: 'nir1'
       aliases: [band_6, nir1]
       dtype: int16
       nodata: -9999
       units: '1'
-
     - name: 'nir2'
       aliases: [band_7, nir2]
       dtype: int16
       nodata: -9999
       units: '1'
+
+    - name: 'quality'
+      aliases: [QUALITY, quality]
+      dtype: int16
+      nodata: 0
+      units: '1'
+      flags_definition:
+        designated_fill:
+          bits: [0]
+          description: Used to identify fill values
+          values:
+            0: false
+            1: true
+        dropped_frame:
+          bits: [1]
+          description: Dropped frame
+          values:
+            0: false
+            1: true
+        terrain_occlusion:
+          bits: [2]
+          description: Terrain Occlusion
+          values:
+          values:
+            0: false
+            1: true
+        water_confidence:
+          bits: [4, 5]
+          description: Water Confidence
+          values:
+            0: false
+            2: true
+        snow_ice_confidence:
+          bits: [10, 11]
+          description: Snow and Ice Confidence with low =(0-33)%, medium =(34-66)% and high =(67-100)%
+          values:
+            0: Not Determined
+            1: Low
+            2: Medium
+            3: High
+        cirrus_confidence:
+          bits: [12, 13]
+          description: Cirrus Confidence with low =(0-33)%, medium =(34-66)% and high =(67-100)%
+          values:
+            0: Not Determined
+            1: Low
+            2: Medium
+            3: High
+        cloud_confidence:
+          bits: [14, 15]
+          description: Cloud Confidence with low =(0-33)%, medium =(34-66)% and high =(67-100)%
+          values:
+            0: Not Determined
+            1: Low
+            2: Medium
+            3: High
 
