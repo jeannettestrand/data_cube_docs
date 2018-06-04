@@ -33,7 +33,7 @@ done
 USERCHECK="$(sudo cat /etc/passwd | grep $USERNAME)"
 if [[ -z $USERCHECK ]]
 then
-  sudo useradd $USERNAME
+  sudo useradd $USERNAME -s /sbin/nologin
 fi
 
 # Check if shadow group exists already
@@ -65,11 +65,7 @@ echo "# of the jupyteruser group without prompting for a password" | sudo tee -a
 echo "$USERNAME ALL=(%jupyteruser) NOPASSWD:JUPYTER_CMD" | sudo tee -a /etc/sudoers >> $OUTPUT
 
 sudo mkdir /local/datacube/jupyterhub
-sudo chown $USERNAME /local/datacube/jupyterhub
-
-# Useless code, pending deletion
-#cd /local/datacube/jupyterhub
-#sudo -u rhea jupyterhub --JupyterHub.spawner_class=sudospawner.SudoSpawner
+sudo chown $USERNAME:$USERNAME /local/datacube/jupyterhub
 
 # Create a system service for JupyterHub
 SERVICEFILE=/lib/systemd/system/jupyterhub.service
