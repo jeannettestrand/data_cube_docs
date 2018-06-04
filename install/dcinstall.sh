@@ -75,6 +75,18 @@ done
 
 while $HASDB
 do
+echo "Please enter the database name"
+echo -n "--> Enter database name: "
+read DBNAME
+if [[ -n $DBNAME ]]
+then
+  break
+fi
+echo "Cannot accept empty database name!"
+done
+
+while $HASDB
+do
 echo "Please enter the username for database"
 echo -n "--> Enter username: "
 read USERNAME
@@ -122,7 +134,7 @@ conda update -n base conda -y $CONDAQUIET >> $OUTPUT
 conda config --add channels conda-forge >> $OUTPUT
 conda create --name cubeenv python=3.6 datacube -y $CONDAQUIET >> $OUTPUT
 conda activate cubeenv
-conda install cython jupyter jupyterhub -y $CONDAQUIET >> $OUTPUT
+conda install cython matplotlib scipy jupyter jupyterhub -y $CONDAQUIET >> $OUTPUT
 pip install sudospawner
 
 if [[ $HASDB = true ]]
@@ -130,7 +142,7 @@ then
   echo "Generating configuration file..."
   DATACUBECONFIGFILE="$HOME/.datacube.conf"
   echo "[datacube]" > $DATACUBECONFIGFILE
-  echo "db_database: datacube" >> $DATACUBECONFIGFILE
+  echo "db_database: $DBNAME" >> $DATACUBECONFIGFILE
   echo "db_hostname: $DBADD" >> $DATACUBECONFIGFILE
   echo "db_username: $USERNAME" >> $DATACUBECONFIGFILE
   echo "db_password: $PASSWORD" >> $DATACUBECONFIGFILE
