@@ -31,6 +31,11 @@ echo "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
 echo "@@      Welcome to Datacube      @@"
 echo "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
 
+echo "Database installation script has been deprecated"
+echo "The file is pending deletion by next update."
+
+exit 0
+
 # Maintain sudo permission and ensure it will not timeout
 # Revert the timeout settings at the end of the script
 echo @ Requesting super user permission
