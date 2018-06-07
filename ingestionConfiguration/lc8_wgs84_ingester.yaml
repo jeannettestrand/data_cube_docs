@@ -1,0 +1,170 @@
+source_type: lc08
+output_type: lc08_wgs
+
+description: Landsat 8 L1TP nbar
+
+location: '/data/datacube/repository/lc8'
+file_path_template: 'lc8_{tile_index[0]}__{tile_index[1]}__{start_time}.nc'
+global_attributes: 
+  title: Landsat 8 WSG84 25M
+  summary: |
+    Test ingestion of geotiff to netcdf. 
+  source: SR-N_25_2
+  history: |
+    -	Landsat 8 data from USGS
+  institution: NFIS
+  instrument: OLI
+  keywords: NASA/GSFC/SED/ESD/LANDSAT,REFLECTANCE,ETM+,TM,OLI,EARTH SCIENCE
+  keywords_vocabulary: GCMD
+  platform: LANDSAT-8
+  product_version: 2
+  publisher_email: nfis
+  publisher_name: Section Leader, Operations Section, NEMO, Geoscience Australia
+  publisher_url: 'http://www.ga.gov.au'
+  license: CC BY Attribution 4.0 International License
+  coverage_content_type: physicalMeasurement
+  cdm_data_type: Grid
+  product_suite: S
+  acknowledgment: Landsat data is provided by the United States Geological Survey (USGS) through direct reception of the data at Geoscience Australias satellite reception facility or download.
+  references: |
+    -	none
+storage:
+  driver: NetCDF CF
+  crs: EPSG:4326
+  tile_size:
+          longitude: 1
+          latitude: 1
+  resolution:
+          longitude: 0.0025
+          latitude: -0.0025
+  chunking:
+      longitude: 200
+      latitude: 200
+      time: 1
+  dimension_order: ['time', 'latitude', 'longitude']
+
+measurements:
+    - name: 'coastal_aerosol'
+      aliases: [band_1, coastal_aerosol]
+      dtype: int16
+      nodata: -9999
+      src_varname: 'coastal_aerosol'
+      resampling_method: nearest
+    - name: 'blue'
+      aliases: [band_2, blue]
+      dtype: int16
+      nodata: -9999
+      src_varname: 'blue'
+      resampling_method: nearest 
+    - name: 'green'
+      aliases: [band_3, green]
+      dtype: int16
+      nodata: -9999
+      src_varname: 'green'
+      resampling_method: nearest
+    - name: 'red'
+      aliases: [band_4, red]
+      dtype: int16
+      nodata: -9999
+      src_varname: 'red'
+      resampling_method: nearest
+    - name: 'nir'
+      aliases: [band_5, nir]
+      dtype: int16
+      nodata: -9999
+      src_varname: 'nir'
+      resampling_method: nearest
+    - name: 'swir1'
+      aliases: [band_6, swir1]
+      dtype: int16
+      nodata: -9999
+      src_varname: 'swir1'
+      resampling_method: nearest
+    - name: 'swir2'
+      aliases: [band_7, swir2]
+      dtype: int16
+      nodata: -9999
+      src_varname: 'swir2'
+      resampling_method: nearest
+    - name: 'panchromatic'
+      aliases: [band_8, panchromatic]
+      dtype: int16
+      nodata: -9999
+      src_varname: 'panchromatic'
+      resampling_method: nearest
+    - name: 'cirrus'
+      aliases: [band_9, cirrus]
+      dtype: int16
+      nodata: -9999
+      src_varname: 'cirrus'
+      resampling_method: nearest
+    - name: 'lwir1'
+      aliases: [band_10, lwir1]
+      dtype: int16
+      nodata: -9999
+      src_varname: 'lwir1'
+      resampling_method: nearest
+    - name: 'lwir2'
+      aliases: [band_11, lwir2]
+      dtype: int16
+      nodata: -9999
+      src_varname: 'lwir2'
+      resampling_method: nearest
+    - name: 'quality'
+      aliases: [QUALITY, quality]
+      dtype: int16
+      nodata: 0
+      units: '1'
+      src_varname: 'quality'
+      resampling_method: nearest
+      flags_definition:
+        designated_fill:
+          bits: [0]
+          description: Used to identify fill values
+          values:
+            0: false
+            1: true
+        dropped_frame:
+          bits: [1]
+          description: Dropped frame
+          values:
+            0: false
+            1: true
+        terrain_occlusion:
+          bits: [2]
+          description: Terrain Occlusion
+          values:
+          values:
+            0: false
+            1: true
+        water_confidence:
+          bits: [4, 5]
+          description: Water Confidence
+          values:
+            0: false
+            2: true
+        snow_ice_confidence:
+          bits: [10, 11]
+          description: Snow and Ice Confidence with low =(0-33)%, medium =(34-66)% and high =(67-100)%
+          values:
+            0: Not Determined
+            1: Low
+            2: Medium
+            3: High
+        cirrus_confidence:
+          bits: [12, 13]
+          description: Cirrus Confidence with low =(0-33)%, medium =(34-66)% and high =(67-100)%
+          values:
+            0: Not Determined
+            1: Low
+            2: Medium
+            3: High
+        cloud_confidence:
+          bits: [14, 15]
+          description: Cloud Confidence with low =(0-33)%, medium =(34-66)% and high =(67-100)%
+          values:
+            0: Not Determined
+            1: Low
+            2: Medium
+            3: High
+
