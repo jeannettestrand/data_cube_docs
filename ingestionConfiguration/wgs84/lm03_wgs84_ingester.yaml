@@ -1,0 +1,108 @@
+source_type: lm03
+output_type: lm03_wgs
+
+description: Landsat 3 USGS L2TP MSS
+
+location: '/data/datacube/repository/lm03_wsg'
+file_path_template: 'lm03_{tile_index[0]}__{tile_index[1]}__{start_time}.nc'
+global_attributes: 
+  title: Landsat 3 L1TP MSS WSG
+  summary: |
+    Test ingestion of geotiff to netcdf. 
+  source: SR-N_25_2
+  history: |
+    -	Landsat 3 data from USGS
+  
+storage:
+  driver: NetCDF CF
+  crs: EPSG:4326
+  tile_size:
+          longitude: 1
+          latitude: 1
+  resolution:
+          longitude: 0.0025
+          latitude: -0.0025
+  chunking:
+      longitude: 200
+      latitude: 200
+      time: 1
+  dimension_order: ['time', 'latitude', 'longitude']
+
+measurements:
+    measurements:
+    - name: 'green'
+      aliases: [band_4, green]
+      dtype: int16
+      nodata: -9999
+      units: '1'
+    - name: 'red'
+      aliases: [band_5, red]
+      dtype: int16
+      nodata: -9999
+      units: '1'
+    - name: 'nir1'
+      aliases: [band_6, nir1]
+      dtype: int16
+      nodata: -9999
+      units: '1'
+    - name: 'nir2'
+      aliases: [band_7, nir2]
+      dtype: int16
+      nodata: -9999
+      units: '1'
+
+    - name: 'quality'
+      aliases: [QUALITY, quality]
+      dtype: int16
+      nodata: 0
+      units: '1'
+      flags_definition:
+        designated_fill:
+          bits: [0]
+          description: Used to identify fill values
+          values:
+            0: false
+            1: true
+        dropped_frame:
+          bits: [1]
+          description: Dropped frame
+          values:
+            0: false
+            1: true
+        terrain_occlusion:
+          bits: [2]
+          description: Terrain Occlusion
+          values:
+          values:
+            0: false
+            1: true
+        water_confidence:
+          bits: [4, 5]
+          description: Water Confidence
+          values:
+            0: false
+            3: true
+        snow_ice_confidence:
+          bits: [10, 11]
+          description: Snow and Ice Confidence with low =(0-33)%, medium =(34-66)% and high =(67-100)%
+          values:
+            0: Not Determined
+            1: Low
+            2: Medium
+            3: High
+        cirrus_confidence:
+          bits: [12, 13]
+          description: Cirrus Confidence with low =(0-33)%, medium =(34-66)% and high =(67-100)%
+          values:
+            0: Not Determined
+            1: Low
+            2: Medium
+            3: High
+        cloud_confidence:
+          bits: [14, 15]
+          description: Cloud Confidence with low =(0-33)%, medium =(34-66)% and high =(67-100)%
+          values:
+            0: Not Determined
+            1: Low
+            2: Medium
+            3: High
