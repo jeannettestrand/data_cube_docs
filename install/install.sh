@@ -243,7 +243,7 @@ sh Miniconda3-latest-Linux-x86_64.sh -b -p /local/datacube/miniconda3 >> $OUTPUT
 sudo ln -s /local/datacube/miniconda3/etc/profile.d/conda.sh /etc/profile.d/conda.sh
 source $HOME/.bashrc
 conda update -n base conda -y $CONDAQUIET >> $OUTPUT
-conda config --add channels conda-forge >> $OUTPUT
+conda config --append channels conda-forge >> $OUTPUT
 conda create --name cubeenv python=3.6 datacube -y $CONDAQUIET >> $OUTPUT
 conda activate cubeenv
 conda install cython matplotlib scipy jupyter jupyterhub -y $CONDAQUIET >> $OUTPUT
