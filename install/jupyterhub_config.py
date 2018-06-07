@@ -157,7 +157,7 @@ c.JupyterHub.base_url = '/jupyter/'
 #
 #  This will *only* include the logs of the Hub itself, not the logs of the proxy
 #  or any single-user servers.
-#c.JupyterHub.extra_log_file = ''
+c.JupyterHub.extra_log_file = '/local/datacube/jupyterhub/jupyterhub.log'
 
 ## Extra log handlers to set on JupyterHub logger
 #c.JupyterHub.extra_log_handlers = []
@@ -498,7 +498,7 @@ c.JupyterHub.spawner_class = 'sudospawner.SudoSpawner'
 #
 #  Note that this does *not* prevent users from accessing files outside of this
 #  path! They can do so with many other means.
-#c.Spawner.notebook_dir = ''
+c.Spawner.notebook_dir = '~/jupyter'
 
 ## An HTML form for options a user can specify on launching their server.
 #
