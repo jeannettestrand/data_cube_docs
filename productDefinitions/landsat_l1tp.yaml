@@ -79,28 +79,28 @@ measurements:
         designated_fill:
           bits: [0]
           description: Used to identify fill values
-          values: 
+          values:
             0: false
             1: true
         dropped_frame:
           bits: [1]
           description: Dropped frame
-          values: 
+          values:
             0: false
             1: true
         terrain_occlusion:
           bits: [2]
           description: Terrain Occlusion
           values:
-          values: 
+          values:
             0: false
-            1: true 
+            1: true
         water_confidence:
           bits: [4, 5]
           description: Water Confidence
-          values: 
+          values:
             0: false
-            2: true
+            3: true
         snow_ice_confidence:
           bits: [10, 11]
           description: Snow and Ice Confidence with low =(0-33)%, medium =(34-66)% and high =(67-100)%
@@ -208,7 +208,7 @@ measurements:
           description: Water Confidence
           values:
             0: false
-            2: true
+            3: true
         snow_ice_confidence:
           bits: [10, 11]
           description: Snow and Ice Confidence with low =(0-33)%, medium =(34-66)% and high =(67-100)%
@@ -306,7 +306,7 @@ measurements:
           description: Water Confidence
           values:
             0: false
-            2: true
+            3: true
         snow_ice_confidence:
           bits: [10, 11]
           description: Snow and Ice Confidence with low =(0-33)%, medium =(34-66)% and high =(67-100)%
@@ -331,7 +331,6 @@ measurements:
             1: Low
             2: Medium
             3: High
-
 
 
 ---
@@ -401,7 +400,7 @@ measurements:
           description: Water Confidence
           values:
             0: false
-            2: true
+            3: true
         snow_ice_confidence:
           bits: [10, 11]
           description: Snow and Ice Confidence with low =(0-33)%, medium =(34-66)% and high =(67-100)%
@@ -426,7 +425,6 @@ measurements:
             1: Low
             2: Medium
             3: High
-
 
     - name: 'red'
       aliases: [band_3, nir]
@@ -514,7 +512,7 @@ measurements:
           description: Water Confidence
           values:
             0: false
-            2: true
+            3: true
         snow_ice_confidence:
           bits: [10, 11]
           description: Snow and Ice Confidence with low =(0-33)%, medium =(34-66)% and high =(67-100)%
@@ -539,4 +537,3 @@ measurements:
             1: Low
             2: Medium
             3: High
-
