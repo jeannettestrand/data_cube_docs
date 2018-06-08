@@ -104,7 +104,7 @@ def get_coords(geo_ref_points, spatial_ref):
 def satellite_ref(sat, file_name, sid):
     """
     To load the band_names for referencing either LANDSAT8 or LANDSAT7 or LANDSAT5 bands
-    Landsat7 and Landsat5 have same band names
+    Landsat7ETM  and Landsat5TM  have same band names
     """
     name = (Path(file_name)).stem
     name_len = name.split('_')
