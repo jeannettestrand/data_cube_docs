@@ -1,0 +1,128 @@
+source_type: LE07_scene
+output_type: LE07_caea
+
+description: Landsat 7 L1TP netcdf
+
+location: '/data/datacube/repository/caea'
+file_path_template: 'LE07_{tile_index[0]}_{tile_index[1]}_{start_time}.nc'
+
+global_attributes:
+  title: Landsat 7 L1TP netcdf
+  source: USGS
+  institution: NFIS
+  instrument: OLI
+  keywords: AU/GA,NASA/GSFC/SED/ESD/LANDSAT,REFLECTANCE,ETM+,TM,OLI,EARTH SCIENCE
+  keywords_vocabulary: GCMD
+  platform: LANDSAT-8
+
+storage:
+
+  driver: NetCDF CF
+
+  crs: EPSG:102001
+
+  tile_size:
+          x: 100000.0
+          y: 100000.0
+
+  resolution:
+          x: 25
+          y: -25
+
+  chunking:
+      x: 200
+      y: 200
+      time: 1
+
+  dimension_order: ['time', 'y', 'x']
+
+measurements:
+
+    - name: blue
+      dtype: int16
+      nodata: -9999
+      resampling_method: nearest
+      src_varname: 'blue'
+
+    - name: green
+      dtype: int16
+      nodata: -9999
+      resampling_method: nearest
+      src_varname: 'green'
+
+    - name: red
+      dtype: int16
+      nodata: -9999
+      resampling_method: nearest
+      src_varname: 'red'
+
+    - name: nir
+      dtype: int16
+      nodata: -9999
+      resampling_method: nearest
+      src_varname: 'nir'
+
+    - name: swir1
+      dtype: int16
+      nodata: -9999
+      resampling_method: nearest
+      src_varname: 'swir1'
+
+    - name: swir2
+      dtype: int16
+      nodata: -9999
+      resampling_method: nearest
+      src_varname: 'swir2'
+
+
+    - name: quality
+      aliases: [QUALITY, quality]
+      dtype: int16
+      nodata: 0
+      src_varname: 'quality'
+      resampling_method: nearest
+      flags_definition:
+        designated_fill:
+          bits: [0]
+          description: Used to identify fill values
+          values: {0: false, 1: true}
+        dropped_pixel:
+          bits: [1]
+          description: Dropped Pixel
+          values: {0: false, 1: true}
+        radiometric_saturation:
+          bits: [2,3]
+          description: Radiometric saturation bits, represents how many bands contains saturation
+          values:
+            0: none
+            1: 1-2
+            2: 3-4
+            3: <=5
+        cloud:
+          bits: [4]
+          description: Cloud
+          values: {0: false, 1: true}
+        cloud_confidence:
+          bits: [5,6]
+          description: Cloud Confidence with low =(0-33)%, medium =(34-66)% and high =(67-100)%
+          values:
+            0: Not Determined
+            1: Low
+            2: Medium
+            3: High
+        cloud_shadow_conf:
+          bits: [7,8]
+          description: Cloud Shadow Confidence with low =(0-33)%, medium =(34-66)% and high =(67-100)%
+          values:
+            0: Not Determined
+            1: Low
+            2: Medium
+            3: High
+        snow_ice_conf:
+          bits: [9,10]
+          description: Snow/Ice Confidence with low =(0-33)%, medium =(34-66)% and high =(67-100)%
+          values:
+            0: Not Determined
+            1: Low
+            2: Medium
+            3: High
