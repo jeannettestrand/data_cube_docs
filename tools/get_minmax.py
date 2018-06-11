@@ -22,7 +22,6 @@ for x in bands:
 
 for file in os.listdir(directory):
 	if file.endswith(".nc"):
-		#print(os.path.join(directory + "/", file))
 		for band in bands:
 			ds = gdal.Open('netCDF:' + os.path.join(directory, file) + ':' + band)
 			data = ds.GetRasterBand(1).ReadAsArray(0, 0, ds.RasterXSize, ds.RasterYSize)
