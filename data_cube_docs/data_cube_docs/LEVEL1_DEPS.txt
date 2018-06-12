@@ -1,0 +1,37 @@
+datacube 1.5.4 py36_0
+---------------------
+file name   : datacube-1.5.4-py36_0.tar.bz2
+name        : datacube
+version     : 1.5.4
+build string: py36_0
+build number: 0
+size        : 282 KB
+arch        : x86_64
+constrains  : ()
+platform    : Platform.linux
+license     : Apache-2.0
+subdir      : linux-64
+url         : https://conda.anaconda.org/conda-forge/linux-64/datacube-1.5.4-py36_0.tar.bz2
+md5         : 8af857745c621f42b61333cbcf568693
+dependencies: 
+  - cachetools
+  - celery >=4
+  - dask
+  - gdal
+  - jsonschema
+  - netcdf4
+  - numpy
+  - paramiko
+  - pathlib
+  - psycopg2
+  - pypeg2
+  - python 3.6*
+  - python-dateutil
+  - pyyaml
+  - rasterio
+  - redis-py
+  - singledispatch
+  - sqlalchemy
+  - sshtunnel
+  - tqdm
+  - xarray >=0.9

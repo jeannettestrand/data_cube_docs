@@ -1,0 +1,9 @@
+Follow directions at: https://github.com/opendatacube/datacube-wms
+
+** NOTE: The bottom of create_tables.sql will need to be adjusted for your datacube user.
+
+ie.
+grant USAGE on schema wms to cube;
+
+becomes:
+grant USAGE on schema wms to jstrand;

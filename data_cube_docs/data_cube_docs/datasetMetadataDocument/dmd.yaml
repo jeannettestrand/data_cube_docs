@@ -1,0 +1,78 @@
+###########################
+#Dataset Document Template#
+###########################
+
+
+#The dataset document defines critical metadata about a dataset, #including the available data measurements, the platform and #sensor names, the geospatial extents and projection, acquisition #time, and provenance information.
+
+# UUID of the dataset
+id:
+
+# Creation datetime
+creation_dt:
+
+# Metadata fields supported by default
+product_type:
+platform:
+  code:
+instrument:
+  name:
+
+# Format the data is stored in. 'NetCDF' must match exactly.
+format:
+
+# Spatio-temporal extens of the data
+extent:
+
+grid_spatial:
+  projection:
+    # CRS of the data, either EPSG:<code> or WKT string
+	spatial_reference:
+	
+	#spatial extents of the data in the CRS of the data
+	geo_ref_points:
+
+	#Optional GeoJSON Geometry Object for the data-ful region of the data. Coordinates assumed to be in CRS of data. 
+	valid_data:
+	
+#Dictionary of band names to band definitions
+image:
+  bands:
+    #Path to the file containing band data. Can be absolute or relative to folder containing the metadata document.
+	path:
+	
+	# Optional. Variable name if format is NetCDF or HDF. Band number otherwise. Default is one.
+	#layer:
+	
+# Dataset lineage metadata
+lineage:
+  # Dictionary of source classifier to dataset documents like this one.
+  source_datasets:
+  
+  #Optional, the algorithm used to generate this dataset
+  algorithm:
+    name:
+	version:
+	doi:
+	parameters:
+	  aerosol:
+	
+  # Machine and software used to generate this dataset
+  machine:
+    hostname:
+    uname:
+    runtime_id:
+    software_versions:
+      eodatasets:
+        repo_url:
+		version:
+	# Additional data used to generate this dataset
+	ancillary: 
+	  ephemeris:
+	    name:
+		uri:
+		access_dt:
+		modification_dt:
+		checksum_sha1:
+	
+	

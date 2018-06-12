@@ -1,0 +1,108 @@
+source_type: ls8_level1_usgs_L1TP
+output_type: LS8_L1TP_NETCDF
+
+description: Landsat 8 L1TP netcdf
+
+location: '/home/jstrand/LANDSAT/petawawa/ingested'
+file_path_template: 'LS8_OLI/LS8_OLI_{tile_index[0]}_{tile_index[1]}_{start_time}.nc'
+global_attributes: 
+  title: Landsat 8 L1TP netcdf
+  summary: |
+    Test ingestion of geotiff to netcdf. No reprojection.  
+  source: SR-N_25_2
+  history: |
+    -	Landsat 8 data from USGS
+  institution: NFIS
+  instrument: OLI
+  keywords: AU/GA,NASA/GSFC/SED/ESD/LANDSAT,REFLECTANCE,ETM+,TM,OLI,EARTH SCIENCE
+  keywords_vocabulary: GCMD
+  platform: LANDSAT-8
+  product_version: 2
+  publisher_email: nfis
+  publisher_name: Section Leader, Operations Section, NEMO, Geoscience Australia
+  publisher_url: 'http://www.ga.gov.au'
+  license: CC BY Attribution 4.0 International License
+  coverage_content_type: physicalMeasurement
+  cdm_data_type: Grid
+  product_suite: Surface Reflectance NBAR+ 25m
+  acknowledgment: Landsat data is provided by the United States Geological Survey (USGS) through direct reception of the data at Geoscience Australias satellite reception facility or download.
+  references: |
+    -	none
+storage:
+  driver: NetCDF CF
+
+  # VERIFY CRS WITH DATASET METADATA
+  crs: EPSG:4236 
+  tile_size:
+          longitude: 1.0
+          latitude: 1.0
+  resolution:
+          longitude: 0.0162
+          latitude: -0.0162
+  chunking:
+      longitude: 200
+      latitude: 200
+      time: 1
+  dimension_order: ['time', 'latitude', 'longitude']
+
+measurements:
+    - name: coastal_aerosol
+      dtype: int16
+      nodata: -999
+      resampling_method: nearest
+      src_varname: 'coastal_aerosol'
+    - name: blue
+      dtype: int16
+      nodata: -999
+      resampling_method: nearest
+      src_varname: 'blue'
+    - name: green
+      dtype: int16
+      nodata: -999
+      resampling_method: nearest
+      src_varname: 'green'
+    - name: red
+      dtype: int16
+      nodata: -999
+      resampling_method: nearest
+      src_varname: 'red'
+    - name: nir
+      dtype: int16
+      nodata: -999
+      resampling_method: nearest
+      src_varname: 'nir'
+    - name: swir1
+      dtype: int16
+      nodata: -999
+      resampling_method: nearest
+      src_varname: 'swir1'
+    - name: swir2
+      dtype: int16
+      nodata: -999
+      resampling_method: nearest
+      src_varname: 'swir2'
+    - name: 'panchromatic'
+      dtype: int16
+      nodata: -999
+      resampling_method: nearest
+      src_varname: 'panchromatic'
+    - name: 'cirrus'
+      dtype: int16
+      nodata: -999
+      resampling_method: nearest
+      src_varname: 'cirrus'
+    - name: 'lwir1'
+      dtype: int16
+      nodata: -999
+      resampling_method: nearest
+      src_varname: 'lwir1'
+    - name: 'lwir2'
+      dtype: int16
+      nodata: -9999
+      resampling_method: nearest
+      src_varname: 'lwir2' 
+    - name: 'quality'
+      dtype: int16
+      nodata: 0
+      resampling_method: nearest
+      src_varname: 'quality'  

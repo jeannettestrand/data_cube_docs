@@ -1,0 +1,82 @@
+source_type: le07
+output_type: le07_4326
+
+description: Landsat 7 L1TP nbar
+
+location: '/data/datacube/repository/ls7'
+file_path_template: 'LS7_{tile_index[0]}_{tile_index[1]}_{start_time}.nc'
+global_attributes: 
+  title: Landsat 7 L1TP netcdf
+  summary: |
+    Test ingestion of geotiff to netcdf. 
+  source: SR-N_25_2
+  history: |
+    -	Landsat 7 data from USGS
+  institution: NFIS
+  instrument: OLI
+  keywords: AU/GA,NASA/GSFC/SED/ESD/LANDSAT,REFLECTANCE,ETM+,TM,OLI,EARTH SCIENCE
+  keywords_vocabulary: GCMD
+  platform: LANDSAT-7
+  product_version: 2
+  publisher_email: nfis
+  publisher_name: Section Leader, Operations Section, NEMO, Geoscience Australia
+  publisher_url: 'http://www.ga.gov.au'
+  license: CC BY Attribution 4.0 International License
+  coverage_content_type: physicalMeasurement
+  cdm_data_type: Grid
+  product_suite: S
+  acknowledgment: Landsat data is provided by the United States Geological Survey (USGS) through direct reception of the data at Geoscience Australias satellite reception facility or download.
+  references: |
+    -	none
+storage:
+  driver: NetCDF CF
+
+  crs: EPSG:4326
+  tile_size:
+      longitude: 1.0
+      latitude: 1.0
+  resolution:
+      longitude: 0.00025
+      latitude: -0.00025
+  chunking:
+      longitude: 400
+      latitude: 400
+      time: 1
+  dimension_order: [time, latitude, longitude]
+
+measurements:
+    - name: blue
+      dtype: int16
+      nodata: -999
+      resampling_method: nearest
+      src_varname: 'blue'
+    - name: green
+      dtype: int16
+      nodata: -999
+      resampling_method: nearest
+      src_varname: 'green'
+    - name: red
+      dtype: int16
+      nodata: -999
+      resampling_method: nearest
+      src_varname: 'red'
+    - name: nir
+      dtype: int16
+      nodata: -999
+      resampling_method: nearest
+      src_varname: 'nir'
+    - name: swir1
+      dtype: int16
+      nodata: -999
+      resampling_method: nearest
+      src_varname: 'swir1'
+    - name: swir2
+      dtype: int16
+      nodata: -999
+      resampling_method: nearest
+      src_varname: 'swir2'
+    - name: 'quality'
+      dtype: int16
+      nodata: 0
+      resampling_method: nearest
+      src_varname: 'quality'  
