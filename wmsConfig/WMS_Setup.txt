@@ -1,0 +1,27 @@
+Follow directions at: https://github.com/opendatacube/datacube-wms
+
+** NOTE: The bottom of create_tables.sql will need to be adjusted for your datacube user.
+
+ie.
+grant USAGE on schema wms to cube;
+
+becomes:
+grant USAGE on schema wms to jstrand;
+
+cp datacube_wms/wms_cfg_example.py datacube_wms/wms_cfg_local.py
+edit wms_cfg_local.py to suit your needs, its in .gitignore and will not be overwritten with repo updates.
+
+scale_range for each style in config is important. this needs to be the upper range and lower range of the data for the included bands. there will be visibility problems if these numbers are not correct. there is is script in ../tools/get_minmax.py to extract this information directory full of *.nc files. This helps with setting the appropriate range.
+
+apply_solar_corrections: True <--- this caused crashing on my test server
+
+product_name: <matching name of product in datacube>
+
+use styles to combine bands however you would like.
+==============================
+Apache WSGI Setup
+==============================
+Also found in above README. But not the following:
+
+- Needs httpd-devel installed for CentOS
+- Configuration tested on homebrew server found in wms.conf

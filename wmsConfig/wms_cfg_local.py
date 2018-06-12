@@ -86,7 +86,7 @@ layer_cfg = [
                 "product_name": "LC08_caea",
                 # The Datacube name for the associated pixel-quality product (optional)
                 # The name of the associated Datacube pixel-quality product
-                "pq_dataset": "LC08_caea",
+                #"pq_dataset": "LC08_caea",
                 # The name of the measurement band for the pixel-quality product
                 # (Only required if pq_dataset is set)
                 "pq_band": "quality",
@@ -119,7 +119,7 @@ layer_cfg = [
                 "pq_manual_merge": False,
                 # Bands to always fetch from the Datacube, even if it is not used by the active style.
                 # Useful for when a particular band is always needed for the extent_mask_func,
-                "always_fetch_bands": [ ],
+                "always_fetch_bands": [ 'quality', ],
                 # Apply corrections for solar angle, for "Level 1" products.
                 # (Defaults to false - should not be used for NBAR/NBAR-T or other Analysis Ready products
                 "apply_solar_corrections": False,
@@ -154,7 +154,7 @@ layer_cfg = [
                         },
                         # The raw band value range to be compressed to an 8 bit range for the output image tiles.
                         # Band values outside this range are clipped to 0 or 255 as appropriate.
-                        "scale_range": [6000.0, 25000.0]
+                        "scale_range": [4000, 32000.0]
                     },
                     {
                         "name": "cloud_masked_rgb",
@@ -180,7 +180,7 @@ layer_cfg = [
                                 },
                             },
                         ],
-                        "scale_range": [0.0, 3000.0]
+                        "scale_range": [4000.0, 32000.0]
                     },
                     {
                         "name": "cloud_and_shadow_masked_rgb",
@@ -208,7 +208,7 @@ layer_cfg = [
                                 },
                             },
                         ],
-                        "scale_range": [0.0, 3000.0]
+                        "scale_range": [4000.0, 32000.0]
                     },
                     {
                         "name": "extended_rgb",
@@ -226,7 +226,7 @@ layer_cfg = [
                                 "coastal_aerosol": 0.4
                             }
                         },
-                        "scale_range": [0.0, 3000.0]
+                        "scale_range": [4000.0, 32000.0]
                     },
                     {
                         "name": "wideband",
@@ -249,7 +249,7 @@ layer_cfg = [
                                 "coastal_aerosol": 0.255,
                             }
                         },
-                        "scale_range": [0.0, 3000.0]
+                        "scale_range": [4000.0, 32000.0]
                     },
                     {
                         "name": "infra_red",
@@ -266,7 +266,7 @@ layer_cfg = [
                                 "nir": 1.0
                             }
                         },
-                        "scale_range": [0.0, 3000.0]
+                        "scale_range": [4000.0, 32000.0]
                     },
                     {
                         "name": "coastal_aerosol",
@@ -283,7 +283,7 @@ layer_cfg = [
                                 "coastal_aerosol": 1.0
                             }
                         },
-                        "scale_range": [0.0, 3000.0]
+                        "scale_range": [4000.0, 32000.0]
                     },
                     {
                         "name": "blue",
@@ -300,7 +300,7 @@ layer_cfg = [
                                 "blue": 1.0
                             }
                         },
-                        "scale_range": [0.0, 3000.0]
+                        "scale_range": [4000.0, 32000.0]
                     },
                     {
                         "name": "green",
@@ -317,7 +317,7 @@ layer_cfg = [
                                 "green": 1.0
                             }
                         },
-                        "scale_range": [0.0, 3000.0]
+                        "scale_range": [4000.0, 32000.0]
                     },
                     {
                         "name": "red",
@@ -334,7 +334,7 @@ layer_cfg = [
                                 "red": 1.0
                             }
                         },
-                        "scale_range": [0.0, 3000.0]
+                        "scale_range": [4000.0, 32000.0]
                     },
                     {
                         "name": "nir",
@@ -351,7 +351,7 @@ layer_cfg = [
                                 "nir": 1.0
                             }
                         },
-                        "scale_range": [0.0, 3000.0]
+                        "scale_range": [4000.0, 32000.0]
                     },
                     {
                         "name": "swir1",
@@ -368,7 +368,7 @@ layer_cfg = [
                                 "swir1": 1.0
                             }
                         },
-                        "scale_range": [0.0, 3000.0]
+                        "scale_range": [4000.0, 32000.0]
                     },
                     {
                         "name": "swir2",
@@ -570,7 +570,7 @@ layer_cfg = [
                                 "blue": 1.0
                             }
                         },
-                        "scale_range": [0.0, 3000.0]
+                        "scale_range": [4000.0, 32000.0]
                     },
                     {
                         "name": "rgb_ndvi_cloudmask",
