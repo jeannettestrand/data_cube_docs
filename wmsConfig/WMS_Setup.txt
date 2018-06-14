@@ -25,3 +25,5 @@ Also found in above README. But not the following:
 
 - Needs httpd-devel installed for CentOS
 - Configuration tested on homebrew server found in wms.conf
+=============================
+/run/httpd needs to be owned by the apache user account, as well as the /run/httpd/wsgi.*.sock file.
