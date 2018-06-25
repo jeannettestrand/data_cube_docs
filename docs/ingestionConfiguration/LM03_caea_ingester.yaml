@@ -1,0 +1,92 @@
+source_type: LM03_scene
+output_type: LM03_caea_30m
+
+description: Landsat 3 MSS L1TP Canadian Albers Equal Area, 100km Tiles, 25m Resolution
+
+location: '/data/datacube/repository/caea'
+file_path_template: 'LM03_{tile_index[0]}_{tile_index[1]}_{start_time}.nc'
+
+global_attributes:
+  title: Landsat 3
+  institution: NFIS
+  instrument: OLI
+  keywords: NASA/GSFC/SED/ESD/LANDSAT,REFLECTANCE,ETM+,TM,OLI,EARTH SCIENCE
+  platform: LANDSAT-3
+  coverage_content_type: physicalMeasurement
+  cdm_data_type: Grid
+  product_suite: L1TP
+  acknowledgment: Landsat data is provided by the United States Geological Survey (USGS).
+
+storage:
+
+  driver: NetCDF CF
+
+  crs: EPSG:102001
+
+  tile_size:
+          y: 90000.0
+          x: 90000.0
+
+  resolution:
+          y: 30
+          x: -30
+
+  chunking:
+      y: 200
+      x: 200
+      time: 1
+
+  dimension_order: ['time', 'y', 'x']
+
+measurements:
+
+    - name: green
+      dtype: int16
+      nodata: -9999
+      resampling_method: nearest
+      src_varname: 'green'
+    
+    - name: red
+      dtype: int16
+      nodata: -9999
+      resampling_method: nearest
+      src_varname: 'red'
+
+    - name: nir1
+      dtype: int16
+      nodata: -9999
+      resampling_method: nearest
+      src_varname: 'nir1'
+
+    - name: nir2
+      dtype: int16
+      nodata: -9999
+      resampling_method: nearest
+      src_varname: 'nir2'
+
+    - name: quality
+      dtype: int16
+      nodata: 0
+      src_varname: 'quality'
+      resampling_method: nearest
+      flags_definition:
+        designated_fill:
+          bits: [0]
+          description: Used to identify fill values
+          values: {0: false, 1: true}
+        dropped_pixel:
+          bits: [1]
+          description: Dropped Pixel
+          values: {0: false, 1: true}
+        radiometric_saturation:
+          bits: [2,3]
+          description: Radiometric saturation bits, represents how many bands contains saturation
+          values:
+            0: none
+            1: 1-2
+            2: 3-4
+            3: <=5
+        cloud:
+          bits: [4]
+          description: Cloud
+          values: {0: false, 1: true}

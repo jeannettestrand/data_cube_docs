@@ -1,0 +1,1456 @@
+desc: (none)
+cmd: /local/datacube/miniconda3/envs/cubeenv/bin/datacube ingest --executor multiproc 6 --year 2015 -c LC08_caea_30m_ingester.yaml
+time_unit: i
+#-----------
+snapshot=0
+#-----------
+time=0
+mem_heap_B=0
+mem_heap_extra_B=0
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=1
+#-----------
+time=1582815382
+mem_heap_B=6325834
+mem_heap_extra_B=123638
+mem_stacks_B=0
+heap_tree=detailed
+n5: 6325834 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n9: 5600423 0x4F001D6: _PyObject_Malloc (obmalloc.c:1427)
+  n4: 2093992 0x4EE7214: dictresize (dictobject.c:535)
+   n6: 1191096 0x4EEAD45: PyDict_SetItem (dictobject.c:1102)
+    n1: 373248 0x4F98BE3: _PyEval_EvalFrameDefault (ceval.c:2223)
+     n1: 373248 0x4F9201C: _PyEval_EvalCodeWithName (ceval.c:4153)
+      n2: 373248 0x4F9264B: PyEval_EvalCodeEx (ceval.c:4174)
+       n2: 373248 0x4F92699: PyEval_EvalCode (ceval.c:730)
+        n2: 370464 0x4F8F83B: builtin_exec (bltinmodule.c:983)
+         n1: 368256 0x4EF91B7: PyCFunction_Call (methodobject.c:114)
+          n1: 368256 0x4F99BE6: _PyEval_EvalFrameDefault (ceval.c:5089)
+           n1: 368256 0x4F9201C: _PyEval_EvalCodeWithName (ceval.c:4153)
+            n1: 368256 0x4F92330: call_function (ceval.c:4965)
+             n1: 368256 0x4F96DC4: _PyEval_EvalFrameDefault (ceval.c:3322)
+              n1: 368256 0x4F916AE: _PyFunction_FastCall (ceval.c:4906)
+               n1: 368256 0x4F925D2: call_function (ceval.c:4941)
+                n1: 368256 0x4F96DC4: _PyEval_EvalFrameDefault (ceval.c:3322)
+                 n1: 368256 0x4F916AE: _PyFunction_FastCall (ceval.c:4906)
+                  n1: 368256 0x4F925D2: call_function (ceval.c:4941)
+                   n1: 368256 0x4F96DC4: _PyEval_EvalFrameDefault (ceval.c:3322)
+                    n1: 368256 0x4F916AE: _PyFunction_FastCall (ceval.c:4906)
+                     n1: 368256 0x4F925D2: call_function (ceval.c:4941)
+                      n1: 368256 0x4F96DC4: _PyEval_EvalFrameDefault (ceval.c:3322)
+                       n1: 368256 0x4F916AE: _PyFunction_FastCall (ceval.c:4906)
+                        n1: 368256 0x4F9ADC4: _PyFunction_FastCallDict (ceval.c:5008)
+                         n1: 368256 0x4E9FABC: _PyObject_FastCallDict (abstract.c:2310)
+                          n1: 368256 0x4EA0CB4: _PyObject_CallMethodIdObjArgs (abstract.c:2796)
+                           n2: 368256 0x4FB70C2: PyImport_ImportModuleLevelObject (import.c:1566)
+                            n2: 284288 0x4F99EB5: _PyEval_EvalFrameDefault (ceval.c:5218)
+                             n2: 282080 0x4F9201C: _PyEval_EvalCodeWithName (ceval.c:4153)
+                              n0: 280968 0x4F9264B: PyEval_EvalCodeEx (ceval.c:4174)
+                              n0: 1112 in 1 place, below massif's threshold (1.00%)
+                             n0: 2208 in 1 place, below massif's threshold (1.00%)
+                            n2: 83968 0x4F8DFCD: builtin___import__ (bltinmodule.c:238)
+                             n1: 65208 0x4EF91E7: PyCFunction_Call (methodobject.c:98)
+                              n0: 65208 in 2 places, all below massif's threshold (1.00%)
+                             n0: 18760 in 1 place, below massif's threshold (1.00%)
+         n0: 2208 in 1 place, below massif's threshold (1.00%)
+        n0: 2784 in 3 places, all below massif's threshold (1.00%)
+       n0: 0 in 1 place, below massif's threshold (1.00%)
+    n0: 290328 in 35 places, all below massif's threshold (1.00%)
+    n2: 217480 0x4EEE3C6: PyDict_SetItemString (dictobject.c:3371)
+     n0: 150624 in 24 places, all below massif's threshold (1.00%)
+     n1: 66856 0x4F11D04: PyType_Ready (typeobject.c:4653)
+      n0: 66856 in 19 places, all below massif's threshold (1.00%)
+    n2: 154992 0x4EFC4AC: _PyObject_GenericSetAttrWithDict (object.c:1177)
+     n2: 136688 0x4EFBD9D: PyObject_SetAttr (object.c:937)
+      n1: 88872 0x4F8CD98: builtin_setattr (bltinmodule.c:1374)
+       n1: 88872 0x4EF8FDC: _PyCFunction_FastCallDict (methodobject.c:234)
+        n1: 88872 0x4F92418: call_function (ceval.c:4824)
+         n1: 88872 0x4F96DC4: _PyEval_EvalFrameDefault (ceval.c:3322)
+          n2: 88872 0x4F916AE: _PyFunction_FastCall (ceval.c:4906)
+           n1: 88296 0x4F925D2: call_function (ceval.c:4941)
+            n1: 88296 0x4F96DC4: _PyEval_EvalFrameDefault (ceval.c:3322)
+             n2: 88296 0x4F916AE: _PyFunction_FastCall (ceval.c:4906)
+              n1: 73752 0x4F925D2: call_function (ceval.c:4941)
+               n1: 73752 0x4F96DC4: _PyEval_EvalFrameDefault (ceval.c:3322)
+                n1: 73752 0x4F916AE: _PyFunction_FastCall (ceval.c:4906)
+                 n1: 73752 0x4F925D2: call_function (ceval.c:4941)
+                  n1: 73752 0x4F96DC4: _PyEval_EvalFrameDefault (ceval.c:3322)
+                   n1: 73752 0x4F9201C: _PyEval_EvalCodeWithName (ceval.c:4153)
+                    n1: 73752 0x4F9264B: PyEval_EvalCodeEx (ceval.c:4174)
+                     n1: 73752 0x4F92699: PyEval_EvalCode (ceval.c:730)
+                      n1: 73752 0x4F8F83B: builtin_exec (bltinmodule.c:983)
+                       n1: 73752 0x4EF91B7: PyCFunction_Call (methodobject.c:114)
+                        n1: 73752 0x4F99BE6: _PyEval_EvalFrameDefault (ceval.c:5089)
+                         n1: 73752 0x4F9201C: _PyEval_EvalCodeWithName (ceval.c:4153)
+                          n1: 73752 0x4F92330: call_function (ceval.c:4965)
+                           n1: 73752 0x4F96DC4: _PyEval_EvalFrameDefault (ceval.c:3322)
+                            n1: 73752 0x4F916AE: _PyFunction_FastCall (ceval.c:4906)
+                             n1: 73752 0x4F925D2: call_function (ceval.c:4941)
+                              n0: 73752 0x4F96DC4: _PyEval_EvalFrameDefault (ceval.c:3322)
+              n0: 14544 in 1 place, below massif's threshold (1.00%)
+           n0: 576 in 1 place, below massif's threshold (1.00%)
+      n0: 47816 in 2 places, all below massif's threshold (1.00%)
+     n0: 18304 in 1 place, below massif's threshold (1.00%)
+    n1: 81296 0x4EEE7FF: _PyObjectDict_SetItem (dictobject.c:4422)
+     n1: 81296 0x4EFC4AC: _PyObject_GenericSetAttrWithDict (object.c:1177)
+      n0: 81296 in 2 places, all below massif's threshold (1.00%)
+    n1: 73752 0x11BA73D4: lib_build_and_cache_attr (???:578)
+     n1: 73752 0x11BA7A5B: lib_getattr (???:657)
+      n1: 73752 0x4F8DBF9: builtin_getattr (bltinmodule.c:1024)
+       n1: 73752 0x4EF8FDC: _PyCFunction_FastCallDict (methodobject.c:234)
+        n1: 73752 0x4F92418: call_function (ceval.c:4824)
+         n1: 73752 0x4F96DC4: _PyEval_EvalFrameDefault (ceval.c:3322)
+          n1: 73752 0x4F916AE: _PyFunction_FastCall (ceval.c:4906)
+           n1: 73752 0x4F925D2: call_function (ceval.c:4941)
+            n1: 73752 0x4F96DC4: _PyEval_EvalFrameDefault (ceval.c:3322)
+             n1: 73752 0x4F916AE: _PyFunction_FastCall (ceval.c:4906)
+              n1: 73752 0x4F925D2: call_function (ceval.c:4941)
+               n1: 73752 0x4F96DC4: _PyEval_EvalFrameDefault (ceval.c:3322)
+                n1: 73752 0x4F916AE: _PyFunction_FastCall (ceval.c:4906)
+                 n1: 73752 0x4F925D2: call_function (ceval.c:4941)
+                  n1: 73752 0x4F96DC4: _PyEval_EvalFrameDefault (ceval.c:3322)
+                   n1: 73752 0x4F9201C: _PyEval_EvalCodeWithName (ceval.c:4153)
+                    n1: 73752 0x4F9264B: PyEval_EvalCodeEx (ceval.c:4174)
+                     n1: 73752 0x4F92699: PyEval_EvalCode (ceval.c:730)
+                      n1: 73752 0x4F8F83B: builtin_exec (bltinmodule.c:983)
+                       n1: 73752 0x4EF91B7: PyCFunction_Call (methodobject.c:114)
+                        n1: 73752 0x4F99BE6: _PyEval_EvalFrameDefault (ceval.c:5089)
+                         n1: 73752 0x4F9201C: _PyEval_EvalCodeWithName (ceval.c:4153)
+                          n1: 73752 0x4F92330: call_function (ceval.c:4965)
+                           n1: 73752 0x4F96DC4: _PyEval_EvalFrameDefault (ceval.c:3322)
+                            n1: 73752 0x4F916AE: _PyFunction_FastCall (ceval.c:4906)
+                             n1: 73752 0x4F925D2: call_function (ceval.c:4941)
+                              n0: 73752 0x4F96DC4: _PyEval_EvalFrameDefault (ceval.c:3322)
+   n2: 595496 0x4EEDFC5: PyDict_SetDefault (dictobject.c:1102)
+    n2: 589856 0x4F5F168: PyUnicode_InternInPlace (unicodeobject.c:15303)
+     n2: 589856 0x4FBADDA: r_object (marshal.c:1160)
+      n2: 589856 0x4FBA3F8: r_object (marshal.c:1218)
+       n2: 589856 0x4FBB2C2: r_object (marshal.c:1392)
+        n1: 589856 0x4FBBB74: marshal_loads (marshal.c:1487)
+         n1: 589856 0x4EF8FDC: _PyCFunction_FastCallDict (methodobject.c:234)
+          n1: 589856 0x4F92418: call_function (ceval.c:4824)
+           n1: 589856 0x4F96DC4: _PyEval_EvalFrameDefault (ceval.c:3322)
+            n1: 589856 0x4F9201C: _PyEval_EvalCodeWithName (ceval.c:4153)
+             n1: 589856 0x4F92330: call_function (ceval.c:4965)
+              n1: 589856 0x4F96816: _PyEval_EvalFrameDefault (ceval.c:3338)
+               n1: 589856 0x4F916AE: _PyFunction_FastCall (ceval.c:4906)
+                n1: 589856 0x4F925D2: call_function (ceval.c:4941)
+                 n1: 589856 0x4F96DC4: _PyEval_EvalFrameDefault (ceval.c:3322)
+                  n1: 589856 0x4F916AE: _PyFunction_FastCall (ceval.c:4906)
+                   n1: 589856 0x4F925D2: call_function (ceval.c:4941)
+                    n1: 589856 0x4F96DC4: _PyEval_EvalFrameDefault (ceval.c:3322)
+                     n1: 589856 0x4F916AE: _PyFunction_FastCall (ceval.c:4906)
+                      n1: 589856 0x4F925D2: call_function (ceval.c:4941)
+                       n1: 589856 0x4F96DC4: _PyEval_EvalFrameDefault (ceval.c:3322)
+                        n1: 589856 0x4F916AE: _PyFunction_FastCall (ceval.c:4906)
+                         n1: 589856 0x4F925D2: call_function (ceval.c:4941)
+                          n1: 589856 0x4F96DC4: _PyEval_EvalFrameDefault (ceval.c:3322)
+                           n1: 589856 0x4F916AE: _PyFunction_FastCall (ceval.c:4906)
+                            n1: 589856 0x4F9ADC4: _PyFunction_FastCallDict (ceval.c:5008)
+                             n1: 589856 0x4E9FABC: _PyObject_FastCallDict (abstract.c:2310)
+                              n0: 589856 0x4EA0CB4: _PyObject_CallMethodIdObjArgs (abstract.c:2796)
+        n0: 0 in 1 place, below massif's threshold (1.00%)
+       n0: 0 in 1 place, below massif's threshold (1.00%)
+      n0: 0 in 1 place, below massif's threshold (1.00%)
+     n0: 0 in 2 places, all below massif's threshold (1.00%)
+    n0: 5640 in 1 place, below massif's threshold (1.00%)
+   n2: 298440 0x4EECDC1: PyDict_Merge (dictobject.c:2502)
+    n3: 249616 0x4EED6C9: PyDict_Copy (dictobject.c:2670)
+     n2: 177088 0x4F19595: type_new (typeobject.c:2359)
+      n1: 152200 0x4F10E31: type_call (typeobject.c:895)
+       n2: 152200 0x4E9F9C9: _PyObject_FastCallDict (abstract.c:2331)
+        n1: 151048 0x4F8E362: builtin___build_class__ (bltinmodule.c:182)
+         n1: 151048 0x4EF907B: _PyCFunction_FastCallDict (methodobject.c:231)
+          n1: 151048 0x4F92418: call_function (ceval.c:4824)
+           n1: 151048 0x4F96DC4: _PyEval_EvalFrameDefault (ceval.c:3322)
+            n1: 151048 0x4F9201C: _PyEval_EvalCodeWithName (ceval.c:4153)
+             n1: 151048 0x4F9264B: PyEval_EvalCodeEx (ceval.c:4174)
+              n2: 151048 0x4F92699: PyEval_EvalCode (ceval.c:730)
+               n2: 132656 0x4F8F83B: builtin_exec (bltinmodule.c:983)
+                n1: 130928 0x4EF91B7: PyCFunction_Call (methodobject.c:114)
+                 n1: 130928 0x4F99BE6: _PyEval_EvalFrameDefault (ceval.c:5089)
+                  n1: 130928 0x4F9201C: _PyEval_EvalCodeWithName (ceval.c:4153)
+                   n1: 130928 0x4F92330: call_function (ceval.c:4965)
+                    n1: 130928 0x4F96DC4: _PyEval_EvalFrameDefault (ceval.c:3322)
+                     n1: 130928 0x4F916AE: _PyFunction_FastCall (ceval.c:4906)
+                      n1: 130928 0x4F925D2: call_function (ceval.c:4941)
+                       n1: 130928 0x4F96DC4: _PyEval_EvalFrameDefault (ceval.c:3322)
+                        n1: 130928 0x4F916AE: _PyFunction_FastCall (ceval.c:4906)
+                         n1: 130928 0x4F925D2: call_function (ceval.c:4941)
+                          n1: 130928 0x4F96DC4: _PyEval_EvalFrameDefault (ceval.c:3322)
+                           n1: 130928 0x4F916AE: _PyFunction_FastCall (ceval.c:4906)
+                            n1: 130928 0x4F925D2: call_function (ceval.c:4941)
+                             n1: 130928 0x4F96DC4: _PyEval_EvalFrameDefault (ceval.c:3322)
+                              n0: 130928 0x4F916AE: _PyFunction_FastCall (ceval.c:4906)
+                n0: 1728 in 1 place, below massif's threshold (1.00%)
+               n0: 18392 in 2 places, all below massif's threshold (1.00%)
+        n0: 1152 in 1 place, below massif's threshold (1.00%)
+      n0: 24888 in 1 place, below massif's threshold (1.00%)
+     n1: 67320 0x4FB5D1A: _PyImport_FixupExtensionObject (import.c:564)
+      n0: 67320 in 3 places, all below massif's threshold (1.00%)
+     n0: 5208 in 3 places, all below massif's threshold (1.00%)
+    n0: 48824 in 1 place, below massif's threshold (1.00%)
+   n0: 8960 in 2 places, all below massif's threshold (1.00%)
+  n2: 2050232 0x4FEC327: _PyObject_GC_Malloc (gcmodule.c:1714)
+   n2: 1315968 0x4F0C868: PyType_GenericAlloc (typeobject.c:936)
+    n3: 1312480 0x4F19A0C: type_new (typeobject.c:2495)
+     n2: 1105336 0x4F10E31: type_call (typeobject.c:895)
+      n2: 967992 0x4E9F9C9: _PyObject_FastCallDict (abstract.c:2331)
+       n1: 965208 0x4F8E362: builtin___build_class__ (bltinmodule.c:182)
+        n2: 965208 0x4EF907B: _PyCFunction_FastCallDict (methodobject.c:231)
+         n1: 964280 0x4F92418: call_function (ceval.c:4824)
+          n1: 964280 0x4F96DC4: _PyEval_EvalFrameDefault (ceval.c:3322)
+           n2: 964280 0x4F9201C: _PyEval_EvalCodeWithName (ceval.c:4153)
+            n2: 960568 0x4F9264B: PyEval_EvalCodeEx (ceval.c:4174)
+             n2: 952832 0x4F92699: PyEval_EvalCode (ceval.c:730)
+              n2: 917568 0x4F8F83B: builtin_exec (bltinmodule.c:983)
+               n1: 907360 0x4EF91B7: PyCFunction_Call (methodobject.c:114)
+                n1: 907360 0x4F99BE6: _PyEval_EvalFrameDefault (ceval.c:5089)
+                 n1: 907360 0x4F9201C: _PyEval_EvalCodeWithName (ceval.c:4153)
+                  n1: 907360 0x4F92330: call_function (ceval.c:4965)
+                   n1: 907360 0x4F96DC4: _PyEval_EvalFrameDefault (ceval.c:3322)
+                    n1: 907360 0x4F916AE: _PyFunction_FastCall (ceval.c:4906)
+                     n1: 907360 0x4F925D2: call_function (ceval.c:4941)
+                      n1: 907360 0x4F96DC4: _PyEval_EvalFrameDefault (ceval.c:3322)
+                       n1: 907360 0x4F916AE: _PyFunction_FastCall (ceval.c:4906)
+                        n1: 907360 0x4F925D2: call_function (ceval.c:4941)
+                         n1: 907360 0x4F96DC4: _PyEval_EvalFrameDefault (ceval.c:3322)
+                          n1: 907360 0x4F916AE: _PyFunction_FastCall (ceval.c:4906)
+                           n1: 907360 0x4F925D2: call_function (ceval.c:4941)
+                            n1: 907360 0x4F96DC4: _PyEval_EvalFrameDefault (ceval.c:3322)
+                             n1: 907360 0x4F916AE: _PyFunction_FastCall (ceval.c:4906)
+                              n0: 907360 0x4F9ADC4: _PyFunction_FastCallDict (ceval.c:5008)
+               n0: 10208 in 1 place, below massif's threshold (1.00%)
+              n0: 35264 in 2 places, all below massif's threshold (1.00%)
+             n0: 7736 in 1 place, below massif's threshold (1.00%)
+            n0: 3712 in 1 place, below massif's threshold (1.00%)
+         n0: 928 in 1 place, below massif's threshold (1.00%)
+       n0: 2784 in 1 place, below massif's threshold (1.00%)
+      n2: 137344 0x4E9F868: PyObject_Call (abstract.c:2261)
+       n1: 136416 0x4E9FFB6: PyObject_CallFunction (abstract.c:2512)
+        n0: 136416 in 19 places, all below massif's threshold (1.00%)
+       n0: 928 in 1 place, below massif's threshold (1.00%)
+     n2: 171880 0x4F10CF2: tp_new_wrapper (typeobject.c:5724)
+      n1: 141256 0x4EF91E7: PyCFunction_Call (methodobject.c:98)
+       n1: 141256 0x4F99BE6: _PyEval_EvalFrameDefault (ceval.c:5089)
+        n1: 141256 0x4F9201C: _PyEval_EvalCodeWithName (ceval.c:4153)
+         n1: 141256 0x4F9AC63: _PyFunction_FastCallDict (ceval.c:5057)
+          n1: 141256 0x4E9FABC: _PyObject_FastCallDict (abstract.c:2310)
+           n1: 141256 0x4E9FBAC: _PyObject_Call_Prepend (abstract.c:2373)
+            n2: 141256 0x4F0C7D6: slot_tp_new (typeobject.c:6432)
+             n1: 140328 0x4F10E31: type_call (typeobject.c:895)
+              n2: 140328 0x4E9F9C9: _PyObject_FastCallDict (abstract.c:2331)
+               n1: 85576 0x4F8E362: builtin___build_class__ (bltinmodule.c:182)
+                n2: 85576 0x4EF907B: _PyCFunction_FastCallDict (methodobject.c:231)
+                 n1: 72584 0x4F92418: call_function (ceval.c:4824)
+                  n1: 72584 0x4F96DC4: _PyEval_EvalFrameDefault (ceval.c:3322)
+                   n1: 72584 0x4F9201C: _PyEval_EvalCodeWithName (ceval.c:4153)
+                    n1: 72584 0x4F9264B: PyEval_EvalCodeEx (ceval.c:4174)
+                     n1: 72584 0x4F92699: PyEval_EvalCode (ceval.c:730)
+                      n1: 72584 0x4F8F83B: builtin_exec (bltinmodule.c:983)
+                       n1: 72584 0x4EF91B7: PyCFunction_Call (methodobject.c:114)
+                        n1: 72584 0x4F99BE6: _PyEval_EvalFrameDefault (ceval.c:5089)
+                         n1: 72584 0x4F9201C: _PyEval_EvalCodeWithName (ceval.c:4153)
+                          n1: 72584 0x4F92330: call_function (ceval.c:4965)
+                           n1: 72584 0x4F96DC4: _PyEval_EvalFrameDefault (ceval.c:3322)
+                            n1: 72584 0x4F916AE: _PyFunction_FastCall (ceval.c:4906)
+                             n1: 72584 0x4F925D2: call_function (ceval.c:4941)
+                              n0: 72584 0x4F96DC4: _PyEval_EvalFrameDefault (ceval.c:3322)
+                 n0: 12992 in 1 place, below massif's threshold (1.00%)
+               n0: 54752 in 1 place, below massif's threshold (1.00%)
+             n0: 928 in 1 place, below massif's threshold (1.00%)
+      n0: 30624 in 1 place, below massif's threshold (1.00%)
+     n0: 35264 in 5 places, all below massif's threshold (1.00%)
+    n0: 3488 in 2 places, all below massif's threshold (1.00%)
+   n2: 734264 0x4FEC4B8: _PyObject_GC_NewVar (gcmodule.c:1765)
+    n2: 513048 0x4F0B5C5: PyTuple_New (tupleobject.c:114)
+     n2: 507448 0x4FBA3A3: r_object (marshal.c:1212)
+      n1: 494016 0x4FBA3F8: r_object (marshal.c:1218)
+       n2: 494016 0x4FBB2A9: r_object (marshal.c:1389)
+        n1: 492936 0x4FBBB74: marshal_loads (marshal.c:1487)
+         n1: 492936 0x4EF8FDC: _PyCFunction_FastCallDict (methodobject.c:234)
+          n1: 492936 0x4F92418: call_function (ceval.c:4824)
+           n1: 492936 0x4F96DC4: _PyEval_EvalFrameDefault (ceval.c:3322)
+            n1: 492936 0x4F9201C: _PyEval_EvalCodeWithName (ceval.c:4153)
+             n1: 492936 0x4F92330: call_function (ceval.c:4965)
+              n1: 492936 0x4F96816: _PyEval_EvalFrameDefault (ceval.c:3338)
+               n1: 492936 0x4F916AE: _PyFunction_FastCall (ceval.c:4906)
+                n1: 492936 0x4F925D2: call_function (ceval.c:4941)
+                 n1: 492936 0x4F96DC4: _PyEval_EvalFrameDefault (ceval.c:3322)
+                  n1: 492936 0x4F916AE: _PyFunction_FastCall (ceval.c:4906)
+                   n1: 492936 0x4F925D2: call_function (ceval.c:4941)
+                    n1: 492936 0x4F96DC4: _PyEval_EvalFrameDefault (ceval.c:3322)
+                     n1: 492936 0x4F916AE: _PyFunction_FastCall (ceval.c:4906)
+                      n1: 492936 0x4F925D2: call_function (ceval.c:4941)
+                       n1: 492936 0x4F96DC4: _PyEval_EvalFrameDefault (ceval.c:3322)
+                        n1: 492936 0x4F916AE: _PyFunction_FastCall (ceval.c:4906)
+                         n1: 492936 0x4F925D2: call_function (ceval.c:4941)
+                          n1: 492936 0x4F96DC4: _PyEval_EvalFrameDefault (ceval.c:3322)
+                           n1: 492936 0x4F916AE: _PyFunction_FastCall (ceval.c:4906)
+                            n1: 492936 0x4F9ADC4: _PyFunction_FastCallDict (ceval.c:5008)
+                             n1: 492936 0x4E9FABC: _PyObject_FastCallDict (abstract.c:2310)
+                              n0: 492936 0x4EA0CB4: _PyObject_CallMethodIdObjArgs (abstract.c:2796)
+        n0: 1080 in 1 place, below massif's threshold (1.00%)
+      n0: 13432 in 3 places, all below massif's threshold (1.00%)
+     n0: 5600 in 3 places, all below massif's threshold (1.00%)
+    n3: 221216 0x4ED11FA: PyFrame_New (frameobject.c:704)
+     n2: 154328 0x4F91752: _PyEval_EvalCodeWithName (ceval.c:3916)
+      n2: 138200 0x4F92330: call_function (ceval.c:4965)
+       n1: 74992 0x4F96816: _PyEval_EvalFrameDefault (ceval.c:3338)
+        n0: 74992 in 3 places, all below massif's threshold (1.00%)
+       n0: 63208 in 1 place, below massif's threshold (1.00%)
+      n0: 16128 in 2 places, all below massif's threshold (1.00%)
+     n1: 66312 0x4F91678: _PyFunction_FastCall (ceval.c:4895)
+      n0: 66312 in 2 places, all below massif's threshold (1.00%)
+     n0: 576 in 1 place, below massif's threshold (1.00%)
+  n3: 750593 0x4F1FE30: PyUnicode_New (unicodeobject.c:1281)
+   n2: 539737 0x4F218BB: _PyUnicode_FromUCS1 (unicodeobject.c:2173)
+    n1: 539737 0x4FBA1ED: r_object (marshal.c:1156)
+     n1: 539737 0x4FBA3F8: r_object (marshal.c:1218)
+      n2: 539737 0x4FBB2A9: r_object (marshal.c:1389)
+       n2: 467235 0x4FBA3F8: r_object (marshal.c:1218)
+        n2: 464363 0x4FBB2A9: r_object (marshal.c:1389)
+         n1: 288599 0x4FBBB74: marshal_loads (marshal.c:1487)
+          n1: 288599 0x4EF8FDC: _PyCFunction_FastCallDict (methodobject.c:234)
+           n1: 288599 0x4F92418: call_function (ceval.c:4824)
+            n1: 288599 0x4F96DC4: _PyEval_EvalFrameDefault (ceval.c:3322)
+             n1: 288599 0x4F9201C: _PyEval_EvalCodeWithName (ceval.c:4153)
+              n1: 288599 0x4F92330: call_function (ceval.c:4965)
+               n1: 288599 0x4F96816: _PyEval_EvalFrameDefault (ceval.c:3338)
+                n1: 288599 0x4F916AE: _PyFunction_FastCall (ceval.c:4906)
+                 n1: 288599 0x4F925D2: call_function (ceval.c:4941)
+                  n1: 288599 0x4F96DC4: _PyEval_EvalFrameDefault (ceval.c:3322)
+                   n1: 288599 0x4F916AE: _PyFunction_FastCall (ceval.c:4906)
+                    n1: 288599 0x4F925D2: call_function (ceval.c:4941)
+                     n1: 288599 0x4F96DC4: _PyEval_EvalFrameDefault (ceval.c:3322)
+                      n1: 288599 0x4F916AE: _PyFunction_FastCall (ceval.c:4906)
+                       n1: 288599 0x4F925D2: call_function (ceval.c:4941)
+                        n1: 288599 0x4F96DC4: _PyEval_EvalFrameDefault (ceval.c:3322)
+                         n1: 288599 0x4F916AE: _PyFunction_FastCall (ceval.c:4906)
+                          n1: 288599 0x4F925D2: call_function (ceval.c:4941)
+                           n1: 288599 0x4F96DC4: _PyEval_EvalFrameDefault (ceval.c:3322)
+                            n1: 288599 0x4F916AE: _PyFunction_FastCall (ceval.c:4906)
+                             n1: 288599 0x4F9ADC4: _PyFunction_FastCallDict (ceval.c:5008)
+                              n0: 288599 0x4E9FABC: _PyObject_FastCallDict (abstract.c:2310)
+         n1: 175764 0x4FBA3F8: r_object (marshal.c:1218)
+          n1: 175764 0x4FBB2A9: r_object (marshal.c:1389)
+           n1: 175764 0x4FBBB74: marshal_loads (marshal.c:1487)
+            n1: 175764 0x4EF8FDC: _PyCFunction_FastCallDict (methodobject.c:234)
+             n1: 175764 0x4F92418: call_function (ceval.c:4824)
+              n1: 175764 0x4F96DC4: _PyEval_EvalFrameDefault (ceval.c:3322)
+               n1: 175764 0x4F9201C: _PyEval_EvalCodeWithName (ceval.c:4153)
+                n1: 175764 0x4F92330: call_function (ceval.c:4965)
+                 n1: 175764 0x4F96816: _PyEval_EvalFrameDefault (ceval.c:3338)
+                  n1: 175764 0x4F916AE: _PyFunction_FastCall (ceval.c:4906)
+                   n1: 175764 0x4F925D2: call_function (ceval.c:4941)
+                    n1: 175764 0x4F96DC4: _PyEval_EvalFrameDefault (ceval.c:3322)
+                     n1: 175764 0x4F916AE: _PyFunction_FastCall (ceval.c:4906)
+                      n1: 175764 0x4F925D2: call_function (ceval.c:4941)
+                       n1: 175764 0x4F96DC4: _PyEval_EvalFrameDefault (ceval.c:3322)
+                        n1: 175764 0x4F916AE: _PyFunction_FastCall (ceval.c:4906)
+                         n1: 175764 0x4F925D2: call_function (ceval.c:4941)
+                          n1: 175764 0x4F96DC4: _PyEval_EvalFrameDefault (ceval.c:3322)
+                           n1: 175764 0x4F916AE: _PyFunction_FastCall (ceval.c:4906)
+                            n1: 175764 0x4F925D2: call_function (ceval.c:4941)
+                             n1: 175764 0x4F96DC4: _PyEval_EvalFrameDefault (ceval.c:3322)
+                              n0: 175764 0x4F916AE: _PyFunction_FastCall (ceval.c:4906)
+        n0: 2872 in 1 place, below massif's threshold (1.00%)
+       n1: 72502 0x4FBBB74: marshal_loads (marshal.c:1487)
+        n1: 72502 0x4EF8FDC: _PyCFunction_FastCallDict (methodobject.c:234)
+         n1: 72502 0x4F92418: call_function (ceval.c:4824)
+          n1: 72502 0x4F96DC4: _PyEval_EvalFrameDefault (ceval.c:3322)
+           n1: 72502 0x4F9201C: _PyEval_EvalCodeWithName (ceval.c:4153)
+            n1: 72502 0x4F92330: call_function (ceval.c:4965)
+             n1: 72502 0x4F96816: _PyEval_EvalFrameDefault (ceval.c:3338)
+              n1: 72502 0x4F916AE: _PyFunction_FastCall (ceval.c:4906)
+               n1: 72502 0x4F925D2: call_function (ceval.c:4941)
+                n1: 72502 0x4F96DC4: _PyEval_EvalFrameDefault (ceval.c:3322)
+                 n1: 72502 0x4F916AE: _PyFunction_FastCall (ceval.c:4906)
+                  n1: 72502 0x4F925D2: call_function (ceval.c:4941)
+                   n1: 72502 0x4F96DC4: _PyEval_EvalFrameDefault (ceval.c:3322)
+                    n1: 72502 0x4F916AE: _PyFunction_FastCall (ceval.c:4906)
+                     n1: 72502 0x4F925D2: call_function (ceval.c:4941)
+                      n1: 72502 0x4F96DC4: _PyEval_EvalFrameDefault (ceval.c:3322)
+                       n1: 72502 0x4F916AE: _PyFunction_FastCall (ceval.c:4906)
+                        n1: 72502 0x4F925D2: call_function (ceval.c:4941)
+                         n1: 72502 0x4F96DC4: _PyEval_EvalFrameDefault (ceval.c:3322)
+                          n1: 72502 0x4F916AE: _PyFunction_FastCall (ceval.c:4906)
+                           n1: 72502 0x4F9ADC4: _PyFunction_FastCallDict (ceval.c:5008)
+                            n1: 72502 0x4E9FABC: _PyObject_FastCallDict (abstract.c:2310)
+                             n1: 72502 0x4EA0CB4: _PyObject_CallMethodIdObjArgs (abstract.c:2796)
+                              n0: 72502 0x4FB70C2: PyImport_ImportModuleLevelObject (import.c:1566)
+    n0: 0 in 1 place, below massif's threshold (1.00%)
+   n1: 146875 0x4F495A4: PyUnicode_Append (unicodeobject.c:11481)
+    n1: 146875 0x4E8FDBB: unicode_concatenate (ceval.c:5453)
+     n2: 146875 0x4F99179: _PyEval_EvalFrameDefault (ceval.c:1481)
+      n2: 146875 0x4F9201C: _PyEval_EvalCodeWithName (ceval.c:4153)
+       n1: 140598 0x4F92330: call_function (ceval.c:4965)
+        n2: 140598 0x4F96DC4: _PyEval_EvalFrameDefault (ceval.c:3322)
+         n2: 139402 0x4F9201C: _PyEval_EvalCodeWithName (ceval.c:4153)
+          n1: 139402 0x4F92330: call_function (ceval.c:4965)
+           n2: 139402 0x4F96DC4: _PyEval_EvalFrameDefault (ceval.c:3322)
+            n1: 119742 0x4F9201C: _PyEval_EvalCodeWithName (ceval.c:4153)
+             n1: 119742 0x4F92330: call_function (ceval.c:4965)
+              n2: 119742 0x4F96DC4: _PyEval_EvalFrameDefault (ceval.c:3322)
+               n1: 119742 0x4F9201C: _PyEval_EvalCodeWithName (ceval.c:4153)
+                n1: 119742 0x4F92330: call_function (ceval.c:4965)
+                 n2: 119742 0x4F96DC4: _PyEval_EvalFrameDefault (ceval.c:3322)
+                  n1: 100169 0x4F9201C: _PyEval_EvalCodeWithName (ceval.c:4153)
+                   n1: 100169 0x4F92330: call_function (ceval.c:4965)
+                    n2: 100169 0x4F96DC4: _PyEval_EvalFrameDefault (ceval.c:3322)
+                     n1: 81430 0x4F9201C: _PyEval_EvalCodeWithName (ceval.c:4153)
+                      n1: 81430 0x4F92330: call_function (ceval.c:4965)
+                       n1: 81430 0x4F96DC4: _PyEval_EvalFrameDefault (ceval.c:3322)
+                        n0: 81430 in 2 places, all below massif's threshold (1.00%)
+                     n0: 18739 in 1 place, below massif's threshold (1.00%)
+                  n0: 19573 in 1 place, below massif's threshold (1.00%)
+               n0: 0 in 1 place, below massif's threshold (1.00%)
+            n0: 19660 in 1 place, below massif's threshold (1.00%)
+          n0: 0 in 1 place, below massif's threshold (1.00%)
+         n0: 1196 in 1 place, below massif's threshold (1.00%)
+       n0: 6277 in 2 places, all below massif's threshold (1.00%)
+      n0: 0 in 1 place, below massif's threshold (1.00%)
+   n0: 63981 in 7 places, all below massif's threshold (1.00%)
+  n2: 207872 0x4F04324: set_table_resize (setobject.c:344)
+   n2: 188416 0x4F050AE: set_update_internal (setobject.c:425)
+    n1: 172032 0x4F0561C: set_init (setobject.c:2026)
+     n1: 172032 0x4F10E81: type_call (typeobject.c:915)
+      n1: 172032 0x4E9F9C9: _PyObject_FastCallDict (abstract.c:2331)
+       n1: 172032 0x4F92186: call_function (ceval.c:4848)
+        n2: 172032 0x4F96DC4: _PyEval_EvalFrameDefault (ceval.c:3322)
+         n2: 98304 0x4F9201C: _PyEval_EvalCodeWithName (ceval.c:4153)
+          n1: 86016 0x4F9AC63: _PyFunction_FastCallDict (ceval.c:5057)
+           n1: 86016 0x4E9FABC: _PyObject_FastCallDict (abstract.c:2310)
+            n1: 86016 0x4E9FBAC: _PyObject_Call_Prepend (abstract.c:2373)
+             n1: 86016 0x4E9F868: PyObject_Call (abstract.c:2261)
+              n1: 86016 0x4F18607: slot_tp_init (typeobject.c:6407)
+               n1: 86016 0x4F10E81: type_call (typeobject.c:915)
+                n1: 86016 0x4E9F9C9: _PyObject_FastCallDict (abstract.c:2331)
+                 n0: 86016 in 2 places, all below massif's threshold (1.00%)
+          n0: 12288 in 1 place, below massif's threshold (1.00%)
+         n1: 73728 0x4F916AE: _PyFunction_FastCall (ceval.c:4906)
+          n1: 73728 0x4F925D2: call_function (ceval.c:4941)
+           n2: 73728 0x4F96DC4: _PyEval_EvalFrameDefault (ceval.c:3322)
+            n1: 73728 0x4F9201C: _PyEval_EvalCodeWithName (ceval.c:4153)
+             n1: 73728 0x4F92330: call_function (ceval.c:4965)
+              n2: 73728 0x4F96DC4: _PyEval_EvalFrameDefault (ceval.c:3322)
+               n1: 65536 0x4F9201C: _PyEval_EvalCodeWithName (ceval.c:4153)
+                n1: 65536 0x4F92330: call_function (ceval.c:4965)
+                 n1: 65536 0x4F96DC4: _PyEval_EvalFrameDefault (ceval.c:3322)
+                  n1: 65536 0x4F9201C: _PyEval_EvalCodeWithName (ceval.c:4153)
+                   n1: 65536 0x4F92330: call_function (ceval.c:4965)
+                    n1: 65536 0x4F96DC4: _PyEval_EvalFrameDefault (ceval.c:3322)
+                     n1: 65536 0x4F9201C: _PyEval_EvalCodeWithName (ceval.c:4153)
+                      n0: 65536 in 2 places, all below massif's threshold (1.00%)
+               n0: 8192 in 1 place, below massif's threshold (1.00%)
+            n0: 0 in 1 place, below massif's threshold (1.00%)
+    n0: 16384 in 1 place, below massif's threshold (1.00%)
+   n0: 19456 in 6 places, all below massif's threshold (1.00%)
+  n2: 144651 0x4EAD43A: PyBytes_FromStringAndSize (bytesobject.c:83)
+   n2: 88988 0x4FBA5D5: r_object (marshal.c:1113)
+    n2: 87928 0x4FBB293: r_object (marshal.c:1386)
+     n1: 82312 0x4FBA3F8: r_object (marshal.c:1218)
+      n1: 82312 0x4FBB2A9: r_object (marshal.c:1389)
+       n0: 82312 in 2 places, all below massif's threshold (1.00%)
+     n0: 5616 in 1 place, below massif's threshold (1.00%)
+    n0: 1060 in 2 places, all below massif's threshold (1.00%)
+   n0: 55663 in 8 places, all below massif's threshold (1.00%)
+  n2: 127464 0x4EEA2DF: _PyDict_NewPresized (dictobject.c:535)
+   n2: 122952 0x4F978F1: _PyEval_EvalFrameDefault (ceval.c:2741)
+    n1: 118320 0x4F9201C: _PyEval_EvalCodeWithName (ceval.c:4153)
+     n2: 118320 0x4F9264B: PyEval_EvalCodeEx (ceval.c:4174)
+      n1: 112200 0x4F92699: PyEval_EvalCode (ceval.c:730)
+       n1: 112200 0x4F8F83B: builtin_exec (bltinmodule.c:983)
+        n1: 112200 0x4EF91B7: PyCFunction_Call (methodobject.c:114)
+         n1: 112200 0x4F99BE6: _PyEval_EvalFrameDefault (ceval.c:5089)
+          n1: 112200 0x4F9201C: _PyEval_EvalCodeWithName (ceval.c:4153)
+           n1: 112200 0x4F92330: call_function (ceval.c:4965)
+            n1: 112200 0x4F96DC4: _PyEval_EvalFrameDefault (ceval.c:3322)
+             n1: 112200 0x4F916AE: _PyFunction_FastCall (ceval.c:4906)
+              n1: 112200 0x4F925D2: call_function (ceval.c:4941)
+               n1: 112200 0x4F96DC4: _PyEval_EvalFrameDefault (ceval.c:3322)
+                n1: 112200 0x4F916AE: _PyFunction_FastCall (ceval.c:4906)
+                 n1: 112200 0x4F925D2: call_function (ceval.c:4941)
+                  n1: 112200 0x4F96DC4: _PyEval_EvalFrameDefault (ceval.c:3322)
+                   n1: 112200 0x4F916AE: _PyFunction_FastCall (ceval.c:4906)
+                    n1: 112200 0x4F925D2: call_function (ceval.c:4941)
+                     n1: 112200 0x4F96DC4: _PyEval_EvalFrameDefault (ceval.c:3322)
+                      n1: 112200 0x4F916AE: _PyFunction_FastCall (ceval.c:4906)
+                       n1: 112200 0x4F9ADC4: _PyFunction_FastCallDict (ceval.c:5008)
+                        n1: 112200 0x4E9FABC: _PyObject_FastCallDict (abstract.c:2310)
+                         n1: 112200 0x4EA0CB4: _PyObject_CallMethodIdObjArgs (abstract.c:2796)
+                          n1: 112200 0x4FB70C2: PyImport_ImportModuleLevelObject (import.c:1566)
+                           n0: 112200 in 2 places, all below massif's threshold (1.00%)
+      n0: 6120 in 1 place, below massif's threshold (1.00%)
+    n0: 4632 in 1 place, below massif's threshold (1.00%)
+   n0: 4512 in 1 place, below massif's threshold (1.00%)
+  n2: 103232 0x4F1A222: type_new (typeobject.c:2583)
+   n1: 96044 0x4F10E31: type_call (typeobject.c:895)
+    n2: 96044 0x4E9F9C9: _PyObject_FastCallDict (abstract.c:2331)
+     n1: 93570 0x4F8E362: builtin___build_class__ (bltinmodule.c:182)
+      n1: 93570 0x4EF907B: _PyCFunction_FastCallDict (methodobject.c:231)
+       n1: 93570 0x4F92418: call_function (ceval.c:4824)
+        n1: 93570 0x4F96DC4: _PyEval_EvalFrameDefault (ceval.c:3322)
+         n2: 93570 0x4F9201C: _PyEval_EvalCodeWithName (ceval.c:4153)
+          n1: 91254 0x4F9264B: PyEval_EvalCodeEx (ceval.c:4174)
+           n2: 91254 0x4F92699: PyEval_EvalCode (ceval.c:730)
+            n1: 89765 0x4F8F83B: builtin_exec (bltinmodule.c:983)
+             n1: 89765 0x4EF91B7: PyCFunction_Call (methodobject.c:114)
+              n1: 89765 0x4F99BE6: _PyEval_EvalFrameDefault (ceval.c:5089)
+               n1: 89765 0x4F9201C: _PyEval_EvalCodeWithName (ceval.c:4153)
+                n1: 89765 0x4F92330: call_function (ceval.c:4965)
+                 n1: 89765 0x4F96DC4: _PyEval_EvalFrameDefault (ceval.c:3322)
+                  n1: 89765 0x4F916AE: _PyFunction_FastCall (ceval.c:4906)
+                   n1: 89765 0x4F925D2: call_function (ceval.c:4941)
+                    n1: 89765 0x4F96DC4: _PyEval_EvalFrameDefault (ceval.c:3322)
+                     n1: 89765 0x4F916AE: _PyFunction_FastCall (ceval.c:4906)
+                      n1: 89765 0x4F925D2: call_function (ceval.c:4941)
+                       n1: 89765 0x4F96DC4: _PyEval_EvalFrameDefault (ceval.c:3322)
+                        n1: 89765 0x4F916AE: _PyFunction_FastCall (ceval.c:4906)
+                         n1: 89765 0x4F925D2: call_function (ceval.c:4941)
+                          n1: 89765 0x4F96DC4: _PyEval_EvalFrameDefault (ceval.c:3322)
+                           n1: 89765 0x4F916AE: _PyFunction_FastCall (ceval.c:4906)
+                            n1: 89765 0x4F9ADC4: _PyFunction_FastCallDict (ceval.c:5008)
+                             n1: 89765 0x4E9FABC: _PyObject_FastCallDict (abstract.c:2310)
+                              n0: 89765 0x4EA0CB4: _PyObject_CallMethodIdObjArgs (abstract.c:2796)
+            n0: 1489 in 1 place, below massif's threshold (1.00%)
+          n0: 2316 in 1 place, below massif's threshold (1.00%)
+     n0: 2474 in 1 place, below massif's threshold (1.00%)
+   n0: 7188 in 1 place, below massif's threshold (1.00%)
+  n1: 72792 0x4E9031F: PyGrammar_AddAccelerators (acceler.c:114)
+   n1: 72792 0x4E91FCB: PyParser_New (parser.c:77)
+    n1: 72792 0x4E95195: parsetok (parsetok.c:191)
+     n1: 72792 0x4FCD2FA: PyParser_ASTFromStringObject (pythonrun.c:1160)
+      n1: 72792 0x4FCD41D: PyRun_StringFlags (pythonrun.c:947)
+       n1: 72792 0x4F8F799: builtin_exec (bltinmodule.c:999)
+        n1: 72792 0x4EF8FDC: _PyCFunction_FastCallDict (methodobject.c:234)
+         n1: 72792 0x4F92418: call_function (ceval.c:4824)
+          n1: 72792 0x4F96DC4: _PyEval_EvalFrameDefault (ceval.c:3322)
+           n1: 72792 0x4F916AE: _PyFunction_FastCall (ceval.c:4906)
+            n1: 72792 0x4F925D2: call_function (ceval.c:4941)
+             n1: 72792 0x4F96DC4: _PyEval_EvalFrameDefault (ceval.c:3322)
+              n1: 72792 0x4F9201C: _PyEval_EvalCodeWithName (ceval.c:4153)
+               n1: 72792 0x4F92330: call_function (ceval.c:4965)
+                n1: 72792 0x4F96DC4: _PyEval_EvalFrameDefault (ceval.c:3322)
+                 n1: 72792 0x4F9201C: _PyEval_EvalCodeWithName (ceval.c:4153)
+                  n1: 72792 0x4F92330: call_function (ceval.c:4965)
+                   n1: 72792 0x4F96DC4: _PyEval_EvalFrameDefault (ceval.c:3322)
+                    n1: 72792 0x4F916AE: _PyFunction_FastCall (ceval.c:4906)
+                     n1: 72792 0x4F925D2: call_function (ceval.c:4941)
+                      n1: 72792 0x4F96DC4: _PyEval_EvalFrameDefault (ceval.c:3322)
+                       n1: 72792 0x4F9201C: _PyEval_EvalCodeWithName (ceval.c:4153)
+                        n1: 72792 0x4F9264B: PyEval_EvalCodeEx (ceval.c:4174)
+                         n1: 72792 0x4F92699: PyEval_EvalCode (ceval.c:730)
+                          n1: 72792 0x4F8F83B: builtin_exec (bltinmodule.c:983)
+                           n1: 72792 0x4EF91B7: PyCFunction_Call (methodobject.c:114)
+                            n1: 72792 0x4F99BE6: _PyEval_EvalFrameDefault (ceval.c:5089)
+                             n1: 72792 0x4F9201C: _PyEval_EvalCodeWithName (ceval.c:4153)
+                              n0: 72792 0x4F92330: call_function (ceval.c:4965)
+  n0: 49595 in 26 places, all below massif's threshold (1.00%)
+ n3: 264926 0x4F1C5A7: resize_compact (unicodeobject.c:916)
+  n1: 171764 0x4F498D8: PyUnicode_Append (unicodeobject.c:1871)
+   n1: 171764 0x4E8FDBB: unicode_concatenate (ceval.c:5453)
+    n2: 171764 0x4F99179: _PyEval_EvalFrameDefault (ceval.c:1481)
+     n2: 165623 0x4F916AE: _PyFunction_FastCall (ceval.c:4906)
+      n1: 163066 0x4F9ADC4: _PyFunction_FastCallDict (ceval.c:5008)
+       n1: 163066 0x4E9FABC: _PyObject_FastCallDict (abstract.c:2310)
+        n1: 163066 0x4E9FBAC: _PyObject_Call_Prepend (abstract.c:2373)
+         n1: 163066 0x4E9F9C9: _PyObject_FastCallDict (abstract.c:2331)
+          n1: 163066 0x4F15CDF: slot_tp_str (typeobject.c:6132)
+           n1: 163066 0x4EFB25C: PyObject_Str (object.c:543)
+            n1: 163066 0x4F57F03: unicode_new (unicodeobject.c:15051)
+             n1: 163066 0x4F10E31: type_call (typeobject.c:895)
+              n1: 163066 0x4E9F9C9: _PyObject_FastCallDict (abstract.c:2331)
+               n1: 163066 0x4F92186: call_function (ceval.c:4848)
+                n2: 163066 0x4F96DC4: _PyEval_EvalFrameDefault (ceval.c:3322)
+                 n1: 140472 0x4F9201C: _PyEval_EvalCodeWithName (ceval.c:4153)
+                  n1: 140472 0x4F92330: call_function (ceval.c:4965)
+                   n2: 140472 0x4F96DC4: _PyEval_EvalFrameDefault (ceval.c:3322)
+                    n1: 139285 0x4F9201C: _PyEval_EvalCodeWithName (ceval.c:4153)
+                     n1: 139285 0x4F92330: call_function (ceval.c:4965)
+                      n2: 139285 0x4F96DC4: _PyEval_EvalFrameDefault (ceval.c:3322)
+                       n1: 119643 0x4F9201C: _PyEval_EvalCodeWithName (ceval.c:4153)
+                        n1: 119643 0x4F92330: call_function (ceval.c:4965)
+                         n2: 119643 0x4F96DC4: _PyEval_EvalFrameDefault (ceval.c:3322)
+                          n1: 119643 0x4F9201C: _PyEval_EvalCodeWithName (ceval.c:4153)
+                           n1: 119643 0x4F92330: call_function (ceval.c:4965)
+                            n2: 119643 0x4F96DC4: _PyEval_EvalFrameDefault (ceval.c:3322)
+                             n1: 100088 0x4F9201C: _PyEval_EvalCodeWithName (ceval.c:4153)
+                              n0: 100088 0x4F92330: call_function (ceval.c:4965)
+                             n0: 19555 in 1 place, below massif's threshold (1.00%)
+                          n0: 0 in 1 place, below massif's threshold (1.00%)
+                       n0: 19642 in 1 place, below massif's threshold (1.00%)
+                    n0: 1187 in 1 place, below massif's threshold (1.00%)
+                 n0: 22594 in 1 place, below massif's threshold (1.00%)
+      n0: 2557 in 1 place, below massif's threshold (1.00%)
+     n0: 6141 in 1 place, below massif's threshold (1.00%)
+  n1: 88687 0x4F4FEA3: _PyUnicodeWriter_Finish (unicodeobject.c:13809)
+   n0: 88687 in 3 places, all below massif's threshold (1.00%)
+  n0: 4475 in 1 place, below massif's threshold (1.00%)
+ n0: 258873 in 64 places, all below massif's threshold (1.00%)
+ n2: 119840 0x4FEC536: _PyObject_GC_Resize (gcmodule.c:1778)
+  n2: 119840 0x4ED11D3: PyFrame_New (frameobject.c:717)
+   n2: 96936 0x4F91752: _PyEval_EvalCodeWithName (ceval.c:3916)
+    n1: 91784 0x4F92330: call_function (ceval.c:4965)
+     n0: 91784 in 2 places, all below massif's threshold (1.00%)
+    n0: 5152 in 2 places, all below massif's threshold (1.00%)
+   n0: 22904 in 1 place, below massif's threshold (1.00%)
+  n0: 0 in 1 place, below massif's threshold (1.00%)
+ n2: 81772 0xEFE4B86: CRYPTO_malloc (in /data/nfissdi-201605_dacs_1_4_33_CentOS-7.0-x86_64/datacube/miniconda3/envs/cubeenv/lib/libcrypto.so.1.0.0)
+  n2: 71424 0xF097124: lh_insert (in /data/nfissdi-201605_dacs_1_4_33_CentOS-7.0-x86_64/datacube/miniconda3/envs/cubeenv/lib/libcrypto.so.1.0.0)
+   n1: 64656 0xF0999CC: int_err_set_item (in /data/nfissdi-201605_dacs_1_4_33_CentOS-7.0-x86_64/datacube/miniconda3/envs/cubeenv/lib/libcrypto.so.1.0.0)
+    n0: 64656 in 6 places, all below massif's threshold (1.00%)
+   n0: 6768 in 4 places, all below massif's threshold (1.00%)
+  n0: 10348 in 24 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=2
+#-----------
+time=4189285875
+mem_heap_B=23444005
+mem_heap_extra_B=547819
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=3
+#-----------
+time=6808859079
+mem_heap_B=283171101
+mem_heap_extra_B=746947
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=4
+#-----------
+time=9875134887
+mem_heap_B=383171987
+mem_heap_extra_B=757205
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=5
+#-----------
+time=12941662443
+mem_heap_B=483172297
+mem_heap_extra_B=722031
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=6
+#-----------
+time=15484074254
+mem_heap_B=724963586
+mem_heap_extra_B=851846
+mem_stacks_B=0
+heap_tree=detailed
+n6: 724963586 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n2: 450162229 0x14F6398B: PyDataMem_NEW (in /data/nfissdi-201605_dacs_1_4_33_CentOS-7.0-x86_64/datacube/miniconda3/envs/cubeenv/lib/python3.6/site-packages/numpy/core/multiarray.cpython-36m-x86_64-linux-gnu.so)
+  n2: 450161365 0x14FA7EE9: PyArray_NewFromDescr_int (in /data/nfissdi-201605_dacs_1_4_33_CentOS-7.0-x86_64/datacube/miniconda3/envs/cubeenv/lib/python3.6/site-packages/numpy/core/multiarray.cpython-36m-x86_64-linux-gnu.so)
+   n1: 450000063 0x14FAB047: PyArray_Empty (in /data/nfissdi-201605_dacs_1_4_33_CentOS-7.0-x86_64/datacube/miniconda3/envs/cubeenv/lib/python3.6/site-packages/numpy/core/multiarray.cpython-36m-x86_64-linux-gnu.so)
+    n1: 450000063 0x15039786: array_empty (in /data/nfissdi-201605_dacs_1_4_33_CentOS-7.0-x86_64/datacube/miniconda3/envs/cubeenv/lib/python3.6/site-packages/numpy/core/multiarray.cpython-36m-x86_64-linux-gnu.so)
+     n1: 450000063 0x4EF907B: _PyCFunction_FastCallDict (methodobject.c:231)
+      n1: 450000063 0x4F92418: call_function (ceval.c:4824)
+       n1: 450000063 0x4F96DC4: _PyEval_EvalFrameDefault (ceval.c:3322)
+        n2: 450000063 0x4F9201C: _PyEval_EvalCodeWithName (ceval.c:4153)
+         n1: 450000000 0x4F92330: call_function (ceval.c:4965)
+          n1: 450000000 0x4F96816: _PyEval_EvalFrameDefault (ceval.c:3338)
+           n1: 450000000 0x4F9201C: _PyEval_EvalCodeWithName (ceval.c:4153)
+            n1: 450000000 0x4F92330: call_function (ceval.c:4965)
+             n1: 450000000 0x4F96DC4: _PyEval_EvalFrameDefault (ceval.c:3322)
+              n1: 450000000 0x4F9201C: _PyEval_EvalCodeWithName (ceval.c:4153)
+               n1: 450000000 0x4F92330: call_function (ceval.c:4965)
+                n1: 450000000 0x4F96DC4: _PyEval_EvalFrameDefault (ceval.c:3322)
+                 n1: 450000000 0x4F9201C: _PyEval_EvalCodeWithName (ceval.c:4153)
+                  n1: 450000000 0x4F92330: call_function (ceval.c:4965)
+                   n1: 450000000 0x4F96816: _PyEval_EvalFrameDefault (ceval.c:3338)
+                    n1: 450000000 0x4F9201C: _PyEval_EvalCodeWithName (ceval.c:4153)
+                     n1: 450000000 0x4F9264B: PyEval_EvalCodeEx (ceval.c:4174)
+                      n1: 450000000 0x4ED1F31: function_call (funcobject.c:604)
+                       n1: 450000000 0x4E9F868: PyObject_Call (abstract.c:2261)
+                        n1: 450000000 0x4F9671D: _PyEval_EvalFrameDefault (ceval.c:5093)
+                         n1: 450000000 0x4F9201C: _PyEval_EvalCodeWithName (ceval.c:4153)
+                          n1: 450000000 0x4F9264B: PyEval_EvalCodeEx (ceval.c:4174)
+                           n1: 450000000 0x4ED1F31: function_call (funcobject.c:604)
+                            n1: 450000000 0x4E9F868: PyObject_Call (abstract.c:2261)
+                             n1: 450000000 0x4F9671D: _PyEval_EvalFrameDefault (ceval.c:5093)
+                              n0: 450000000 0x4F9201C: _PyEval_EvalCodeWithName (ceval.c:4153)
+         n0: 63 in 1 place, below massif's threshold (1.00%)
+   n0: 161302 in 4 places, all below massif's threshold (1.00%)
+  n0: 864 in 3 places, all below massif's threshold (1.00%)
+ n1: 138671946 0x5441109E: VSIMallocAligned (in /data/nfissdi-201605_dacs_1_4_33_CentOS-7.0-x86_64/datacube/miniconda3/envs/cubeenv/lib/libgdal.so.20.3.3)
+  n1: 138671946 0x544110E6: VSIMallocAlignedAutoVerbose (in /data/nfissdi-201605_dacs_1_4_33_CentOS-7.0-x86_64/datacube/miniconda3/envs/cubeenv/lib/libgdal.so.20.3.3)
+   n1: 138671946 0x5400C068: GDALRasterBlock::Internalize() (in /data/nfissdi-201605_dacs_1_4_33_CentOS-7.0-x86_64/datacube/miniconda3/envs/cubeenv/lib/libgdal.so.20.3.3)
+    n1: 138671946 0x54006103: GDALRasterBand::GetLockedBlockRef(int, int, int) (in /data/nfissdi-201605_dacs_1_4_33_CentOS-7.0-x86_64/datacube/miniconda3/envs/cubeenv/lib/libgdal.so.20.3.3)
+     n1: 138671946 0x540213F4: GDALRasterBand::IRasterIO(GDALRWFlag, int, int, int, int, void*, int, int, GDALDataType, long long, long long, GDALRasterIOExtraArg*) (in /data/nfissdi-201605_dacs_1_4_33_CentOS-7.0-x86_64/datacube/miniconda3/envs/cubeenv/lib/libgdal.so.20.3.3)
+      n1: 138671946 0x53D39766: GTiffRasterBand::IRasterIO(GDALRWFlag, int, int, int, int, void*, int, int, GDALDataType, long long, long long, GDALRasterIOExtraArg*) (in /data/nfissdi-201605_dacs_1_4_33_CentOS-7.0-x86_64/datacube/miniconda3/envs/cubeenv/lib/libgdal.so.20.3.3)
+       n1: 138671946 0x54005CC2: GDALRasterBand::RasterIO(GDALRWFlag, int, int, int, int, void*, int, int, GDALDataType, long long, long long, GDALRasterIOExtraArg*) (in /data/nfissdi-201605_dacs_1_4_33_CentOS-7.0-x86_64/datacube/miniconda3/envs/cubeenv/lib/libgdal.so.20.3.3)
+        n1: 138671946 0x53BEAE34: GDALWarpOperation::WarpRegionToBuffer(int, int, int, int, void*, GDALDataType, int, int, int, int, int, int, double, double) (in /data/nfissdi-201605_dacs_1_4_33_CentOS-7.0-x86_64/datacube/miniconda3/envs/cubeenv/lib/libgdal.so.20.3.3)
+         n1: 138671946 0x53BEB337: GDALWarpOperation::WarpRegion(int, int, int, int, int, int, int, int, int, int, double, double) (in /data/nfissdi-201605_dacs_1_4_33_CentOS-7.0-x86_64/datacube/miniconda3/envs/cubeenv/lib/libgdal.so.20.3.3)
+          n1: 138671946 0x53BEBA5E: GDALWarpOperation::ChunkAndWarpImage(int, int, int, int) (in /data/nfissdi-201605_dacs_1_4_33_CentOS-7.0-x86_64/datacube/miniconda3/envs/cubeenv/lib/libgdal.so.20.3.3)
+           n1: 138671946 0x5FC66DE3: __pyx_pf_8rasterio_5_warp_4_reproject(_object*, _object*, _object*, _object*, _object*, _object*, _object*, _object*, _object*, _object*, _object*, _object*, _object*, _object*, _object*) [clone .isra.58] (???:10189)
+            n1: 138671946 0x5FC799DD: __pyx_pw_8rasterio_5_warp_5_reproject(_object*, _object*, _object*) (???:5688)
+             n1: 138671946 0x4EF91E7: PyCFunction_Call (methodobject.c:98)
+              n1: 138671946 0x4F99BE6: _PyEval_EvalFrameDefault (ceval.c:5089)
+               n1: 138671946 0x4F9201C: _PyEval_EvalCodeWithName (ceval.c:4153)
+                n1: 138671946 0x4F9264B: PyEval_EvalCodeEx (ceval.c:4174)
+                 n1: 138671946 0x4ED1F31: function_call (funcobject.c:604)
+                  n1: 138671946 0x4E9F868: PyObject_Call (abstract.c:2261)
+                   n1: 138671946 0x4F9671D: _PyEval_EvalFrameDefault (ceval.c:5093)
+                    n1: 138671946 0x4F9201C: _PyEval_EvalCodeWithName (ceval.c:4153)
+                     n1: 138671946 0x4F9264B: PyEval_EvalCodeEx (ceval.c:4174)
+                      n1: 138671946 0x4ED1F31: function_call (funcobject.c:604)
+                       n1: 138671946 0x4E9F868: PyObject_Call (abstract.c:2261)
+                        n1: 138671946 0x4F9671D: _PyEval_EvalFrameDefault (ceval.c:5093)
+                         n1: 138671946 0x4F9201C: _PyEval_EvalCodeWithName (ceval.c:4153)
+                          n1: 138671946 0x4F9264B: PyEval_EvalCodeEx (ceval.c:4174)
+                           n1: 138671946 0x4ED1F31: function_call (funcobject.c:604)
+                            n1: 138671946 0x4E9F868: PyObject_Call (abstract.c:2261)
+                             n1: 138671946 0x4F9671D: _PyEval_EvalFrameDefault (ceval.c:5093)
+                              n0: 138671946 0x4F9201C: _PyEval_EvalCodeWithName (ceval.c:4153)
+ n3: 62412748 0x54411196: VSIMallocVerbose (in /data/nfissdi-201605_dacs_1_4_33_CentOS-7.0-x86_64/datacube/miniconda3/envs/cubeenv/lib/libgdal.so.20.3.3)
+  n1: 46134524 0x53BEA436: GDALWarpOperation::WarpRegionToBuffer(int, int, int, int, void*, GDALDataType, int, int, int, int, int, int, double, double) (in /data/nfissdi-201605_dacs_1_4_33_CentOS-7.0-x86_64/datacube/miniconda3/envs/cubeenv/lib/libgdal.so.20.3.3)
+   n1: 46134524 0x53BEB337: GDALWarpOperation::WarpRegion(int, int, int, int, int, int, int, int, int, int, double, double) (in /data/nfissdi-201605_dacs_1_4_33_CentOS-7.0-x86_64/datacube/miniconda3/envs/cubeenv/lib/libgdal.so.20.3.3)
+    n1: 46134524 0x53BEBA5E: GDALWarpOperation::ChunkAndWarpImage(int, int, int, int) (in /data/nfissdi-201605_dacs_1_4_33_CentOS-7.0-x86_64/datacube/miniconda3/envs/cubeenv/lib/libgdal.so.20.3.3)
+     n1: 46134524 0x5FC66DE3: __pyx_pf_8rasterio_5_warp_4_reproject(_object*, _object*, _object*, _object*, _object*, _object*, _object*, _object*, _object*, _object*, _object*, _object*, _object*, _object*, _object*) [clone .isra.58] (???:10189)
+      n1: 46134524 0x5FC799DD: __pyx_pw_8rasterio_5_warp_5_reproject(_object*, _object*, _object*) (???:5688)
+       n1: 46134524 0x4EF91E7: PyCFunction_Call (methodobject.c:98)
+        n1: 46134524 0x4F99BE6: _PyEval_EvalFrameDefault (ceval.c:5089)
+         n1: 46134524 0x4F9201C: _PyEval_EvalCodeWithName (ceval.c:4153)
+          n1: 46134524 0x4F9264B: PyEval_EvalCodeEx (ceval.c:4174)
+           n1: 46134524 0x4ED1F31: function_call (funcobject.c:604)
+            n1: 46134524 0x4E9F868: PyObject_Call (abstract.c:2261)
+             n1: 46134524 0x4F9671D: _PyEval_EvalFrameDefault (ceval.c:5093)
+              n1: 46134524 0x4F9201C: _PyEval_EvalCodeWithName (ceval.c:4153)
+               n1: 46134524 0x4F9264B: PyEval_EvalCodeEx (ceval.c:4174)
+                n1: 46134524 0x4ED1F31: function_call (funcobject.c:604)
+                 n1: 46134524 0x4E9F868: PyObject_Call (abstract.c:2261)
+                  n1: 46134524 0x4F9671D: _PyEval_EvalFrameDefault (ceval.c:5093)
+                   n1: 46134524 0x4F9201C: _PyEval_EvalCodeWithName (ceval.c:4153)
+                    n1: 46134524 0x4F9264B: PyEval_EvalCodeEx (ceval.c:4174)
+                     n1: 46134524 0x4ED1F31: function_call (funcobject.c:604)
+                      n1: 46134524 0x4E9F868: PyObject_Call (abstract.c:2261)
+                       n1: 46134524 0x4F9671D: _PyEval_EvalFrameDefault (ceval.c:5093)
+                        n1: 46134524 0x4F9201C: _PyEval_EvalCodeWithName (ceval.c:4153)
+                         n1: 46134524 0x4F92330: call_function (ceval.c:4965)
+                          n1: 46134524 0x4F96816: _PyEval_EvalFrameDefault (ceval.c:3338)
+                           n1: 46134524 0x4F916AE: _PyFunction_FastCall (ceval.c:4906)
+                            n1: 46134524 0x4F925D2: call_function (ceval.c:4941)
+                             n1: 46134524 0x4F96DC4: _PyEval_EvalFrameDefault (ceval.c:3322)
+                              n0: 46134524 0x4F9201C: _PyEval_EvalCodeWithName (ceval.c:4153)
+  n1: 12500000 0x53BEB279: GDALWarpOperation::WarpRegion(int, int, int, int, int, int, int, int, int, int, double, double) (in /data/nfissdi-201605_dacs_1_4_33_CentOS-7.0-x86_64/datacube/miniconda3/envs/cubeenv/lib/libgdal.so.20.3.3)
+   n1: 12500000 0x53BEBA5E: GDALWarpOperation::ChunkAndWarpImage(int, int, int, int) (in /data/nfissdi-201605_dacs_1_4_33_CentOS-7.0-x86_64/datacube/miniconda3/envs/cubeenv/lib/libgdal.so.20.3.3)
+    n1: 12500000 0x5FC66DE3: __pyx_pf_8rasterio_5_warp_4_reproject(_object*, _object*, _object*, _object*, _object*, _object*, _object*, _object*, _object*, _object*, _object*, _object*, _object*, _object*, _object*) [clone .isra.58] (???:10189)
+     n1: 12500000 0x5FC799DD: __pyx_pw_8rasterio_5_warp_5_reproject(_object*, _object*, _object*) (???:5688)
+      n1: 12500000 0x4EF91E7: PyCFunction_Call (methodobject.c:98)
+       n1: 12500000 0x4F99BE6: _PyEval_EvalFrameDefault (ceval.c:5089)
+        n1: 12500000 0x4F9201C: _PyEval_EvalCodeWithName (ceval.c:4153)
+         n1: 12500000 0x4F9264B: PyEval_EvalCodeEx (ceval.c:4174)
+          n1: 12500000 0x4ED1F31: function_call (funcobject.c:604)
+           n1: 12500000 0x4E9F868: PyObject_Call (abstract.c:2261)
+            n1: 12500000 0x4F9671D: _PyEval_EvalFrameDefault (ceval.c:5093)
+             n1: 12500000 0x4F9201C: _PyEval_EvalCodeWithName (ceval.c:4153)
+              n1: 12500000 0x4F9264B: PyEval_EvalCodeEx (ceval.c:4174)
+               n1: 12500000 0x4ED1F31: function_call (funcobject.c:604)
+                n1: 12500000 0x4E9F868: PyObject_Call (abstract.c:2261)
+                 n1: 12500000 0x4F9671D: _PyEval_EvalFrameDefault (ceval.c:5093)
+                  n1: 12500000 0x4F9201C: _PyEval_EvalCodeWithName (ceval.c:4153)
+                   n1: 12500000 0x4F9264B: PyEval_EvalCodeEx (ceval.c:4174)
+                    n1: 12500000 0x4ED1F31: function_call (funcobject.c:604)
+                     n1: 12500000 0x4E9F868: PyObject_Call (abstract.c:2261)
+                      n1: 12500000 0x4F9671D: _PyEval_EvalFrameDefault (ceval.c:5093)
+                       n1: 12500000 0x4F9201C: _PyEval_EvalCodeWithName (ceval.c:4153)
+                        n1: 12500000 0x4F92330: call_function (ceval.c:4965)
+                         n1: 12500000 0x4F96816: _PyEval_EvalFrameDefault (ceval.c:3338)
+                          n1: 12500000 0x4F916AE: _PyFunction_FastCall (ceval.c:4906)
+                           n1: 12500000 0x4F925D2: call_function (ceval.c:4941)
+                            n1: 12500000 0x4F96DC4: _PyEval_EvalFrameDefault (ceval.c:3322)
+                             n1: 12500000 0x4F9201C: _PyEval_EvalCodeWithName (ceval.c:4153)
+                              n0: 12500000 0x4F92330: call_function (ceval.c:4965)
+  n0: 3778224 in 5 places, all below massif's threshold (1.00%)
+ n2: 50072541 0x544113B7: VSICallocVerbose (in /data/nfissdi-201605_dacs_1_4_33_CentOS-7.0-x86_64/datacube/miniconda3/envs/cubeenv/lib/libgdal.so.20.3.3)
+  n1: 50000000 0x53E1ED6C: MEMDataset::Create(char const*, int, int, int, GDALDataType, char**) (in /data/nfissdi-201605_dacs_1_4_33_CentOS-7.0-x86_64/datacube/miniconda3/envs/cubeenv/lib/libgdal.so.20.3.3)
+   n1: 50000000 0x53FDC16C: GDALDriver::Create(char const*, int, int, int, GDALDataType, char**) (in /data/nfissdi-201605_dacs_1_4_33_CentOS-7.0-x86_64/datacube/miniconda3/envs/cubeenv/lib/libgdal.so.20.3.3)
+    n1: 50000000 0x5FC6791D: __pyx_pf_8rasterio_5_warp_4_reproject(_object*, _object*, _object*, _object*, _object*, _object*, _object*, _object*, _object*, _object*, _object*, _object*, _object*, _object*, _object*) [clone .isra.58] (???:8384)
+     n1: 50000000 0x5FC799DD: __pyx_pw_8rasterio_5_warp_5_reproject(_object*, _object*, _object*) (???:5688)
+      n1: 50000000 0x4EF91E7: PyCFunction_Call (methodobject.c:98)
+       n1: 50000000 0x4F99BE6: _PyEval_EvalFrameDefault (ceval.c:5089)
+        n1: 50000000 0x4F9201C: _PyEval_EvalCodeWithName (ceval.c:4153)
+         n1: 50000000 0x4F9264B: PyEval_EvalCodeEx (ceval.c:4174)
+          n1: 50000000 0x4ED1F31: function_call (funcobject.c:604)
+           n1: 50000000 0x4E9F868: PyObject_Call (abstract.c:2261)
+            n1: 50000000 0x4F9671D: _PyEval_EvalFrameDefault (ceval.c:5093)
+             n1: 50000000 0x4F9201C: _PyEval_EvalCodeWithName (ceval.c:4153)
+              n1: 50000000 0x4F9264B: PyEval_EvalCodeEx (ceval.c:4174)
+               n1: 50000000 0x4ED1F31: function_call (funcobject.c:604)
+                n1: 50000000 0x4E9F868: PyObject_Call (abstract.c:2261)
+                 n1: 50000000 0x4F9671D: _PyEval_EvalFrameDefault (ceval.c:5093)
+                  n1: 50000000 0x4F9201C: _PyEval_EvalCodeWithName (ceval.c:4153)
+                   n1: 50000000 0x4F9264B: PyEval_EvalCodeEx (ceval.c:4174)
+                    n1: 50000000 0x4ED1F31: function_call (funcobject.c:604)
+                     n1: 50000000 0x4E9F868: PyObject_Call (abstract.c:2261)
+                      n1: 50000000 0x4F9671D: _PyEval_EvalFrameDefault (ceval.c:5093)
+                       n1: 50000000 0x4F9201C: _PyEval_EvalCodeWithName (ceval.c:4153)
+                        n1: 50000000 0x4F92330: call_function (ceval.c:4965)
+                         n1: 50000000 0x4F96816: _PyEval_EvalFrameDefault (ceval.c:3338)
+                          n1: 50000000 0x4F916AE: _PyFunction_FastCall (ceval.c:4906)
+                           n1: 50000000 0x4F925D2: call_function (ceval.c:4941)
+                            n1: 50000000 0x4F96DC4: _PyEval_EvalFrameDefault (ceval.c:3322)
+                             n1: 50000000 0x4F9201C: _PyEval_EvalCodeWithName (ceval.c:4153)
+                              n0: 50000000 0x4F92330: call_function (ceval.c:4965)
+  n0: 72541 in 11 places, all below massif's threshold (1.00%)
+ n2: 20067943 0x4F001D6: _PyObject_Malloc (obmalloc.c:1427)
+  n0: 12795007 in 51 places, all below massif's threshold (1.00%)
+  n1: 7272936 0x4EE7214: dictresize (dictobject.c:535)
+   n0: 7272936 in 7 places, all below massif's threshold (1.00%)
+ n0: 3576179 in 686 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=7
+#-----------
+time=17132162760
+mem_heap_B=610388688
+mem_heap_extra_B=670536
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=8
+#-----------
+time=18665690264
+mem_heap_B=660388849
+mem_heap_extra_B=674695
+mem_stacks_B=0
+heap_tree=detailed
+n6: 660388849 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n2: 550162229 0x14F6398B: PyDataMem_NEW (in /data/nfissdi-201605_dacs_1_4_33_CentOS-7.0-x86_64/datacube/miniconda3/envs/cubeenv/lib/python3.6/site-packages/numpy/core/multiarray.cpython-36m-x86_64-linux-gnu.so)
+  n2: 550161365 0x14FA7EE9: PyArray_NewFromDescr_int (in /data/nfissdi-201605_dacs_1_4_33_CentOS-7.0-x86_64/datacube/miniconda3/envs/cubeenv/lib/python3.6/site-packages/numpy/core/multiarray.cpython-36m-x86_64-linux-gnu.so)
+   n1: 550000063 0x14FAB047: PyArray_Empty (in /data/nfissdi-201605_dacs_1_4_33_CentOS-7.0-x86_64/datacube/miniconda3/envs/cubeenv/lib/python3.6/site-packages/numpy/core/multiarray.cpython-36m-x86_64-linux-gnu.so)
+    n1: 550000063 0x15039786: array_empty (in /data/nfissdi-201605_dacs_1_4_33_CentOS-7.0-x86_64/datacube/miniconda3/envs/cubeenv/lib/python3.6/site-packages/numpy/core/multiarray.cpython-36m-x86_64-linux-gnu.so)
+     n1: 550000063 0x4EF907B: _PyCFunction_FastCallDict (methodobject.c:231)
+      n1: 550000063 0x4F92418: call_function (ceval.c:4824)
+       n1: 550000063 0x4F96DC4: _PyEval_EvalFrameDefault (ceval.c:3322)
+        n2: 550000063 0x4F9201C: _PyEval_EvalCodeWithName (ceval.c:4153)
+         n1: 550000000 0x4F92330: call_function (ceval.c:4965)
+          n1: 550000000 0x4F96816: _PyEval_EvalFrameDefault (ceval.c:3338)
+           n1: 550000000 0x4F9201C: _PyEval_EvalCodeWithName (ceval.c:4153)
+            n1: 550000000 0x4F92330: call_function (ceval.c:4965)
+             n1: 550000000 0x4F96DC4: _PyEval_EvalFrameDefault (ceval.c:3322)
+              n1: 550000000 0x4F9201C: _PyEval_EvalCodeWithName (ceval.c:4153)
+               n1: 550000000 0x4F92330: call_function (ceval.c:4965)
+                n1: 550000000 0x4F96DC4: _PyEval_EvalFrameDefault (ceval.c:3322)
+                 n1: 550000000 0x4F9201C: _PyEval_EvalCodeWithName (ceval.c:4153)
+                  n1: 550000000 0x4F92330: call_function (ceval.c:4965)
+                   n1: 550000000 0x4F96816: _PyEval_EvalFrameDefault (ceval.c:3338)
+                    n1: 550000000 0x4F9201C: _PyEval_EvalCodeWithName (ceval.c:4153)
+                     n1: 550000000 0x4F9264B: PyEval_EvalCodeEx (ceval.c:4174)
+                      n1: 550000000 0x4ED1F31: function_call (funcobject.c:604)
+                       n1: 550000000 0x4E9F868: PyObject_Call (abstract.c:2261)
+                        n1: 550000000 0x4F9671D: _PyEval_EvalFrameDefault (ceval.c:5093)
+                         n1: 550000000 0x4F9201C: _PyEval_EvalCodeWithName (ceval.c:4153)
+                          n1: 550000000 0x4F9264B: PyEval_EvalCodeEx (ceval.c:4174)
+                           n1: 550000000 0x4ED1F31: function_call (funcobject.c:604)
+                            n1: 550000000 0x4E9F868: PyObject_Call (abstract.c:2261)
+                             n1: 550000000 0x4F9671D: _PyEval_EvalFrameDefault (ceval.c:5093)
+                              n0: 550000000 0x4F9201C: _PyEval_EvalCodeWithName (ceval.c:4153)
+         n0: 63 in 1 place, below massif's threshold (1.00%)
+   n0: 161302 in 4 places, all below massif's threshold (1.00%)
+  n0: 864 in 3 places, all below massif's threshold (1.00%)
+ n2: 50072573 0x544113B7: VSICallocVerbose (in /data/nfissdi-201605_dacs_1_4_33_CentOS-7.0-x86_64/datacube/miniconda3/envs/cubeenv/lib/libgdal.so.20.3.3)
+  n1: 50000000 0x53E1ED6C: MEMDataset::Create(char const*, int, int, int, GDALDataType, char**) (in /data/nfissdi-201605_dacs_1_4_33_CentOS-7.0-x86_64/datacube/miniconda3/envs/cubeenv/lib/libgdal.so.20.3.3)
+   n1: 50000000 0x53FDC16C: GDALDriver::Create(char const*, int, int, int, GDALDataType, char**) (in /data/nfissdi-201605_dacs_1_4_33_CentOS-7.0-x86_64/datacube/miniconda3/envs/cubeenv/lib/libgdal.so.20.3.3)
+    n1: 50000000 0x5FC6791D: __pyx_pf_8rasterio_5_warp_4_reproject(_object*, _object*, _object*, _object*, _object*, _object*, _object*, _object*, _object*, _object*, _object*, _object*, _object*, _object*, _object*) [clone .isra.58] (???:8384)
+     n1: 50000000 0x5FC799DD: __pyx_pw_8rasterio_5_warp_5_reproject(_object*, _object*, _object*) (???:5688)
+      n1: 50000000 0x4EF91E7: PyCFunction_Call (methodobject.c:98)
+       n1: 50000000 0x4F99BE6: _PyEval_EvalFrameDefault (ceval.c:5089)
+        n1: 50000000 0x4F9201C: _PyEval_EvalCodeWithName (ceval.c:4153)
+         n1: 50000000 0x4F9264B: PyEval_EvalCodeEx (ceval.c:4174)
+          n1: 50000000 0x4ED1F31: function_call (funcobject.c:604)
+           n1: 50000000 0x4E9F868: PyObject_Call (abstract.c:2261)
+            n1: 50000000 0x4F9671D: _PyEval_EvalFrameDefault (ceval.c:5093)
+             n1: 50000000 0x4F9201C: _PyEval_EvalCodeWithName (ceval.c:4153)
+              n1: 50000000 0x4F9264B: PyEval_EvalCodeEx (ceval.c:4174)
+               n1: 50000000 0x4ED1F31: function_call (funcobject.c:604)
+                n1: 50000000 0x4E9F868: PyObject_Call (abstract.c:2261)
+                 n1: 50000000 0x4F9671D: _PyEval_EvalFrameDefault (ceval.c:5093)
+                  n1: 50000000 0x4F9201C: _PyEval_EvalCodeWithName (ceval.c:4153)
+                   n1: 50000000 0x4F9264B: PyEval_EvalCodeEx (ceval.c:4174)
+                    n1: 50000000 0x4ED1F31: function_call (funcobject.c:604)
+                     n1: 50000000 0x4E9F868: PyObject_Call (abstract.c:2261)
+                      n1: 50000000 0x4F9671D: _PyEval_EvalFrameDefault (ceval.c:5093)
+                       n1: 50000000 0x4F9201C: _PyEval_EvalCodeWithName (ceval.c:4153)
+                        n1: 50000000 0x4F92330: call_function (ceval.c:4965)
+                         n1: 50000000 0x4F96816: _PyEval_EvalFrameDefault (ceval.c:3338)
+                          n1: 50000000 0x4F916AE: _PyFunction_FastCall (ceval.c:4906)
+                           n1: 50000000 0x4F925D2: call_function (ceval.c:4941)
+                            n1: 50000000 0x4F96DC4: _PyEval_EvalFrameDefault (ceval.c:3322)
+                             n1: 50000000 0x4F9201C: _PyEval_EvalCodeWithName (ceval.c:4153)
+                              n0: 50000000 0x4F92330: call_function (ceval.c:4965)
+  n0: 72573 in 11 places, all below massif's threshold (1.00%)
+ n3: 24933261 0x54411196: VSIMallocVerbose (in /data/nfissdi-201605_dacs_1_4_33_CentOS-7.0-x86_64/datacube/miniconda3/envs/cubeenv/lib/libgdal.so.20.3.3)
+  n1: 12500000 0x53BEB279: GDALWarpOperation::WarpRegion(int, int, int, int, int, int, int, int, int, int, double, double) (in /data/nfissdi-201605_dacs_1_4_33_CentOS-7.0-x86_64/datacube/miniconda3/envs/cubeenv/lib/libgdal.so.20.3.3)
+   n1: 12500000 0x53BEBA5E: GDALWarpOperation::ChunkAndWarpImage(int, int, int, int) (in /data/nfissdi-201605_dacs_1_4_33_CentOS-7.0-x86_64/datacube/miniconda3/envs/cubeenv/lib/libgdal.so.20.3.3)
+    n1: 12500000 0x5FC66DE3: __pyx_pf_8rasterio_5_warp_4_reproject(_object*, _object*, _object*, _object*, _object*, _object*, _object*, _object*, _object*, _object*, _object*, _object*, _object*, _object*, _object*) [clone .isra.58] (???:10189)
+     n1: 12500000 0x5FC799DD: __pyx_pw_8rasterio_5_warp_5_reproject(_object*, _object*, _object*) (???:5688)
+      n1: 12500000 0x4EF91E7: PyCFunction_Call (methodobject.c:98)
+       n1: 12500000 0x4F99BE6: _PyEval_EvalFrameDefault (ceval.c:5089)
+        n1: 12500000 0x4F9201C: _PyEval_EvalCodeWithName (ceval.c:4153)
+         n1: 12500000 0x4F9264B: PyEval_EvalCodeEx (ceval.c:4174)
+          n1: 12500000 0x4ED1F31: function_call (funcobject.c:604)
+           n1: 12500000 0x4E9F868: PyObject_Call (abstract.c:2261)
+            n1: 12500000 0x4F9671D: _PyEval_EvalFrameDefault (ceval.c:5093)
+             n1: 12500000 0x4F9201C: _PyEval_EvalCodeWithName (ceval.c:4153)
+              n1: 12500000 0x4F9264B: PyEval_EvalCodeEx (ceval.c:4174)
+               n1: 12500000 0x4ED1F31: function_call (funcobject.c:604)
+                n1: 12500000 0x4E9F868: PyObject_Call (abstract.c:2261)
+                 n1: 12500000 0x4F9671D: _PyEval_EvalFrameDefault (ceval.c:5093)
+                  n1: 12500000 0x4F9201C: _PyEval_EvalCodeWithName (ceval.c:4153)
+                   n1: 12500000 0x4F9264B: PyEval_EvalCodeEx (ceval.c:4174)
+                    n1: 12500000 0x4ED1F31: function_call (funcobject.c:604)
+                     n1: 12500000 0x4E9F868: PyObject_Call (abstract.c:2261)
+                      n1: 12500000 0x4F9671D: _PyEval_EvalFrameDefault (ceval.c:5093)
+                       n1: 12500000 0x4F9201C: _PyEval_EvalCodeWithName (ceval.c:4153)
+                        n1: 12500000 0x4F92330: call_function (ceval.c:4965)
+                         n1: 12500000 0x4F96816: _PyEval_EvalFrameDefault (ceval.c:3338)
+                          n1: 12500000 0x4F916AE: _PyFunction_FastCall (ceval.c:4906)
+                           n1: 12500000 0x4F925D2: call_function (ceval.c:4941)
+                            n1: 12500000 0x4F96DC4: _PyEval_EvalFrameDefault (ceval.c:3322)
+                             n1: 12500000 0x4F9201C: _PyEval_EvalCodeWithName (ceval.c:4153)
+                              n0: 12500000 0x4F92330: call_function (ceval.c:4965)
+  n1: 11538448 0x53BEA436: GDALWarpOperation::WarpRegionToBuffer(int, int, int, int, void*, GDALDataType, int, int, int, int, int, int, double, double) (in /data/nfissdi-201605_dacs_1_4_33_CentOS-7.0-x86_64/datacube/miniconda3/envs/cubeenv/lib/libgdal.so.20.3.3)
+   n1: 11538448 0x53BEB337: GDALWarpOperation::WarpRegion(int, int, int, int, int, int, int, int, int, int, double, double) (in /data/nfissdi-201605_dacs_1_4_33_CentOS-7.0-x86_64/datacube/miniconda3/envs/cubeenv/lib/libgdal.so.20.3.3)
+    n1: 11538448 0x53BEBA5E: GDALWarpOperation::ChunkAndWarpImage(int, int, int, int) (in /data/nfissdi-201605_dacs_1_4_33_CentOS-7.0-x86_64/datacube/miniconda3/envs/cubeenv/lib/libgdal.so.20.3.3)
+     n1: 11538448 0x5FC66DE3: __pyx_pf_8rasterio_5_warp_4_reproject(_object*, _object*, _object*, _object*, _object*, _object*, _object*, _object*, _object*, _object*, _object*, _object*, _object*, _object*, _object*) [clone .isra.58] (???:10189)
+      n1: 11538448 0x5FC799DD: __pyx_pw_8rasterio_5_warp_5_reproject(_object*, _object*, _object*) (???:5688)
+       n1: 11538448 0x4EF91E7: PyCFunction_Call (methodobject.c:98)
+        n1: 11538448 0x4F99BE6: _PyEval_EvalFrameDefault (ceval.c:5089)
+         n1: 11538448 0x4F9201C: _PyEval_EvalCodeWithName (ceval.c:4153)
+          n1: 11538448 0x4F9264B: PyEval_EvalCodeEx (ceval.c:4174)
+           n1: 11538448 0x4ED1F31: function_call (funcobject.c:604)
+            n1: 11538448 0x4E9F868: PyObject_Call (abstract.c:2261)
+             n1: 11538448 0x4F9671D: _PyEval_EvalFrameDefault (ceval.c:5093)
+              n1: 11538448 0x4F9201C: _PyEval_EvalCodeWithName (ceval.c:4153)
+               n1: 11538448 0x4F9264B: PyEval_EvalCodeEx (ceval.c:4174)
+                n1: 11538448 0x4ED1F31: function_call (funcobject.c:604)
+                 n1: 11538448 0x4E9F868: PyObject_Call (abstract.c:2261)
+                  n1: 11538448 0x4F9671D: _PyEval_EvalFrameDefault (ceval.c:5093)
+                   n1: 11538448 0x4F9201C: _PyEval_EvalCodeWithName (ceval.c:4153)
+                    n1: 11538448 0x4F9264B: PyEval_EvalCodeEx (ceval.c:4174)
+                     n1: 11538448 0x4ED1F31: function_call (funcobject.c:604)
+                      n1: 11538448 0x4E9F868: PyObject_Call (abstract.c:2261)
+                       n1: 11538448 0x4F9671D: _PyEval_EvalFrameDefault (ceval.c:5093)
+                        n1: 11538448 0x4F9201C: _PyEval_EvalCodeWithName (ceval.c:4153)
+                         n1: 11538448 0x4F92330: call_function (ceval.c:4965)
+                          n1: 11538448 0x4F96816: _PyEval_EvalFrameDefault (ceval.c:3338)
+                           n1: 11538448 0x4F916AE: _PyFunction_FastCall (ceval.c:4906)
+                            n1: 11538448 0x4F925D2: call_function (ceval.c:4941)
+                             n1: 11538448 0x4F96DC4: _PyEval_EvalFrameDefault (ceval.c:3322)
+                              n0: 11538448 0x4F9201C: _PyEval_EvalCodeWithName (ceval.c:4153)
+  n0: 894813 in 5 places, all below massif's threshold (1.00%)
+ n2: 20067943 0x4F001D6: _PyObject_Malloc (obmalloc.c:1427)
+  n0: 12795007 in 51 places, all below massif's threshold (1.00%)
+  n1: 7272936 0x4EE7214: dictresize (dictobject.c:535)
+   n0: 7272936 in 7 places, all below massif's threshold (1.00%)
+ n1: 12060556 0x5441109E: VSIMallocAligned (in /data/nfissdi-201605_dacs_1_4_33_CentOS-7.0-x86_64/datacube/miniconda3/envs/cubeenv/lib/libgdal.so.20.3.3)
+  n1: 12060556 0x544110E6: VSIMallocAlignedAutoVerbose (in /data/nfissdi-201605_dacs_1_4_33_CentOS-7.0-x86_64/datacube/miniconda3/envs/cubeenv/lib/libgdal.so.20.3.3)
+   n1: 12060556 0x5400C068: GDALRasterBlock::Internalize() (in /data/nfissdi-201605_dacs_1_4_33_CentOS-7.0-x86_64/datacube/miniconda3/envs/cubeenv/lib/libgdal.so.20.3.3)
+    n1: 12060556 0x54006103: GDALRasterBand::GetLockedBlockRef(int, int, int) (in /data/nfissdi-201605_dacs_1_4_33_CentOS-7.0-x86_64/datacube/miniconda3/envs/cubeenv/lib/libgdal.so.20.3.3)
+     n1: 12060556 0x540213F4: GDALRasterBand::IRasterIO(GDALRWFlag, int, int, int, int, void*, int, int, GDALDataType, long long, long long, GDALRasterIOExtraArg*) (in /data/nfissdi-201605_dacs_1_4_33_CentOS-7.0-x86_64/datacube/miniconda3/envs/cubeenv/lib/libgdal.so.20.3.3)
+      n1: 12060556 0x53D39766: GTiffRasterBand::IRasterIO(GDALRWFlag, int, int, int, int, void*, int, int, GDALDataType, long long, long long, GDALRasterIOExtraArg*) (in /data/nfissdi-201605_dacs_1_4_33_CentOS-7.0-x86_64/datacube/miniconda3/envs/cubeenv/lib/libgdal.so.20.3.3)
+       n1: 12060556 0x54005CC2: GDALRasterBand::RasterIO(GDALRWFlag, int, int, int, int, void*, int, int, GDALDataType, long long, long long, GDALRasterIOExtraArg*) (in /data/nfissdi-201605_dacs_1_4_33_CentOS-7.0-x86_64/datacube/miniconda3/envs/cubeenv/lib/libgdal.so.20.3.3)
+        n1: 12060556 0x53BEAE34: GDALWarpOperation::WarpRegionToBuffer(int, int, int, int, void*, GDALDataType, int, int, int, int, int, int, double, double) (in /data/nfissdi-201605_dacs_1_4_33_CentOS-7.0-x86_64/datacube/miniconda3/envs/cubeenv/lib/libgdal.so.20.3.3)
+         n1: 12060556 0x53BEB337: GDALWarpOperation::WarpRegion(int, int, int, int, int, int, int, int, int, int, double, double) (in /data/nfissdi-201605_dacs_1_4_33_CentOS-7.0-x86_64/datacube/miniconda3/envs/cubeenv/lib/libgdal.so.20.3.3)
+          n1: 12060556 0x53BEBA5E: GDALWarpOperation::ChunkAndWarpImage(int, int, int, int) (in /data/nfissdi-201605_dacs_1_4_33_CentOS-7.0-x86_64/datacube/miniconda3/envs/cubeenv/lib/libgdal.so.20.3.3)
+           n1: 12060556 0x5FC66DE3: __pyx_pf_8rasterio_5_warp_4_reproject(_object*, _object*, _object*, _object*, _object*, _object*, _object*, _object*, _object*, _object*, _object*, _object*, _object*, _object*, _object*) [clone .isra.58] (???:10189)
+            n1: 12060556 0x5FC799DD: __pyx_pw_8rasterio_5_warp_5_reproject(_object*, _object*, _object*) (???:5688)
+             n1: 12060556 0x4EF91E7: PyCFunction_Call (methodobject.c:98)
+              n1: 12060556 0x4F99BE6: _PyEval_EvalFrameDefault (ceval.c:5089)
+               n1: 12060556 0x4F9201C: _PyEval_EvalCodeWithName (ceval.c:4153)
+                n1: 12060556 0x4F9264B: PyEval_EvalCodeEx (ceval.c:4174)
+                 n1: 12060556 0x4ED1F31: function_call (funcobject.c:604)
+                  n1: 12060556 0x4E9F868: PyObject_Call (abstract.c:2261)
+                   n1: 12060556 0x4F9671D: _PyEval_EvalFrameDefault (ceval.c:5093)
+                    n1: 12060556 0x4F9201C: _PyEval_EvalCodeWithName (ceval.c:4153)
+                     n1: 12060556 0x4F9264B: PyEval_EvalCodeEx (ceval.c:4174)
+                      n1: 12060556 0x4ED1F31: function_call (funcobject.c:604)
+                       n1: 12060556 0x4E9F868: PyObject_Call (abstract.c:2261)
+                        n1: 12060556 0x4F9671D: _PyEval_EvalFrameDefault (ceval.c:5093)
+                         n1: 12060556 0x4F9201C: _PyEval_EvalCodeWithName (ceval.c:4153)
+                          n1: 12060556 0x4F9264B: PyEval_EvalCodeEx (ceval.c:4174)
+                           n1: 12060556 0x4ED1F31: function_call (funcobject.c:604)
+                            n1: 12060556 0x4E9F868: PyObject_Call (abstract.c:2261)
+                             n1: 12060556 0x4F9671D: _PyEval_EvalFrameDefault (ceval.c:5093)
+                              n0: 12060556 0x4F9201C: _PyEval_EvalCodeWithName (ceval.c:4153)
+ n0: 3092287 in 686 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=9
+#-----------
+time=20199296408
+mem_heap_B=710389004
+mem_heap_extra_B=678988
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=10
+#-----------
+time=22902756369
+mem_heap_B=783954478
+mem_heap_extra_B=766250
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=11
+#-----------
+time=24611496132
+mem_heap_B=721941903
+mem_heap_extra_B=838009
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=12
+#-----------
+time=27095716599
+mem_heap_B=376377952
+mem_heap_extra_B=680536
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=13
+#-----------
+time=29268342574
+mem_heap_B=729661871
+mem_heap_extra_B=717985
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=14
+#-----------
+time=30992410895
+mem_heap_B=240506026
+mem_heap_extra_B=870526
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=15
+#-----------
+time=33522311266
+mem_heap_B=342491719
+mem_heap_extra_B=1005897
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=16
+#-----------
+time=35177963931
+mem_heap_B=392491826
+mem_heap_extra_B=1009958
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=17
+#-----------
+time=36833688602
+mem_heap_B=442491357
+mem_heap_extra_B=1014011
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=18
+#-----------
+time=38489482633
+mem_heap_B=492490888
+mem_heap_extra_B=1017984
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=19
+#-----------
+time=40145334061
+mem_heap_B=542490995
+mem_heap_extra_B=1022125
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=20
+#-----------
+time=41801243182
+mem_heap_B=592491150
+mem_heap_extra_B=1026178
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=21
+#-----------
+time=43529448495
+mem_heap_B=924783759
+mem_heap_extra_B=1315601
+mem_stacks_B=0
+heap_tree=peak
+n6: 924783759 (heap allocation functions) malloc/new/new[], --alloc-fns, etc.
+ n2: 450163967 0x14F6398B: PyDataMem_NEW (in /data/nfissdi-201605_dacs_1_4_33_CentOS-7.0-x86_64/datacube/miniconda3/envs/cubeenv/lib/python3.6/site-packages/numpy/core/multiarray.cpython-36m-x86_64-linux-gnu.so)
+  n2: 450163039 0x14FA7EE9: PyArray_NewFromDescr_int (in /data/nfissdi-201605_dacs_1_4_33_CentOS-7.0-x86_64/datacube/miniconda3/envs/cubeenv/lib/python3.6/site-packages/numpy/core/multiarray.cpython-36m-x86_64-linux-gnu.so)
+   n1: 450000127 0x14FAB047: PyArray_Empty (in /data/nfissdi-201605_dacs_1_4_33_CentOS-7.0-x86_64/datacube/miniconda3/envs/cubeenv/lib/python3.6/site-packages/numpy/core/multiarray.cpython-36m-x86_64-linux-gnu.so)
+    n1: 450000127 0x15039786: array_empty (in /data/nfissdi-201605_dacs_1_4_33_CentOS-7.0-x86_64/datacube/miniconda3/envs/cubeenv/lib/python3.6/site-packages/numpy/core/multiarray.cpython-36m-x86_64-linux-gnu.so)
+     n2: 450000127 0x4EF907B: _PyCFunction_FastCallDict (methodobject.c:231)
+      n1: 450000063 0x4F92418: call_function (ceval.c:4824)
+       n1: 450000063 0x4F96DC4: _PyEval_EvalFrameDefault (ceval.c:3322)
+        n2: 450000063 0x4F9201C: _PyEval_EvalCodeWithName (ceval.c:4153)
+         n1: 450000000 0x4F92330: call_function (ceval.c:4965)
+          n1: 450000000 0x4F96816: _PyEval_EvalFrameDefault (ceval.c:3338)
+           n1: 450000000 0x4F9201C: _PyEval_EvalCodeWithName (ceval.c:4153)
+            n1: 450000000 0x4F92330: call_function (ceval.c:4965)
+             n1: 450000000 0x4F96DC4: _PyEval_EvalFrameDefault (ceval.c:3322)
+              n1: 450000000 0x4F9201C: _PyEval_EvalCodeWithName (ceval.c:4153)
+               n1: 450000000 0x4F92330: call_function (ceval.c:4965)
+                n1: 450000000 0x4F96DC4: _PyEval_EvalFrameDefault (ceval.c:3322)
+                 n1: 450000000 0x4F9201C: _PyEval_EvalCodeWithName (ceval.c:4153)
+                  n1: 450000000 0x4F92330: call_function (ceval.c:4965)
+                   n1: 450000000 0x4F96816: _PyEval_EvalFrameDefault (ceval.c:3338)
+                    n1: 450000000 0x4F9201C: _PyEval_EvalCodeWithName (ceval.c:4153)
+                     n1: 450000000 0x4F9264B: PyEval_EvalCodeEx (ceval.c:4174)
+                      n1: 450000000 0x4ED1F31: function_call (funcobject.c:604)
+                       n1: 450000000 0x4E9F868: PyObject_Call (abstract.c:2261)
+                        n1: 450000000 0x4F9671D: _PyEval_EvalFrameDefault (ceval.c:5093)
+                         n1: 450000000 0x4F9201C: _PyEval_EvalCodeWithName (ceval.c:4153)
+                          n1: 450000000 0x4F9264B: PyEval_EvalCodeEx (ceval.c:4174)
+                           n1: 450000000 0x4ED1F31: function_call (funcobject.c:604)
+                            n1: 450000000 0x4E9F868: PyObject_Call (abstract.c:2261)
+                             n1: 450000000 0x4F9671D: _PyEval_EvalFrameDefault (ceval.c:5093)
+                              n0: 450000000 0x4F9201C: _PyEval_EvalCodeWithName (ceval.c:4153)
+         n0: 63 in 1 place, below massif's threshold (1.00%)
+      n0: 64 in 1 place, below massif's threshold (1.00%)
+   n0: 162912 in 5 places, all below massif's threshold (1.00%)
+  n0: 928 in 3 places, all below massif's threshold (1.00%)
+ n1: 345703302 0x5441109E: VSIMallocAligned (in /data/nfissdi-201605_dacs_1_4_33_CentOS-7.0-x86_64/datacube/miniconda3/envs/cubeenv/lib/libgdal.so.20.3.3)
+  n1: 345703302 0x544110E6: VSIMallocAlignedAutoVerbose (in /data/nfissdi-201605_dacs_1_4_33_CentOS-7.0-x86_64/datacube/miniconda3/envs/cubeenv/lib/libgdal.so.20.3.3)
+   n1: 345703302 0x5400C068: GDALRasterBlock::Internalize() (in /data/nfissdi-201605_dacs_1_4_33_CentOS-7.0-x86_64/datacube/miniconda3/envs/cubeenv/lib/libgdal.so.20.3.3)
+    n1: 345703302 0x54006103: GDALRasterBand::GetLockedBlockRef(int, int, int) (in /data/nfissdi-201605_dacs_1_4_33_CentOS-7.0-x86_64/datacube/miniconda3/envs/cubeenv/lib/libgdal.so.20.3.3)
+     n1: 345703302 0x540213F4: GDALRasterBand::IRasterIO(GDALRWFlag, int, int, int, int, void*, int, int, GDALDataType, long long, long long, GDALRasterIOExtraArg*) (in /data/nfissdi-201605_dacs_1_4_33_CentOS-7.0-x86_64/datacube/miniconda3/envs/cubeenv/lib/libgdal.so.20.3.3)
+      n1: 345703302 0x53D39766: GTiffRasterBand::IRasterIO(GDALRWFlag, int, int, int, int, void*, int, int, GDALDataType, long long, long long, GDALRasterIOExtraArg*) (in /data/nfissdi-201605_dacs_1_4_33_CentOS-7.0-x86_64/datacube/miniconda3/envs/cubeenv/lib/libgdal.so.20.3.3)
+       n1: 345703302 0x54005CC2: GDALRasterBand::RasterIO(GDALRWFlag, int, int, int, int, void*, int, int, GDALDataType, long long, long long, GDALRasterIOExtraArg*) (in /data/nfissdi-201605_dacs_1_4_33_CentOS-7.0-x86_64/datacube/miniconda3/envs/cubeenv/lib/libgdal.so.20.3.3)
+        n1: 345703302 0x53BEAE34: GDALWarpOperation::WarpRegionToBuffer(int, int, int, int, void*, GDALDataType, int, int, int, int, int, int, double, double) (in /data/nfissdi-201605_dacs_1_4_33_CentOS-7.0-x86_64/datacube/miniconda3/envs/cubeenv/lib/libgdal.so.20.3.3)
+         n1: 345703302 0x53BEB337: GDALWarpOperation::WarpRegion(int, int, int, int, int, int, int, int, int, int, double, double) (in /data/nfissdi-201605_dacs_1_4_33_CentOS-7.0-x86_64/datacube/miniconda3/envs/cubeenv/lib/libgdal.so.20.3.3)
+          n1: 345703302 0x53BEBA5E: GDALWarpOperation::ChunkAndWarpImage(int, int, int, int) (in /data/nfissdi-201605_dacs_1_4_33_CentOS-7.0-x86_64/datacube/miniconda3/envs/cubeenv/lib/libgdal.so.20.3.3)
+           n1: 345703302 0x5FC66DE3: __pyx_pf_8rasterio_5_warp_4_reproject(_object*, _object*, _object*, _object*, _object*, _object*, _object*, _object*, _object*, _object*, _object*, _object*, _object*, _object*, _object*) [clone .isra.58] (???:10189)
+            n1: 345703302 0x5FC799DD: __pyx_pw_8rasterio_5_warp_5_reproject(_object*, _object*, _object*) (???:5688)
+             n1: 345703302 0x4EF91E7: PyCFunction_Call (methodobject.c:98)
+              n1: 345703302 0x4F99BE6: _PyEval_EvalFrameDefault (ceval.c:5089)
+               n1: 345703302 0x4F9201C: _PyEval_EvalCodeWithName (ceval.c:4153)
+                n1: 345703302 0x4F9264B: PyEval_EvalCodeEx (ceval.c:4174)
+                 n1: 345703302 0x4ED1F31: function_call (funcobject.c:604)
+                  n1: 345703302 0x4E9F868: PyObject_Call (abstract.c:2261)
+                   n1: 345703302 0x4F9671D: _PyEval_EvalFrameDefault (ceval.c:5093)
+                    n1: 345703302 0x4F9201C: _PyEval_EvalCodeWithName (ceval.c:4153)
+                     n1: 345703302 0x4F9264B: PyEval_EvalCodeEx (ceval.c:4174)
+                      n1: 345703302 0x4ED1F31: function_call (funcobject.c:604)
+                       n1: 345703302 0x4E9F868: PyObject_Call (abstract.c:2261)
+                        n1: 345703302 0x4F9671D: _PyEval_EvalFrameDefault (ceval.c:5093)
+                         n1: 345703302 0x4F9201C: _PyEval_EvalCodeWithName (ceval.c:4153)
+                          n1: 345703302 0x4F9264B: PyEval_EvalCodeEx (ceval.c:4174)
+                           n1: 345703302 0x4ED1F31: function_call (funcobject.c:604)
+                            n1: 345703302 0x4E9F868: PyObject_Call (abstract.c:2261)
+                             n1: 345703302 0x4F9671D: _PyEval_EvalFrameDefault (ceval.c:5093)
+                              n0: 345703302 0x4F9201C: _PyEval_EvalCodeWithName (ceval.c:4153)
+ n2: 52194049 0x54411196: VSIMallocVerbose (in /data/nfissdi-201605_dacs_1_4_33_CentOS-7.0-x86_64/datacube/miniconda3/envs/cubeenv/lib/libgdal.so.20.3.3)
+  n1: 42399278 0x53BEA436: GDALWarpOperation::WarpRegionToBuffer(int, int, int, int, void*, GDALDataType, int, int, int, int, int, int, double, double) (in /data/nfissdi-201605_dacs_1_4_33_CentOS-7.0-x86_64/datacube/miniconda3/envs/cubeenv/lib/libgdal.so.20.3.3)
+   n1: 42399278 0x53BEB337: GDALWarpOperation::WarpRegion(int, int, int, int, int, int, int, int, int, int, double, double) (in /data/nfissdi-201605_dacs_1_4_33_CentOS-7.0-x86_64/datacube/miniconda3/envs/cubeenv/lib/libgdal.so.20.3.3)
+    n1: 42399278 0x53BEBA5E: GDALWarpOperation::ChunkAndWarpImage(int, int, int, int) (in /data/nfissdi-201605_dacs_1_4_33_CentOS-7.0-x86_64/datacube/miniconda3/envs/cubeenv/lib/libgdal.so.20.3.3)
+     n1: 42399278 0x5FC66DE3: __pyx_pf_8rasterio_5_warp_4_reproject(_object*, _object*, _object*, _object*, _object*, _object*, _object*, _object*, _object*, _object*, _object*, _object*, _object*, _object*, _object*) [clone .isra.58] (???:10189)
+      n1: 42399278 0x5FC799DD: __pyx_pw_8rasterio_5_warp_5_reproject(_object*, _object*, _object*) (???:5688)
+       n1: 42399278 0x4EF91E7: PyCFunction_Call (methodobject.c:98)
+        n1: 42399278 0x4F99BE6: _PyEval_EvalFrameDefault (ceval.c:5089)
+         n1: 42399278 0x4F9201C: _PyEval_EvalCodeWithName (ceval.c:4153)
+          n1: 42399278 0x4F9264B: PyEval_EvalCodeEx (ceval.c:4174)
+           n1: 42399278 0x4ED1F31: function_call (funcobject.c:604)
+            n1: 42399278 0x4E9F868: PyObject_Call (abstract.c:2261)
+             n1: 42399278 0x4F9671D: _PyEval_EvalFrameDefault (ceval.c:5093)
+              n1: 42399278 0x4F9201C: _PyEval_EvalCodeWithName (ceval.c:4153)
+               n1: 42399278 0x4F9264B: PyEval_EvalCodeEx (ceval.c:4174)
+                n1: 42399278 0x4ED1F31: function_call (funcobject.c:604)
+                 n1: 42399278 0x4E9F868: PyObject_Call (abstract.c:2261)
+                  n1: 42399278 0x4F9671D: _PyEval_EvalFrameDefault (ceval.c:5093)
+                   n1: 42399278 0x4F9201C: _PyEval_EvalCodeWithName (ceval.c:4153)
+                    n1: 42399278 0x4F9264B: PyEval_EvalCodeEx (ceval.c:4174)
+                     n1: 42399278 0x4ED1F31: function_call (funcobject.c:604)
+                      n1: 42399278 0x4E9F868: PyObject_Call (abstract.c:2261)
+                       n1: 42399278 0x4F9671D: _PyEval_EvalFrameDefault (ceval.c:5093)
+                        n1: 42399278 0x4F9201C: _PyEval_EvalCodeWithName (ceval.c:4153)
+                         n1: 42399278 0x4F92330: call_function (ceval.c:4965)
+                          n1: 42399278 0x4F96816: _PyEval_EvalFrameDefault (ceval.c:3338)
+                           n1: 42399278 0x4F916AE: _PyFunction_FastCall (ceval.c:4906)
+                            n1: 42399278 0x4F925D2: call_function (ceval.c:4941)
+                             n1: 42399278 0x4F96DC4: _PyEval_EvalFrameDefault (ceval.c:3322)
+                              n0: 42399278 0x4F9201C: _PyEval_EvalCodeWithName (ceval.c:4153)
+  n0: 9794771 in 8 places, all below massif's threshold (1.00%)
+ n2: 50072925 0x544113B7: VSICallocVerbose (in /data/nfissdi-201605_dacs_1_4_33_CentOS-7.0-x86_64/datacube/miniconda3/envs/cubeenv/lib/libgdal.so.20.3.3)
+  n1: 50000000 0x53E1ED6C: MEMDataset::Create(char const*, int, int, int, GDALDataType, char**) (in /data/nfissdi-201605_dacs_1_4_33_CentOS-7.0-x86_64/datacube/miniconda3/envs/cubeenv/lib/libgdal.so.20.3.3)
+   n1: 50000000 0x53FDC16C: GDALDriver::Create(char const*, int, int, int, GDALDataType, char**) (in /data/nfissdi-201605_dacs_1_4_33_CentOS-7.0-x86_64/datacube/miniconda3/envs/cubeenv/lib/libgdal.so.20.3.3)
+    n1: 50000000 0x5FC6791D: __pyx_pf_8rasterio_5_warp_4_reproject(_object*, _object*, _object*, _object*, _object*, _object*, _object*, _object*, _object*, _object*, _object*, _object*, _object*, _object*, _object*) [clone .isra.58] (???:8384)
+     n1: 50000000 0x5FC799DD: __pyx_pw_8rasterio_5_warp_5_reproject(_object*, _object*, _object*) (???:5688)
+      n1: 50000000 0x4EF91E7: PyCFunction_Call (methodobject.c:98)
+       n1: 50000000 0x4F99BE6: _PyEval_EvalFrameDefault (ceval.c:5089)
+        n1: 50000000 0x4F9201C: _PyEval_EvalCodeWithName (ceval.c:4153)
+         n1: 50000000 0x4F9264B: PyEval_EvalCodeEx (ceval.c:4174)
+          n1: 50000000 0x4ED1F31: function_call (funcobject.c:604)
+           n1: 50000000 0x4E9F868: PyObject_Call (abstract.c:2261)
+            n1: 50000000 0x4F9671D: _PyEval_EvalFrameDefault (ceval.c:5093)
+             n1: 50000000 0x4F9201C: _PyEval_EvalCodeWithName (ceval.c:4153)
+              n1: 50000000 0x4F9264B: PyEval_EvalCodeEx (ceval.c:4174)
+               n1: 50000000 0x4ED1F31: function_call (funcobject.c:604)
+                n1: 50000000 0x4E9F868: PyObject_Call (abstract.c:2261)
+                 n1: 50000000 0x4F9671D: _PyEval_EvalFrameDefault (ceval.c:5093)
+                  n1: 50000000 0x4F9201C: _PyEval_EvalCodeWithName (ceval.c:4153)
+                   n1: 50000000 0x4F9264B: PyEval_EvalCodeEx (ceval.c:4174)
+                    n1: 50000000 0x4ED1F31: function_call (funcobject.c:604)
+                     n1: 50000000 0x4E9F868: PyObject_Call (abstract.c:2261)
+                      n1: 50000000 0x4F9671D: _PyEval_EvalFrameDefault (ceval.c:5093)
+                       n1: 50000000 0x4F9201C: _PyEval_EvalCodeWithName (ceval.c:4153)
+                        n1: 50000000 0x4F92330: call_function (ceval.c:4965)
+                         n1: 50000000 0x4F96816: _PyEval_EvalFrameDefault (ceval.c:3338)
+                          n1: 50000000 0x4F916AE: _PyFunction_FastCall (ceval.c:4906)
+                           n1: 50000000 0x4F925D2: call_function (ceval.c:4941)
+                            n1: 50000000 0x4F96DC4: _PyEval_EvalFrameDefault (ceval.c:3322)
+                             n1: 50000000 0x4F9201C: _PyEval_EvalCodeWithName (ceval.c:4153)
+                              n0: 50000000 0x4F92330: call_function (ceval.c:4965)
+  n0: 72925 in 12 places, all below massif's threshold (1.00%)
+ n1: 20341999 0x4F001D6: _PyObject_Malloc (obmalloc.c:1427)
+  n0: 20341999 in 54 places, all below massif's threshold (1.00%)
+ n0: 6307517 in 840 places, all below massif's threshold (1.00%)
+#-----------
+snapshot=22
+#-----------
+time=46335227897
+mem_heap_B=690507187
+mem_heap_extra_B=907069
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=23
+#-----------
+time=47991381110
+mem_heap_B=740507342
+mem_heap_extra_B=911186
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=24
+#-----------
+time=50036602094
+mem_heap_B=790898117
+mem_heap_extra_B=915179
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=25
+#-----------
+time=52485311701
+mem_heap_B=201737612
+mem_heap_extra_B=681156
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=26
+#-----------
+time=54457838182
+mem_heap_B=176578573
+mem_heap_extra_B=670059
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=27
+#-----------
+time=56243662711
+mem_heap_B=338583381
+mem_heap_extra_B=880091
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=28
+#-----------
+time=58354719080
+mem_heap_B=388583488
+mem_heap_extra_B=884216
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=29
+#-----------
+time=60465827004
+mem_heap_B=438583595
+mem_heap_extra_B=888181
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=30
+#-----------
+time=62577013444
+mem_heap_B=488583126
+mem_heap_extra_B=892170
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=31
+#-----------
+time=64688253996
+mem_heap_B=538583233
+mem_heap_extra_B=896231
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=32
+#-----------
+time=66799562195
+mem_heap_B=588583964
+mem_heap_extra_B=900308
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=33
+#-----------
+time=68457453070
+mem_heap_B=772784839
+mem_heap_extra_B=1050105
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=34
+#-----------
+time=70181027631
+mem_heap_B=683077960
+mem_heap_extra_B=888160
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=35
+#-----------
+time=71999729621
+mem_heap_B=576579573
+mem_heap_extra_B=702411
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=36
+#-----------
+time=74111292282
+mem_heap_B=626579728
+mem_heap_extra_B=706464
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=37
+#-----------
+time=76578847402
+mem_heap_B=838484745
+mem_heap_extra_B=920399
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=38
+#-----------
+time=79141781416
+mem_heap_B=840147240
+mem_heap_extra_B=920424
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=39
+#-----------
+time=82131947075
+mem_heap_B=278344287
+mem_heap_extra_B=1003185
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=40
+#-----------
+time=83880491978
+mem_heap_B=328345041
+mem_heap_extra_B=1007183
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=41
+#-----------
+time=85629098406
+mem_heap_B=378345148
+mem_heap_extra_B=1011292
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=42
+#-----------
+time=87377766429
+mem_heap_B=428345255
+mem_heap_extra_B=1015273
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=43
+#-----------
+time=89126476508
+mem_heap_B=478345362
+mem_heap_extra_B=1019254
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=44
+#-----------
+time=90875271659
+mem_heap_B=528345469
+mem_heap_extra_B=1023171
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=45
+#-----------
+time=92624110118
+mem_heap_B=578345624
+mem_heap_extra_B=1027256
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=46
+#-----------
+time=94011667635
+mem_heap_B=721694943
+mem_heap_extra_B=1010785
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=47
+#-----------
+time=96111417811
+mem_heap_B=640269248
+mem_heap_extra_B=876024
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=48
+#-----------
+time=97860462070
+mem_heap_B=690268833
+mem_heap_extra_B=880031
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=49
+#-----------
+time=99609573960
+mem_heap_B=740268988
+mem_heap_extra_B=883972
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=50
+#-----------
+time=101878286051
+mem_heap_B=791050388
+mem_heap_extra_B=888028
+mem_stacks_B=0
+heap_tree=empty
+#-----------
+snapshot=51
+#-----------
+time=103273821311
+mem_heap_B=803570108
+mem_heap_extra_B=1044948
+mem_stacks_B=0
+heap_tree=empty
