@@ -1,0 +1,341 @@
+/* Loaded datacube config files: ['/home/mmliar/.datacube.conf']
+Connected to datacube index: Index<db=PostgresDb<engine=Engine(postgresql://meow:***@192.168.0.202:5432/datacube)>>
+*/
+
+/***** Start of the init process *****/
+
+/* Initialising database...
+   Ensuring the database version, text encoding and user/database
+*/
+select version();
+select current_schema();
+SELECT CAST('test plain returns' AS VARCHAR(60)) AS anon_1;
+SELECT CAST('test unicode returns' AS VARCHAR(60)) AS anon_1;
+show standard_conforming_strings;
+select quote_ident(current_database()), quote_ident(current_user);
+
+
+/* Ensuring user roles. */
+select rolname from pg_roles where rolname='agdc_user';
+create role agdc_user nologin inherit nocreaterole nocreatedb;
+COMMIT;
+
+select rolname from pg_roles where rolname='agdc_ingest';
+create role agdc_ingest nologin inherit nocreaterole nocreatedb in role agdc_user;
+COMMIT;
+
+select rolname from pg_roles where rolname='agdc_manage';
+create role agdc_manage nologin inherit nocreaterole nocreatedb in role agdc_ingest;
+COMMIT;
+
+select rolname from pg_roles where rolname='agdc_admin';
+create role agdc_admin nologin inherit createrole nocreatedb in role agdc_manage;
+COMMIT;
+
+;-- flag: grant all?
+grant all on database datacube to agdc_admin;
+COMMIT;
+
+select nspname from pg_namespace where lower(nspname)='agdc';
+begin;
+set role agdc_admin;
+
+
+/* Creating schema. */
+CREATE SCHEMA agdc;
+COMMIT;
+
+
+/* Creating tables. */
+create or replace function agdc.common_timestamp(text)
+returns timestamp with time zone as $$
+select ($1)::timestamp at time zone 'utc';
+$$ language sql immutable returns null on null input;
+
+create type agdc.float8range as range (subtype = float8, subtype_diff = float8mi);
+COMMIT;
+
+;-- check if tables exist
+select relname from pg_class c join pg_namespace n on n.oid=c.relnamespace where n.nspname='agdc' and relname='metadata_type';
+select relname from pg_class c join pg_namespace n on n.oid=c.relnamespace where n.nspname='agdc' and relname='dataset_type';
+select relname from pg_class c join pg_namespace n on n.oid=c.relnamespace where n.nspname='agdc' and relname='dataset';
+select relname from pg_class c join pg_namespace n on n.oid=c.relnamespace where n.nspname='agdc' and relname='dataset_location';
+select relname from pg_class c join pg_namespace n on n.oid=c.relnamespace where n.nspname='agdc' and relname='dataset_source';
+
+CREATE TABLE agdc.metadata_type (
+        id SMALLSERIAL NOT NULL,
+        name VARCHAR NOT NULL,
+        definition JSONB NOT NULL,
+        added TIMESTAMP WITH TIME ZONE DEFAULT now() NOT NULL,
+        added_by NAME DEFAULT CURRENT_USER NOT NULL,
+        CONSTRAINT pk_metadata_type PRIMARY KEY (id),
+        CONSTRAINT ck_metadata_type_alphanumeric_name CHECK (name ~* '^\w+$'),
+        CONSTRAINT uq_metadata_type_name UNIQUE (name)
+);
+
+COMMIT;
+
+CREATE TABLE agdc.dataset_type (
+        id SMALLSERIAL NOT NULL,
+        name VARCHAR NOT NULL,
+        metadata JSONB NOT NULL,
+        metadata_type_ref SMALLINT NOT NULL,
+        definition JSONB NOT NULL,
+        added TIMESTAMP WITH TIME ZONE DEFAULT now() NOT NULL,
+        added_by NAME DEFAULT CURRENT_USER NOT NULL,
+        CONSTRAINT pk_dataset_type PRIMARY KEY (id),
+        CONSTRAINT ck_dataset_type_alphanumeric_name CHECK (name ~* '^\w+$'),
+        CONSTRAINT uq_dataset_type_name UNIQUE (name),
+        CONSTRAINT fk_dataset_type_metadata_type_ref_metadata_type FOREIGN KEY(metadata_type_ref) REFERENCES agdc.metadata_type (id)
+);
+
+COMMIT;
+
+CREATE TABLE agdc.dataset (
+        id UUID NOT NULL,
+        metadata_type_ref SMALLINT NOT NULL,
+        dataset_type_ref SMALLINT NOT NULL,
+        metadata JSONB NOT NULL,
+        archived TIMESTAMP WITH TIME ZONE,
+        added TIMESTAMP WITH TIME ZONE DEFAULT now() NOT NULL,
+        added_by NAME DEFAULT CURRENT_USER NOT NULL,
+        CONSTRAINT pk_dataset PRIMARY KEY (id),
+        CONSTRAINT fk_dataset_metadata_type_ref_metadata_type FOREIGN KEY(metadata_type_ref) REFERENCES agdc.metadata_type (id),
+        CONSTRAINT fk_dataset_dataset_type_ref_dataset_type FOREIGN KEY(dataset_type_ref) REFERENCES agdc.dataset_type (id)
+);
+
+COMMIT;
+
+CREATE INDEX ix_agdc_dataset_dataset_type_ref ON agdc.dataset (dataset_type_ref);
+COMMIT;
+
+CREATE TABLE agdc.dataset_location (
+        id SERIAL NOT NULL,
+        dataset_ref UUID NOT NULL,
+        uri_scheme VARCHAR NOT NULL,
+        uri_body VARCHAR NOT NULL,
+        added TIMESTAMP WITH TIME ZONE DEFAULT now() NOT NULL,
+        added_by NAME DEFAULT CURRENT_USER NOT NULL,
+        archived TIMESTAMP WITH TIME ZONE,
+        CONSTRAINT pk_dataset_location PRIMARY KEY (id),
+        CONSTRAINT uq_dataset_location_uri_scheme UNIQUE (uri_scheme, uri_body, dataset_ref),
+        CONSTRAINT fk_dataset_location_dataset_ref_dataset FOREIGN KEY(dataset_ref) REFERENCES agdc.dataset (id)
+);
+
+COMMIT;
+
+CREATE INDEX ix_agdc_dataset_location_dataset_ref ON agdc.dataset_location (dataset_ref);
+COMMIT;
+
+CREATE TABLE agdc.dataset_source (
+        dataset_ref UUID NOT NULL,
+        classifier VARCHAR NOT NULL,
+        source_dataset_ref UUID NOT NULL,
+        CONSTRAINT pk_dataset_source PRIMARY KEY (dataset_ref, classifier),
+        CONSTRAINT uq_dataset_source_source_dataset_ref UNIQUE (source_dataset_ref, dataset_ref),
+        CONSTRAINT fk_dataset_source_dataset_ref_dataset FOREIGN KEY(dataset_ref) REFERENCES agdc.dataset (id),
+        CONSTRAINT fk_dataset_source_source_dataset_ref_dataset FOREIGN KEY(source_dataset_ref) REFERENCES agdc.dataset (id)
+);
+
+COMMIT;
+
+
+/* Adding role grants. */
+grant usage on schema agdc to agdc_user;
+grant select on all tables in schema agdc to agdc_user;
+grant execute on function agdc.common_timestamp(text) to agdc_user;
+grant insert on agdc.dataset, agdc.dataset_location, agdc.dataset_source to agdc_ingest;
+grant usage, select on all sequences in schema agdc to agdc_ingest;
+-- (We're only granting deletion of types that have nothing written yet: they can't delete the data itself)
+grant insert, delete on agdc.dataset_type, agdc.metadata_type to agdc_manage;
+-- Allow creation of indexes, views
+grant create on schema agdc to agdc_manage;
+COMMIT;
+
+
+/* Adding default metadata types. */
+;-- check if the default metadata exists
+SELECT agdc.metadata_type.id, agdc.metadata_type.name, agdc.metadata_type.definition, agdc.metadata_type.added, agdc.metadata_type.added_by
+FROM agdc.metadata_type
+WHERE agdc.metadata_type.name = 'eo';
+
+INSERT INTO agdc.metadata_type (name, definition) VALUES ('eo', '{"name":"eo","description":"Earth Observation datasets.\\nExpected metadata structure produced by the eodatasets library, as used internally at GA.\\nhttps://github.com/GeoscienceAustralia/eo-datasets\\n","dataset":{"id":["id"],"creation_dt":["creation_dt"],"label":["ga_label"],"measurements":["image","bands"],"grid_spatial":["grid_spatial","projection"],"format":["format","name"],"sources":["lineage","source_datasets"],"search_fields":{"platform":{"description":"Platform code","offset":["platform","code"]},"instrument":{"description":"Instrument name","offset":["instrument","name"]},"product_type":{"description":"Product code","offset":["product_type"]},"lat":{"description":"Latitude range","type":"double-range","max_offset":[["extent","coord","ur","lat"],["extent","coord","lr","lat"],["extent","coord","ul","lat"],["extent","coord","ll","lat"]],"min_offset":[["extent","coord","ur","lat"],["extent","coord","lr","lat"],["extent","coord","ul","lat"],["extent","coord","ll","lat"]]},"lon":{"description":"Longitude range","type":"double-range","max_offset":[["extent","coord","ul","lon"],["extent","coord","ur","lon"],["extent","coord","ll","lon"],["extent","coord","lr","lon"]],"min_offset":[["extent","coord","ul","lon"],["extent","coord","ur","lon"],["extent","coord","ll","lon"],["extent","coord","lr","lon"]]},"time":{"description":"Acquisition time","type":"datetime-range","min_offset":[["extent","from_dt"],["extent","center_dt"]],"max_offset":[["extent","to_dt"],["extent","center_dt"]]}}}}') RETURNING agdc.metadata_type.id;
+
+COMMIT;
+
+SELECT to_regclass('agdc.dix_eo_lat_lon_time');
+SELECT to_regclass('agdc.dix_field_eo_dataset_lat_lon_time');
+SELECT to_regclass('agdc.dix_eo_time_lat_lon');
+SELECT to_regclass('agdc.dix_field_eo_dataset_time_lat_lon');
+SELECT to_regclass('agdc.dix_eo_platform');
+SELECT to_regclass('agdc.dix_field_eo_dataset_platform');
+SELECT to_regclass('agdc.dix_eo_instrument');
+SELECT to_regclass('agdc.dix_field_eo_dataset_instrument');
+SELECT to_regclass('agdc.dix_eo_product_type');
+SELECT to_regclass('agdc.dix_field_eo_dataset_product_type');
+SELECT to_regclass('agdc.dix_eo_lat');
+SELECT to_regclass('agdc.dix_field_eo_dataset_lat');
+SELECT to_regclass('agdc.dix_eo_lon');
+SELECT to_regclass('agdc.dix_field_eo_dataset_lon');
+SELECT to_regclass('agdc.dix_eo_time');
+SELECT to_regclass('agdc.dix_field_eo_dataset_time');
+SELECT to_regclass('agdc.dv_eo_dataset');
+
+
+/* Creating view: agdc.dv_eo_dataset */
+CREATE VIEW agdc.dv_eo_dataset AS SELECT agdc.dataset.id AS id, agdc.dataset_type.name AS product, agdc.dataset.dataset_type_ref AS dataset_type_id, agdc.metadata_type.name AS metadata_type, agdc.dataset.metadata_type_ref AS metadata_type_id, agdc.dataset.metadata AS metadata_doc, agdc.dataset.metadata #>> '{platform, code}' AS platform, agdc.dataset.metadata #>> '{instrument, name}' AS instrument, agdc.dataset.metadata #>> '{product_type}' AS product_type, agdc.float8range(least(CAST(agdc.dataset.metadata #>> '{extent, coord, ur, lat}' AS DOUBLE PRECISION), CAST(agdc.dataset.metadata #>> '{extent, coord, lr, lat}' AS DOUBLE PRECISION), CAST(agdc.dataset.metadata #>> '{extent, coord, ul, lat}' AS DOUBLE PRECISION), CAST(agdc.dataset.metadata #>> '{extent, coord, ll, lat}' AS DOUBLE PRECISION)), greatest(CAST(agdc.dataset.metadata #>> '{extent, coord, ur, lat}' AS DOUBLE PRECISION), CAST(agdc.dataset.metadata #>> '{extent, coord, lr, lat}' AS DOUBLE PRECISION), CAST(agdc.dataset.metadata #>> '{extent, coord, ul, lat}' AS DOUBLE PRECISION), CAST(agdc.dataset.metadata #>> '{extent, coord, ll, lat}' AS DOUBLE PRECISION)), '[]') AS lat, agdc.float8range(least(CAST(agdc.dataset.metadata #>> '{extent, coord, ul, lon}' AS DOUBLE PRECISION), CAST(agdc.dataset.metadata #>> '{extent, coord, ur, lon}' AS DOUBLE PRECISION), CAST(agdc.dataset.metadata #>> '{extent, coord, ll, lon}' AS DOUBLE PRECISION), CAST(agdc.dataset.metadata #>> '{extent, coord, lr, lon}' AS DOUBLE PRECISION)), greatest(CAST(agdc.dataset.metadata #>> '{extent, coord, ul, lon}' AS DOUBLE PRECISION), CAST(agdc.dataset.metadata #>> '{extent, coord, ur, lon}' AS DOUBLE PRECISION), CAST(agdc.dataset.metadata #>> '{extent, coord, ll, lon}' AS DOUBLE PRECISION), CAST(agdc.dataset.metadata #>> '{extent, coord, lr, lon}' AS DOUBLE PRECISION)), '[]') AS lon, tstzrange(least(agdc.common_timestamp(agdc.dataset.metadata #>> '{extent, from_dt}'), agdc.common_timestamp(agdc.dataset.metadata #>> '{extent, center_dt}')), greatest(agdc.common_timestamp(agdc.dataset.metadata #>> '{extent, to_dt}'), agdc.common_timestamp(agdc.dataset.metadata #>> '{extent, center_dt}')), '[]') AS time
+FROM agdc.dataset JOIN agdc.dataset_type ON agdc.dataset_type.id = agdc.dataset.dataset_type_ref JOIN agdc.metadata_type ON agdc.metadata_type.id = agdc.dataset_type.metadata_type_ref
+WHERE agdc.dataset.archived IS NULL AND agdc.dataset.metadata_type_ref = 1;
+
+SELECT to_regclass('agdc.eo_dataset');
+
+SELECT agdc.dataset_type.id, agdc.dataset_type.name, agdc.dataset_type.metadata, agdc.dataset_type.metadata_type_ref, agdc.dataset_type.definition, agdc.dataset_type.added, agdc.dataset_type.added_by
+FROM agdc.dataset_type
+WHERE agdc.dataset_type.metadata_type_ref = 1 ORDER BY agdc.dataset_type.name ASC;
+
+SELECT agdc.metadata_type.id, agdc.metadata_type.name, agdc.metadata_type.definition, agdc.metadata_type.added, agdc.metadata_type.added_by
+FROM agdc.metadata_type
+WHERE agdc.metadata_type.name = 'eo';
+
+SELECT agdc.metadata_type.id, agdc.metadata_type.name, agdc.metadata_type.definition, agdc.metadata_type.added, agdc.metadata_type.added_by
+FROM agdc.metadata_type
+WHERE agdc.metadata_type.name = 'telemetry';
+
+INSERT INTO agdc.metadata_type (name, definition) VALUES ('telemetry', '{"name":"telemetry","description":"Satellite telemetry datasets.\nExpected metadata structure produced by telemetry datasets from the eodatasets library, as used internally at GA.\nhttps://github.com/GeoscienceAustralia/eo-datasets\n","dataset":{"id":["id"],"creation_dt":["creation_dt"],"label":["ga_label"],"sources":["lineage","source_datasets"],"search_fields":{"platform":{"description":"Platform code","offset":["platform","code"]},"instrument":{"description":"Instrument name","offset":["instrument","name"]},"product_type":{"description":"Product code","offset":["product_type"]},"time":{"description":"Acquisition time","type":"datetime-range","min_offset":[["acquisition","aos"]],"max_offset":[["acquisition","los"]]},"gsi":{"description":"Ground Station Identifier (eg. ASA)","offset":["acquisition","groundstation","code"],"indexed":false},"orbit":{"description":"Orbit number","offset":["acquisition","platform_orbit"],"type":"integer"},"sat_path":{"description":"Landsat path","type":"integer-range","min_offset":[["image","satellite_ref_point_start","x"]],"max_offset":[["image","satellite_ref_point_end","x"],["image","satellite_ref_point_start","x"]]},"sat_row":{"description":"Landsat row","type":"integer-range","min_offset":[["image","satellite_ref_point_start","y"]],"max_offset":[["image","satellite_ref_point_end","y"],["image","satellite_ref_point_start","y"]]}}}}') RETURNING agdc.metadata_type.id;
+
+COMMIT;
+
+SELECT to_regclass('agdc.dix_telemetry_sat_path_sat_row_time');
+SELECT to_regclass('agdc.dix_field_telemetry_dataset_sat_path_sat_row_time');
+SELECT to_regclass('agdc.dix_telemetry_platform');
+SELECT to_regclass('agdc.dix_field_telemetry_dataset_platform');
+SELECT to_regclass('agdc.dix_telemetry_instrument');
+SELECT to_regclass('agdc.dix_field_telemetry_dataset_instrument');
+SELECT to_regclass('agdc.dix_telemetry_product_type');
+SELECT to_regclass('agdc.dix_field_telemetry_dataset_product_type');
+SELECT to_regclass('agdc.dix_telemetry_time');
+SELECT to_regclass('agdc.dix_field_telemetry_dataset_time');
+SELECT to_regclass('agdc.dix_telemetry_gsi');
+SELECT to_regclass('agdc.dix_field_telemetry_dataset_gsi');
+SELECT to_regclass('agdc.dix_telemetry_orbit');
+SELECT to_regclass('agdc.dix_field_telemetry_dataset_orbit');
+SELECT to_regclass('agdc.dix_telemetry_sat_path');
+SELECT to_regclass('agdc.dix_field_telemetry_dataset_sat_path');
+SELECT to_regclass('agdc.dix_telemetry_sat_row');
+SELECT to_regclass('agdc.dix_field_telemetry_dataset_sat_row');
+SELECT to_regclass('agdc.dv_telemetry_dataset');
+
+
+/* Creating view: agdc.dv_telemetry_dataset */
+CREATE VIEW agdc.dv_telemetry_dataset AS SELECT agdc.dataset.id AS id, agdc.dataset_type.name AS product, agdc.dataset.dataset_type_ref AS dataset_type_id, agdc.metadata_type.name AS metadata_type, agdc.dataset.metadata_type_ref AS metadata_type_id, agdc.dataset.metadata AS metadata_doc, agdc.dataset.metadata #>> '{platform, code}' AS platform, agdc.dataset.metadata #>> '{instrument, name}' AS instrument, agdc.dataset.metadata #>> '{product_type}' AS product_type, tstzrange(agdc.common_timestamp(agdc.dataset.metadata #>> '{acquisition, aos}'), agdc.common_timestamp(agdc.dataset.metadata #>> '{acquisition, los}'), '[]') AS time, agdc.dataset.metadata #>> '{acquisition, groundstation, code}' AS gsi, CAST(agdc.dataset.metadata #>> '{acquisition, platform_orbit}' AS INTEGER) AS orbit, numrange(CAST(agdc.dataset.metadata #>> '{image, satellite_ref_point_start, x}' AS INTEGER), greatest(CAST(agdc.dataset.metadata #>> '{image, satellite_ref_point_end, x}' AS INTEGER), CAST(agdc.dataset.metadata #>> '{image, satellite_ref_point_start, x}' AS INTEGER)), '[]') AS sat_path, numrange(CAST(agdc.dataset.metadata #>> '{image, satellite_ref_point_start, y}' AS INTEGER), greatest(CAST(agdc.dataset.metadata #>> '{image, satellite_ref_point_end, y}' AS INTEGER), CAST(agdc.dataset.metadata #>> '{image, satellite_ref_point_start, y}' AS INTEGER)), '[]') AS sat_row
+FROM agdc.dataset JOIN agdc.dataset_type ON agdc.dataset_type.id = agdc.dataset.dataset_type_ref JOIN agdc.metadata_type ON agdc.metadata_type.id = agdc.dataset_type.metadata_type_ref
+WHERE agdc.dataset.archived IS NULL AND agdc.dataset.metadata_type_ref = 2;
+
+SELECT to_regclass('agdc.telemetry_dataset');
+
+SELECT agdc.dataset_type.id, agdc.dataset_type.name, agdc.dataset_type.metadata, agdc.dataset_type.metadata_type_ref, agdc.dataset_type.definition, agdc.dataset_type.added, agdc.dataset_type.added_by
+FROM agdc.dataset_type
+WHERE agdc.dataset_type.metadata_type_ref = 2 ORDER BY agdc.dataset_type.name ASC;
+
+SELECT agdc.metadata_type.id, agdc.metadata_type.name, agdc.metadata_type.definition, agdc.metadata_type.added, agdc.metadata_type.added_by
+FROM agdc.metadata_type
+WHERE agdc.metadata_type.name = 'telemetry';
+
+
+/* Checking dynamic views/indexes. (rebuild views=True, indexes=False) */
+SELECT agdc.metadata_type.id, agdc.metadata_type.name, agdc.metadata_type.definition, agdc.metadata_type.added, agdc.metadata_type.added_by
+FROM agdc.metadata_type ORDER BY agdc.metadata_type.name ASC;
+
+SELECT to_regclass('agdc.dix_eo_lat_lon_time');
+SELECT to_regclass('agdc.dix_field_eo_dataset_lat_lon_time');
+SELECT to_regclass('agdc.dix_eo_time_lat_lon');
+SELECT to_regclass('agdc.dix_field_eo_dataset_time_lat_lon');
+SELECT to_regclass('agdc.dix_eo_lat');
+SELECT to_regclass('agdc.dix_field_eo_dataset_lat');
+SELECT to_regclass('agdc.dix_eo_lon');
+SELECT to_regclass('agdc.dix_field_eo_dataset_lon');
+SELECT to_regclass('agdc.dix_eo_time');
+SELECT to_regclass('agdc.dix_field_eo_dataset_time');
+SELECT to_regclass('agdc.dix_eo_platform');
+SELECT to_regclass('agdc.dix_field_eo_dataset_platform');
+SELECT to_regclass('agdc.dix_eo_instrument');
+SELECT to_regclass('agdc.dix_field_eo_dataset_instrument');
+SELECT to_regclass('agdc.dix_eo_product_type');
+SELECT to_regclass('agdc.dix_field_eo_dataset_product_type');
+SELECT to_regclass('agdc.dv_eo_dataset');
+
+
+/* Dropping view: agdc.dv_eo_dataset (replace=True) */
+drop view agdc.dv_eo_dataset;
+COMMIT;
+
+
+/* Creating view: agdc.dv_eo_dataset */
+CREATE VIEW agdc.dv_eo_dataset AS SELECT agdc.dataset.id AS id, agdc.dataset_type.name AS product, agdc.dataset.dataset_type_ref AS dataset_type_id, agdc.metadata_type.name AS metadata_type, agdc.dataset.metadata_type_ref AS metadata_type_id, agdc.dataset.metadata AS metadata_doc, agdc.float8range(least(CAST(agdc.dataset.metadata #>> '{extent, coord, ur, lat}' AS DOUBLE PRECISION), CAST(agdc.dataset.metadata #>> '{extent, coord, lr, lat}' AS DOUBLE PRECISION), CAST(agdc.dataset.metadata #>> '{extent, coord, ul, lat}' AS DOUBLE PRECISION), CAST(agdc.dataset.metadata #>> '{extent, coord, ll, lat}' AS DOUBLE PRECISION)), greatest(CAST(agdc.dataset.metadata #>> '{extent, coord, ur, lat}' AS DOUBLE PRECISION), CAST(agdc.dataset.metadata #>> '{extent, coord, lr, lat}' AS DOUBLE PRECISION), CAST(agdc.dataset.metadata #>> '{extent, coord, ul, lat}' AS DOUBLE PRECISION), CAST(agdc.dataset.metadata #>> '{extent, coord, ll, lat}' AS DOUBLE PRECISION)), '[]') AS lat, agdc.float8range(least(CAST(agdc.dataset.metadata #>> '{extent, coord, ul, lon}' AS DOUBLE PRECISION), CAST(agdc.dataset.metadata #>> '{extent, coord, ur, lon}' AS DOUBLE PRECISION), CAST(agdc.dataset.metadata #>> '{extent, coord, ll, lon}' AS DOUBLE PRECISION), CAST(agdc.dataset.metadata #>> '{extent, coord, lr, lon}' AS DOUBLE PRECISION)), greatest(CAST(agdc.dataset.metadata #>> '{extent, coord, ul, lon}' AS DOUBLE PRECISION), CAST(agdc.dataset.metadata #>> '{extent, coord, ur, lon}' AS DOUBLE PRECISION), CAST(agdc.dataset.metadata #>> '{extent, coord, ll, lon}' AS DOUBLE PRECISION), CAST(agdc.dataset.metadata #>> '{extent, coord, lr, lon}' AS DOUBLE PRECISION)), '[]') AS lon, tstzrange(least(agdc.common_timestamp(agdc.dataset.metadata #>> '{extent, from_dt}'), agdc.common_timestamp(agdc.dataset.metadata #>> '{extent, center_dt}')), greatest(agdc.common_timestamp(agdc.dataset.metadata #>> '{extent, to_dt}'), agdc.common_timestamp(agdc.dataset.metadata #>> '{extent, center_dt}')), '[]') AS time, agdc.dataset.metadata #>> '{platform, code}' AS platform, agdc.dataset.metadata #>> '{instrument, name}' AS instrument, agdc.dataset.metadata #>> '{product_type}' AS product_type
+FROM agdc.dataset JOIN agdc.dataset_type ON agdc.dataset_type.id = agdc.dataset.dataset_type_ref JOIN agdc.metadata_type ON agdc.metadata_type.id = agdc.dataset_type.metadata_type_ref
+WHERE agdc.dataset.archived IS NULL AND agdc.dataset.metadata_type_ref = 1;
+
+SELECT to_regclass('agdc.eo_dataset');
+
+SELECT agdc.dataset_type.id, agdc.dataset_type.name, agdc.dataset_type.metadata, agdc.dataset_type.metadata_type_ref, agdc.dataset_type.definition, agdc.dataset_type.added, agdc.dataset_type.added_by
+FROM agdc.dataset_type
+WHERE agdc.dataset_type.metadata_type_ref = 1 ORDER BY agdc.dataset_type.name ASC;
+
+SELECT to_regclass('agdc.dix_telemetry_sat_path_sat_row_time');
+SELECT to_regclass('agdc.dix_field_telemetry_dataset_sat_path_sat_row_time');
+SELECT to_regclass('agdc.dix_telemetry_gsi');
+SELECT to_regclass('agdc.dix_field_telemetry_dataset_gsi');
+SELECT to_regclass('agdc.dix_telemetry_time');
+SELECT to_regclass('agdc.dix_field_telemetry_dataset_time');
+SELECT to_regclass('agdc.dix_telemetry_orbit');
+SELECT to_regclass('agdc.dix_field_telemetry_dataset_orbit');
+SELECT to_regclass('agdc.dix_telemetry_sat_row');
+SELECT to_regclass('agdc.dix_field_telemetry_dataset_sat_row');
+SELECT to_regclass('agdc.dix_telemetry_platform');
+SELECT to_regclass('agdc.dix_field_telemetry_dataset_platform');
+SELECT to_regclass('agdc.dix_telemetry_sat_path');
+SELECT to_regclass('agdc.dix_field_telemetry_dataset_sat_path');
+SELECT to_regclass('agdc.dix_telemetry_instrument');
+SELECT to_regclass('agdc.dix_field_telemetry_dataset_instrument');
+SELECT to_regclass('agdc.dix_telemetry_product_type');
+SELECT to_regclass('agdc.dix_field_telemetry_dataset_product_type');
+SELECT to_regclass('agdc.dv_telemetry_dataset');
+
+
+/* Dropping view: agdc.dv_telemetry_dataset (replace=True) */
+drop view agdc.dv_telemetry_dataset;
+COMMIT;
+
+
+/* Creating view: agdc.dv_telemetry_dataset */
+CREATE VIEW agdc.dv_telemetry_dataset AS SELECT agdc.dataset.id AS id, agdc.dataset_type.name AS product, agdc.dataset.dataset_type_ref AS dataset_type_id, agdc.metadata_type.name AS metadata_type, agdc.dataset.metadata_type_ref AS metadata_type_id, agdc.dataset.metadata AS metadata_doc, agdc.dataset.metadata #>> '{acquisition, groundstation, code}' AS gsi, tstzrange(agdc.common_timestamp(agdc.dataset.metadata #>> '{acquisition, aos}'), agdc.common_timestamp(agdc.dataset.metadata #>> '{acquisition, los}'), '[]') AS time, CAST(agdc.dataset.metadata #>> '{acquisition, platform_orbit}' AS INTEGER) AS orbit, numrange(CAST(agdc.dataset.metadata #>> '{image, satellite_ref_point_start, y}' AS INTEGER), greatest(CAST(agdc.dataset.metadata #>> '{image, satellite_ref_point_end, y}' AS INTEGER), CAST(agdc.dataset.metadata #>> '{image, satellite_ref_point_start, y}' AS INTEGER)), '[]') AS sat_row, agdc.dataset.metadata #>> '{platform, code}' AS platform, numrange(CAST(agdc.dataset.metadata #>> '{image, satellite_ref_point_start, x}' AS INTEGER), greatest(CAST(agdc.dataset.metadata #>> '{image, satellite_ref_point_end, x}' AS INTEGER), CAST(agdc.dataset.metadata #>> '{image, satellite_ref_point_start, x}' AS INTEGER)), '[]') AS sat_path, agdc.dataset.metadata #>> '{instrument, name}' AS instrument, agdc.dataset.metadata #>> '{product_type}' AS product_type
+FROM agdc.dataset JOIN agdc.dataset_type ON agdc.dataset_type.id = agdc.dataset.dataset_type_ref JOIN agdc.metadata_type ON agdc.metadata_type.id = agdc.dataset_type.metadata_type_ref
+WHERE agdc.dataset.archived IS NULL AND agdc.dataset.metadata_type_ref = 2;
+
+SELECT to_regclass('agdc.telemetry_dataset');
+
+SELECT agdc.dataset_type.id, agdc.dataset_type.name, agdc.dataset_type.metadata, agdc.dataset_type.metadata_type_ref, agdc.dataset_type.definition, agdc.dataset_type.added, agdc.dataset_type.added_by
+FROM agdc.dataset_type
+WHERE agdc.dataset_type.metadata_type_ref = 2 ORDER BY agdc.dataset_type.name ASC;
+
+/***** End of system init *****/
+
+
+/***** Create database users *****/
+;-- replace $user with real username
+
+;-- Super user level
+GRANT agdc_user TO $user;
+GRANT agdc_admin TO $user;
+GRANT agdc_manage TO $user;
+GRANT agdc_ingest TO $user;
+
+;-- Power user level
+GRANT agdc_user TO $user;
+GRANT agdc_manage TO $user;
+GRANT agdc_ingest TO $user;
+
+;-- Regular user level
+GRANT agdc_user TO $user;
+
+/***** End of extra payload *****/
